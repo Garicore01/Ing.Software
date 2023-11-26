@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import es.unizar.eina.M42_comidas.R;
 
-/** Pantalla utilizada para la creación o edición de una nota */
+/** Pantalla utilizada para la creacion o edicion de una nota */
 public class PlatoEdit extends AppCompatActivity {
 
     public static final String NOTE_TITLE = "title";

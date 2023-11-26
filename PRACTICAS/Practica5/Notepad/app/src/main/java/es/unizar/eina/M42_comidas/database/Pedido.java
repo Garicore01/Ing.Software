@@ -6,7 +6,7 @@ import java.util.Date;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/** Clase anotada como entidad que representa una nota y que consta de título y cuerpo */
+/** Clase anotada como entidad que representa un Pedido */
 @Entity(tableName = "pedido")
 public class Pedido {
     @PrimaryKey(autoGenerate = true)
@@ -28,34 +28,88 @@ public class Pedido {
     @ColumnInfo(name = "estado")
     private String estado;
 
-    public Pedido(@NonNull String nombre, String telefono, String estado) {
-        this.nombreCliente = nombre;
-        this.telefonoCliente = telefono;
+    /** Constructor de la clase pedido
+     *
+     * @param nombre
+     * @param telefono
+     * @param fechaRecogida
+     * @param estado
+     */
+    public Pedido(@NonNull String nombreCliente, @NonNull String telefonoCliente, @NonNull Date fechaRecogida ,@NonNull String estado) {
+        this.nombreCliente = nombreCliente;
+        this.telefonoCliente = telefonoCliente;
         this.estado = estado;
+        this.fechaRecogida = fechaRecogida;
     }
 
-    /** Devuelve el identificador de la nota */
-    public int getId(){
+
+    /** Devuelve el identificador de la nota 
+     * @return idPedido
+    */
+    public int getIdPedido(){
         return this.idPedido;
     }
-
-    /** Permite actualizar el identificador de un pedido */
-    public void setId(int idPedido) {
+    
+    /** Permite actualizar el identificador de un pedido 
+     * @param idPedido
+    */
+    public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
 
-    /** Devuelve el nombre de cliente que ha realizado el pedido */
-    public String getNombre(){
+    /** Permite actualizar el nombre del cliente 
+     * @param nombreCliente
+    */
+    public void setNombreCliente(@NonNull String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+    
+    /** Devuelve el nombre de cliente que ha realizado el pedido
+     * @return nombreCliente
+     */
+    public String getNombreCliente(){
         return this.nombreCliente;
     }
 
-    /** Devuelve el estado del pedido */
+    /** Devuelve el estado del pedido 
+     * @return estado
+    */
     public String getEstado(){
         return this.estado;
     }
+    /** Permite actualizar el estado de un pedido 
+     * @param estado
+    */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
-    /** Devuelve el telefono asociado al pedido */
-    public String getTelefono() {
+    /** Devuelve el telefono asociado al pedido
+     * @return telefonoCliente
+     */
+    public String getTelefonoCliente() {
         return telefonoCliente;
     }
+
+    /** Permite actualizar el telefono asociado al pedido
+     * @param telefonoCliente
+     */
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
+    }
+
+    /** Devuelve la fecha de recogida del pedido
+     * @return fechaRecogida
+     */
+    public Date getFechaRecogida() {
+        return fechaRecogida;
+    }
+
+    /** Permite actualizar la fecha de recogida del pedido
+     * @param fechaRecogida
+     */
+    public void setFechaRecogida(Date fechaRecogida) {
+        this.fechaRecogida = fechaRecogida;
+    }
+
 }

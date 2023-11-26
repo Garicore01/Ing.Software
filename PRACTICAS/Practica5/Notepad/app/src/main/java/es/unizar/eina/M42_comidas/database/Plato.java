@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/** Clase que representa una nota en la base de datos */
+/** Clase anotada como entidad que representa un Plato */
 @Entity(tableName = "plato")
 public class Plato {
     @PrimaryKey(autoGenerate = true)
@@ -30,10 +30,10 @@ public class Plato {
 
     /** Constructor de la clase plato 
      * 
-     * @param1 nombre
-     * @param2 precio
-     * @param3 categoria
-     * @param4 descripcion
+     * @param nombre
+     * @param descripcion
+     * @param precio
+     * @param categoria
     */
     public Plato(@NonNull String nombre, @NonNull String descripcion, @NonNull int precio, @NonNull String categoria) {
         this.nombre = nombre;
@@ -45,7 +45,7 @@ public class Plato {
 
     /**
      * Metodo getter que establece el id del plato
-     * @param idPlato
+     * @return idPlato
      */
     public int getIdPlato(){
         return this.idPlato;

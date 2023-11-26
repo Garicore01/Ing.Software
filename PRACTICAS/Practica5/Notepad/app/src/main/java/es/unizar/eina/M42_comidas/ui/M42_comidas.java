@@ -13,10 +13,11 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import es.unizar.eina.M42_comidas.database.Note;
+import es.unizar.eina.M42_comidas.database.Plato;
+import es.unizar.eina.M42_comidas.database.Pedido;
 //import es.unizar.eina.M42_comidas.R;
 
-/** Pantalla principal de la aplicación M42_comidas */
+/** Pantalla principal de la aplicacion M42_comidas */
 public class M42_comidas extends AppCompatActivity {
     private PlatoViewModel mNoteViewModel;
 

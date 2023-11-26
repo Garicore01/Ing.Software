@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
+/** Definicion de clase relacion entre pedido y plato*/
 @Entity(tableName = "esPedido",
         primaryKeys = { "idPedido", "idPlato" },
         foreignKeys = {
@@ -19,6 +20,7 @@ import androidx.room.Index;
                 @Index("idPlato")
         }
 )
+
 public class EsPedido {
     public final int pedidoId;
     public final int platoId;
@@ -27,6 +29,8 @@ public class EsPedido {
     /**
      * Constructor de la clase EsPedido.
      * inicializa los atributos de la clase pedidoId y platoId.
+     * @param pedidoId
+     * @param platoId
      */
     public EsPedido(final int pedidoId, final int platoId) {
         this.pedidoId = pedidoId;
@@ -35,6 +39,7 @@ public class EsPedido {
 
     /**
      * Setter del atributo numero.
+     * @param numero
      */
     public void setNumero(final int numero) {
         this.numero = numero;
@@ -42,6 +47,7 @@ public class EsPedido {
 
     /**
      * Setter del atributo precioTotal.
+     * @param precioTotal
      */
     public void setPrecioTotal(final int precioTotal) {
         this.precioTotal = precioTotal;
@@ -49,6 +55,7 @@ public class EsPedido {
 
     /**
      * Getter del atributo pedidoId.
+     * @return pedidoId
      */
     public int getPedidoId() {
         return pedidoId;
@@ -56,6 +63,7 @@ public class EsPedido {
 
     /**
      * Getter del atributo platoId.
+     * @return platoId
      */
     public int getPlatoId() {
         return platoId;
@@ -63,6 +71,7 @@ public class EsPedido {
 
     /**
      * Getter del atributo numero.
+     * @return numero
      */
     public int getNumero() {
         return numero;
@@ -70,6 +79,7 @@ public class EsPedido {
 
     /**
      * Getter del atributo precioTotal.
+     * @return precioTotal
      */
     public int getPrecioTotal() {
         return precioTotal;

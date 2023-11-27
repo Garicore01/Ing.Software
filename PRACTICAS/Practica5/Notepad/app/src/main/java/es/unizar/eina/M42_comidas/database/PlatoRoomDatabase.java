@@ -48,10 +48,11 @@ public abstract class PlatoRoomDatabase extends RoomDatabase {
                 PlatoDao dao = INSTANCE.PlatoDao();
                 dao.deleteAll();
 
-                Plato Plato = new Plato("Plato 1's title", "Plato 1's body");
-                dao.insert(Plato);
-                Plato = new Plato("Plato 2's title", "Plato 2's body");
-                dao.insert(Plato);
+                Pedido pedido = new Pedido("Gariko","678903987",new Date(),"Espera"); //Se pone X para posteriormente añadir los atributos
+                dao.insert(pedido);
+                pedido = new Pedido("Gariko2","678903987",new Date(),"Recogido");
+                dao.insert(pedido);
+
             });
         }
     };

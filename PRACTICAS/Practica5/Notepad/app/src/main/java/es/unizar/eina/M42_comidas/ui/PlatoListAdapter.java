@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import es.unizar.eina.M42_comidas.database.Note;
+import es.unizar.eina.M42_comidas.database.Plato;
 
-public class PlatoListAdapter extends ListAdapter<Note, PlatoViewHolder> {
+public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     private int position;
 
     public int getPosition() {
@@ -20,7 +20,7 @@ public class PlatoListAdapter extends ListAdapter<Note, PlatoViewHolder> {
         this.position = position;
     }
 
-    public PlatoListAdapter(@NonNull DiffUtil.ItemCallback<Note> diffCallback) {
+    public PlatoListAdapter(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
         super(diffCallback);
     }
 

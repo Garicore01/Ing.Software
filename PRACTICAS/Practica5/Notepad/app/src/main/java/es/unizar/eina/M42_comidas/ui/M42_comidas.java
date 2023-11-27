@@ -19,7 +19,7 @@ import es.unizar.eina.M42_comidas.database.Pedido;
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_comidas extends AppCompatActivity {
-    private PlatoViewModel mNoteViewModel;
+    private PlatoViewModel mPlatoViewModel;
 
     public static final int ACTIVITY_CREATE = 1;
 
@@ -46,14 +46,14 @@ public class M42_comidas extends AppCompatActivity {
 
         mNoteViewModel = new ViewModelProvider(this).get(PlatoViewModel.class);
 
-        mNoteViewModel.getAllNotes().observe(this, notes -> {
+        mNoteViewModel.getAllPlatos().observe(this, platos -> {
             // Update the cached copy of the notes in the adapter.
-            mAdapter.submitList(notes);
+            mAdapter.submitList(platos);
         });
 
         mFab = findViewById(R.id.fab);
         mFab.setOnClickListener(view -> {
-            createNote();
+            createPlato();
         });
 
         // It doesn't affect if we comment the following instruction

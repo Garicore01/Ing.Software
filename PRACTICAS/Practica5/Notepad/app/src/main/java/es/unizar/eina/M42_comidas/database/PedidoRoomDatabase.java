@@ -7,11 +7,17 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.room.TypeConverters;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
+
 @Database(entities = {Pedido.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
+
 public abstract class PedidoRoomDatabase extends RoomDatabase {
 
     public abstract PedidoDao PedidoDao();
@@ -48,10 +54,6 @@ public abstract class PedidoRoomDatabase extends RoomDatabase {
                 PedidoDao dao = INSTANCE.PedidoDao();
                 dao.deleteAll();
 
-                Pedido pedido = new pPedido(X); //Se pone X para posteriormente añadir los atributos
-                dao.insert(pedido);
-                pedido = new Pedido(X); //Se pone X para posteriormente añadir los atributos
-                dao.insert(pedido);
             });
         }
     };

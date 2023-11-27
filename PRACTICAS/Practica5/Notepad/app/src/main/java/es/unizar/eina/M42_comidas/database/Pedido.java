@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import java.util.Date;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
 
 /** Clase anotada como entidad que representa un Pedido */
 @Entity(tableName = "pedido")
@@ -27,6 +28,11 @@ public class Pedido {
 
     @ColumnInfo(name = "estado")
     private String estado;
+
+
+  
+
+    
 
     /** Constructor de la clase pedido
      *
@@ -110,6 +116,12 @@ public class Pedido {
      */
     public void setFechaRecogida(Date fechaRecogida) {
         this.fechaRecogida = fechaRecogida;
+    }
+
+    public String converFecha(Date fechaRecogida){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaComoTexto = sdf.format(fechaRecogida);
+        System.out.println(fechaComoTexto);
     }
 
 }

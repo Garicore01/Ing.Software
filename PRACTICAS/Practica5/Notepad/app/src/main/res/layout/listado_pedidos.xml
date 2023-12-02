@@ -10,22 +10,10 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="75dp"
         android:layout_height="76dp"
-        android:layout_marginBottom="617dp"
+        android:layout_marginBottom="1832dp"
         android:drawableBottom="@mipmap/volver_atras"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
-
-    <ScrollView
-        android:layout_width="320dp"
-        android:layout_height="496dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="148dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -34,7 +22,88 @@
         android:clickable="true"
         app:backgroundTint="#03A9F4"
         app:srcCompat="@drawable/ic_add_black_24dp"
-        tools:layout_editor_absoluteX="339dp"
-        tools:layout_editor_absoluteY="45dp" />
+        tools:layout_editor_absoluteX="335dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        app:srcCompat="@mipmap/volver_atras"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <LinearLayout
+        android:layout_width="353dp"
+        android:layout_height="109dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="134dp">
+
+        <TextView
+            android:id="@+id/numero_pedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pedido 43"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/contenido_pedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contenido: Arroz tres delicias (1) + tarta queso (1)" />
+
+        <TextView
+            android:id="@+id/nombre_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cliente: Gari Arellano" />
+
+        <TextView
+            android:id="@+id/fecha_recogida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha recogida: 03/01/24 - 21:00" />
+
+        <TextView
+            android:id="@+id/precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Precio: 10 euros" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/listado_pedidos"
+        android:layout_width="233dp"
+        android:layout_height="37dp"
+        android:text="Listado de pedidos"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="33dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="346dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="271dp" />
+
+    <Button
+        android:id="@+id/boton_ordenar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ordenar por"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="83dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="42dp"
+        android:layout_height="41dp"
+        app:srcCompat="@mipmap/ordenar"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="83dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

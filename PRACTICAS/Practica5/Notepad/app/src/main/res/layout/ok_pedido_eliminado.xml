@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ok_pedido_eliminado"
+        android:layout_width="334dp"
+        android:layout_height="55dp"
+        android:text="Todo ha funcionado bien"
+        android:textAlignment="center"
+        android:textColor="#4CAF50"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="442dp" />
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="253dp"
+        android:layout_height="257dp"
+        app:srcCompat="@mipmap/ok"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="105dp" />
+
+    <TextView
+        android:id="@+id/mensaje_ok_pedido_eliminado"
+        android:layout_width="334dp"
+        android:layout_height="83dp"
+        android:text="Su pedido se ha modificado correctamente"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="553dp" />
+
+    <Button
+        android:id="@+id/boton_ok3"
+        android:layout_width="262dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Ok"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="697dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

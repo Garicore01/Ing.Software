@@ -1,3 +1,5 @@
+package es.unizar.eina.M42_comidas.database;
+
 import androidx.room.TypeConverter;
 
 import java.util.Date;

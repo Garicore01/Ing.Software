@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 
 /** Clase anotada como entidad que representa un Pedido */
-@Entity(tableName = "pedido")
+@Entity(tableName = "Pedido")
 public class Pedido {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "idPedido")

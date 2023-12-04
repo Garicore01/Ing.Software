@@ -29,37 +29,61 @@ public class M42_comidas extends AppCompatActivity {
     static final int DELETE_ID = Menu.FIRST + 1;
     static final int EDIT_ID = Menu.FIRST + 2;
 
-    RecyclerView mRecyclerView;
+    RecyclerView mPlatoRecyclerView;
+    RecyclerView mPedidoRecyclerView;
 
-    PlatoListAdapter mAdapter;
 
-    FloatingActionButton mFab;
+
+    PlatoListAdapter mPlatoAdapter;
+    PedidoListAdapter mPedidoAdapter;
+
+    FloatingActionButton mPlatoFab;
+    FloatingActionButton mPedidoFab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notepad);
-        mRecyclerView = findViewById(R.id.recyclerview);
-        mAdapter = new PlatoListAdapter(new PlatoListAdapter.NoteDiff());
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setContentView(R.layout.activity_platos);
+        mPlatoRecyclerView = findViewById(R.id.recyclerview);
+        mPedidoRecyclerView = findViewById(R.id.recyclerview);
 
-        mNoteViewModel = new ViewModelProvider(this).get(PlatoViewModel.class);
+        mPlatoAdapter = new PlatoListAdapter(new PlatoListAdapter.PlatoDiff());
+        mPedidoAdapter = new PedidoListAdapter(new PedidoListAdapter.PedidoDiff());
 
-        mNoteViewModel.getAllPlatos().observe(this, platos -> {
-            // Update the cached copy of the notes in the adapter.
-            mAdapter.submitList(platos);
+        mPlatoRecyclerView.setAdapter(mPlatoAdapter);
+        mPlatoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mPedidoRecyclerView.setAdapter(mPedidoAdapter);
+        mPedidoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mPlatoViewModel = new ViewModelProvider(this).get(PlatoViewModel.class);
+        mPedidoViewModel = new ViewModelProvider(this).get(PedidoViewModel.class);
+
+        mPlatoViewModel.getAllDishes().observe(this, platos -> {
+            // Update the cached copy of the dishes in the adapter.
+            mPlatoAdapter.submitList(platos);
         });
 
-        mFab = findViewById(R.id.fab);
-        mFab.setOnClickListener(view -> {
-            createPlato();
+        mPedidoViewModel.getAllPedidos().observe(this, pedidos -> {
+            // Update the cached copy of the orders in the adapter.
+            mPedidoAdapter.submitList(pedidos);
         });
 
-        // It doesn't affect if we comment the following instruction
-        registerForContextMenu(mRecyclerView);
+        mPlatoFab = findViewById(R.id.fab);
+        mPlatoFab.setOnClickListener(view -> {
+            createDish();
+        });
 
+        mPedidoFab = findViewById(R.id.fab);
+        mPedidoFab.setOnClickListener(view -> {
+            createPedido();
+        });
+
+        registerForContextMenu(mPlatoRecyclerView);
+        registerForContextMenu(mPedidoRecyclerView);
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         boolean result = super.onCreateOptionsMenu(menu);

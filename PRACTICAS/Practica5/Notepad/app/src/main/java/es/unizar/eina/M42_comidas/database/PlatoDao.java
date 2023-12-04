@@ -32,6 +32,11 @@ public interface PlatoDao {
     @Update
     int update(Plato note);
 
+        /**
+     * Elimina todos los pedidos de la base de datos
+     */
+    @Query("DELETE FROM Plato")
+    void deleteAll();
 
     /**
      * Elimina un plato de la base de datos

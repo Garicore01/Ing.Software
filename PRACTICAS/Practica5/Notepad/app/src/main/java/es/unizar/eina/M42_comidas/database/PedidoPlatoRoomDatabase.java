@@ -10,24 +10,28 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.Date;
+import androidx.room.TypeConverters;
 
-@Database(entities = {Plato.class}, version = 1, exportSchema = false)
-public abstract class PlatoRoomDatabase extends RoomDatabase {
+@Database(entities = {Plato.class,Pedido.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
+public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
 
     public abstract PlatoDao PlatoDao();
 
-    private static volatile PlatoRoomDatabase INSTANCE;
+    private static volatile PedidoPlatoRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public abstract PedidoDao PedidoDao();
 
-    static PlatoRoomDatabase getDatabase(final Context context) {
+    static PedidoPlatoRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (PlatoRoomDatabase.class) {
+            synchronized (PedidoPlatoRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    PlatoRoomDatabase.class, "Plato_database")
-                            .addCallback(sRoomDatabaseCallback)
+                                    PedidoPlatoRoomDatabase.class, "PedidoPlato_database")
+                            .addCallback(sDatabaseCallback)
                             .build();
                 }
             }
@@ -35,7 +39,7 @@ public abstract class PlatoRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static RoomDatabase.Callback sDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -45,16 +49,22 @@ public abstract class PlatoRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more Platos, just add them.
-                PlatoDao dao = INSTANCE.PlatoDao();
-                dao.deleteAll();
 
-                Pedido pedido = new Pedido("Gariko","678903987",new Date(),"Espera"); //Se pone X para posteriormente añadir los atributos
-                dao.insert(pedido);
+                PedidoDao daoPedido = INSTANCE.PedidoDao();
+                daoPedido.deleteAll();
+                
+                PlatoDao daoPlato = INSTANCE.PlatoDao();
+                daoPlato.deleteAll();
+
+                Pedido pedido = new Pedido("Gariko","678903987",new Date(),"Espera");
+                daoPedido.insert(pedido);
                 pedido = new Pedido("Gariko2","678903987",new Date(),"Recogido");
-                dao.insert(pedido);
+                daoPedido.insert(pedido);
 
             });
         }
     };
+
+
 
 }

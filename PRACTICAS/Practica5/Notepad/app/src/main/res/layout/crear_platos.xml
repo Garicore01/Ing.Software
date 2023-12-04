@@ -1,113 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <EditText
-        android:id="@+id/categoria_plato_crear_plato"
-        android:layout_width="283dp"
-        android:layout_height="53dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Categoria"
-        android:textSize="25sp"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="425dp" />
-
-    <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/categoria_pedido_mod_plato"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="430dp" />
-
-    <ImageView
-        android:id="@+id/imageView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/precio_pedido_mod_plato"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="322dp" />
 
     <ImageView
         android:id="@+id/imageView26"
         android:layout_width="72dp"
         android:layout_height="67dp"
         app:srcCompat="@mipmap/volver_atras"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="13dp" />
 
     <TextView
         android:id="@+id/crear_plato"
-        android:layout_width="233dp"
+        android:layout_width="0dp"
         android:layout_height="37dp"
         android:text="Crear plato"
         android:textAlignment="center"
         android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView26"
         tools:layout_editor_absoluteX="119dp"
         tools:layout_editor_absoluteY="28dp" />
 
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crear_plato"
+        app:srcCompat="@mipmap/categoria_pedido_mod_plato" />
+
+    <EditText
+        android:id="@+id/categoria_plato_crear_plato"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Categoria"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView21"
+        app:layout_constraintTop_toBottomOf="@+id/crear_plato"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_plato_crear_plato"
+        app:srcCompat="@mipmap/nombre_pedido_mod_plato" />
+
     <EditText
         android:id="@+id/nombre_plato_crear_plato"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="text"
         android:text="Nombre"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="150dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView25"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_plato_crear_plato" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_plato_crear_plato"
+        app:srcCompat="@mipmap/descripcion_pedido_mod_plato" />
 
     <EditText
         android:id="@+id/descripcion_plato_crear_plato"
-        android:layout_width="281dp"
-        android:layout_height="47dp"
+        android:layout_width="363dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="text"
         android:text="Descripción"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="237dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imageView24"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_plato_crear_plato" />
 
     <ImageView
-        android:id="@+id/imageView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/descripcion_pedido_mod_plato"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="237dp" />
-
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/nombre_pedido_mod_plato"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="152dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="263dp"
-        android:layout_height="158dp"
-        android:backgroundTint="#4CAF50"
-        android:text="Guardar"
-        android:textSize="30sp"
-        app:iconTint="#8BC34A"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="560dp" />
+        android:id="@+id/imageView23"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_plato_crear_plato"
+        app:srcCompat="@mipmap/precio_pedido_mod_plato" />
 
     <EditText
         android:id="@+id/precio_plato_crear_plato"
-        android:layout_width="280dp"
-        android:layout_height="51dp"
+        android:layout_width="377dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="text"
         android:text="Precio"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="319dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView23"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_plato_crear_plato" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="96dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Guardar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/precio_plato_crear_plato" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

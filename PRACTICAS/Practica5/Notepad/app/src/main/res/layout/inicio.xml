@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,17 +10,24 @@
         android:id="@+id/imageView"
         android:layout_width="220dp"
         android:layout_height="179dp"
-        android:src="@tools:sample/avatars"
         app:srcCompat="@mipmap/ic_launcher"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/row1_buttons"
         tools:layout_editor_absoluteX="95dp"
         tools:layout_editor_absoluteY="16dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="74dp"
-        android:layout_height="61dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:elevation="2dp"
         android:foreground="@mipmap/anyadir_plato"
         android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/row1_buttons"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="170dp">
 
@@ -29,47 +37,73 @@
             android:layout_height="wrap_content" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="161dp"
-        android:layout_height="126dp"
-        android:backgroundTint="#2E98EC"
-        android:text="Crear Pedido"
+    <LinearLayout
+        android:id="@+id/row1_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/row2_buttons"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="454dp" />
+        tools:layout_editor_absoluteY="454dp">
 
-    <Button
-        android:id="@+id/button_addPlato"
-        android:layout_width="161dp"
-        android:layout_height="133dp"
-        android:backgroundTint="#DE90EC"
-        android:backgroundTintMode="add"
-        android:foregroundGravity="fill_horizontal|top|left|bottom|center_vertical|clip_horizontal|center|fill_vertical|clip_vertical|right|center_horizontal|fill"
-        android:text="Crear Platos"
-        android:textColorHighlight="#B58080"
-        android:textColorLink="#D52F2F"
-        android:visibility="visible"
-        app:iconPadding="8dp"
-        app:iconTint="#00A62D2D"
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="16dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2E98EC"
+            android:text="Crear Pedido" />
+
+        <Button
+            android:id="@+id/button_addPlato"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#DE90EC"
+            android:backgroundTintMode="add"
+            android:foregroundGravity="fill_horizontal|top|left|bottom|center_vertical|clip_horizontal|center|fill_vertical|clip_vertical|right|center_horizontal|fill"
+            android:text="Crear Platos"
+            android:textColorHighlight="#B58080"
+            android:textColorLink="#D52F2F"
+            android:visibility="visible"
+            app:iconPadding="8dp"
+            app:iconTint="#00A62D2D" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row2_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/row1_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="285dp" />
+        tools:layout_editor_absoluteY="454dp">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="159dp"
-        android:layout_height="126dp"
-        android:backgroundTint="#9C6BF3"
-        android:text="Listar Platos"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="285dp" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="122dp"
+            android:layout_weight="1"
+            android:backgroundTint="#9C6BF3"
+            android:text="Listar Platos" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="161dp"
-        android:layout_height="126dp"
-        android:text="Listar Pedidos"
-        tools:layout_editor_absoluteX="229dp"
-        tools:layout_editor_absoluteY="453dp" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="122dp"
+            android:layout_weight="1"
+            android:text="Listar Pedidos" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"
@@ -77,6 +111,10 @@
         android:layout_height="52dp"
         android:text="Inicio"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="217dp" />
 

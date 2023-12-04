@@ -43,14 +43,14 @@ public interface PedidoDao {
     /**
      * Elimina todos los pedidos de la base de datos
      */
-    @Query("DELETE FROM pedidos")
+    @Query("DELETE FROM Pedido")
     void deleteAll();
 
     /**
      * Devuelve todos los pedidos de la base de datos
      * @return una lista de pedidos
      */
-    @Query("SELECT * FROM pedido")
+    @Query("SELECT * FROM Pedido")
     LiveData<List<Pedido>> getAllPedidos();
 
 
@@ -58,7 +58,7 @@ public interface PedidoDao {
      * Devuelve todos los pedidos de la base de datos ordenados por nombre
      * @return una lista de pedidos ordenados por nombre
      */
-    @Query("SELECT * FROM pedido ORDER BY nombreCliente ASC")
+    @Query("SELECT * FROM Pedido ORDER BY nombreCliente ASC")
     LiveData<List<Pedido>> getAllPedidosOrderedByNombre();
 
 
@@ -66,7 +66,7 @@ public interface PedidoDao {
      * Devuelve todos los pedidos de la base de datos ordenados por telefono
      * @return una lista de pedidos ordenados por telefono
      */
-    @Query("SELECT * FROM pedido ORDER BY telefonoCliente ASC")
+    @Query("SELECT * FROM Pedido ORDER BY telefonoCliente ASC")
     LiveData<List<Pedido>> getAllPedidosOrderedByTelefono();
 
 
@@ -74,7 +74,7 @@ public interface PedidoDao {
      * Devuelve todos los pedidos de la base de datos ordenados por fecha
      * @return una lista de pedidos ordenados por fecha
      */
-    @Query("SELECT * FROM pedido ORDER BY fechaRecogida ASC")
+    @Query("SELECT * FROM Pedido ORDER BY fechaRecogida ASC")
     LiveData<List<Pedido>> getAllPedidosOrderedByDate();
 
 

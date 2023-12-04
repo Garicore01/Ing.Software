@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /** Clase anotada como entidad que representa un Plato */
-@Entity(tableName = "plato")
+@Entity(tableName = "Plato")
 public class Plato {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "idPlato")

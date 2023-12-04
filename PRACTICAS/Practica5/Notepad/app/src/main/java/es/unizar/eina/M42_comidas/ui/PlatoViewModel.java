@@ -8,17 +8,17 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import es.unizar.eina.M42_comidas.database.Pedido;
-import es.unizar.eina.M42_comidas.database.PlatoRepository;
+import es.unizar.eina.M42_comidas.database.PedidoPlatoRepository;
 
 public class PlatoViewModel extends AndroidViewModel {
 
-    private PlatoRepository mRepository;
+    private PedidoPlatoRepository mRepository;
 
     private final LiveData<List<Pedido>> mAllNotes;
 
     public PlatoViewModel(Application application) {
         super(application);
-        mRepository = new PlatoRepository(application);
+        mRepository = new PedidoPlatoRepository(application);
         mAllNotes = mRepository.getAllNotes();
     }
 

@@ -77,7 +77,7 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import es.unizar.eina.M42_comidas.database.Plato;
 
-public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
+public class PedidoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     private int position;
 
     public int getPosition() {
@@ -88,7 +88,7 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
         this.position = position;
     }
 
-    public PlatoListAdapter(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
+    public PedidoListAdapter(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
         super(diffCallback);
     }
 

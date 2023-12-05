@@ -75,9 +75,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import es.unizar.eina.M42_comidas.database.Plato;
+import es.unizar.eina.M42_comidas.database.Pedido;
 
-public class PedidoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
+
+public class PedidoListAdapter extends ListAdapter<Pedido, PlatoViewHolder> {
     private int position;
 
     public int getPosition() {
@@ -88,7 +89,7 @@ public class PedidoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
         this.position = position;
     }
 
-    public PedidoListAdapter(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
+    public PedidoListAdapter(@NonNull DiffUtil.ItemCallback<Pedido> diffCallback) {
         super(diffCallback);
     }
 
@@ -97,14 +98,14 @@ public class PedidoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
         return PlatoViewHolder.create(parent);
     }
 
-    public Plato getCurrent() {
+    public Pedido getCurrent() {
         return getItem(getPosition());
     }
 
     @Override
     public void onBindViewHolder(PlatoViewHolder holder, int position) {
-        Plato current = getItem(position);
-        holder.bind(current.getNombre()); // Asegúrate de tener un método getNombre en la clase Plato
+        Pedido current = getItem(position);
+        holder.bind(current.getNombreCliente()); // Asegúrate de tener un método getNombre en la clase Plato
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -115,16 +116,16 @@ public class PedidoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
         });
     }
 
-    static class PlatoDiff extends DiffUtil.ItemCallback<Plato> {
+    static class PlatoDiff extends DiffUtil.ItemCallback<Pedido> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull Plato oldItem, @NonNull Plato newItem) {
-            return oldItem.getId() == newItem.getId();
+        public boolean areItemsTheSame(@NonNull Pedido oldItem, @NonNull Pedido newItem) {
+            return oldItem.getIdPedido() == newItem.getIdPedido();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Plato oldItem, @NonNull Plato newItem) {
-            return oldItem.getNombre().equals(newItem.getNombre());
+        public boolean areContentsTheSame(@NonNull Pedido oldItem, @NonNull Pedido newItem) {
+            return oldItem.getNombreCliente().equals(newItem.getNombreCliente());
         }
     }
 }

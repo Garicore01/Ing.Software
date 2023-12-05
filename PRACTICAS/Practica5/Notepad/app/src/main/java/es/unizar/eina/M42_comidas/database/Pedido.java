@@ -1,5 +1,7 @@
 package es.unizar.eina.M42_comidas.database;
 
+import android.icu.text.SimpleDateFormat;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import java.util.Date;
@@ -121,7 +123,7 @@ public class Pedido {
     public String converFecha(Date fechaRecogida){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fechaComoTexto = sdf.format(fechaRecogida);
-        System.out.println(fechaComoTexto);
+        return fechaComoTexto;
     }
 
 }

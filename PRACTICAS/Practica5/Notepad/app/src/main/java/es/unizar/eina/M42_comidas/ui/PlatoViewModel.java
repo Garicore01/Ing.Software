@@ -7,25 +7,25 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import es.unizar.eina.M42_comidas.database.Pedido;
+import es.unizar.eina.M42_comidas.database.Plato;
 import es.unizar.eina.M42_comidas.database.PedidoPlatoRepository;
 
 public class PlatoViewModel extends AndroidViewModel {
 
     private PedidoPlatoRepository mRepository;
 
-    private final LiveData<List<Pedido>> mAllNotes;
+    private final LiveData<List<Plato>> mAllPlatos;
 
     public PlatoViewModel(Application application) {
         super(application);
         mRepository = new PedidoPlatoRepository(application);
-        mAllNotes = mRepository.getAllNotes();
+        mAllPlatos = mRepository.getAllPlatos();
     }
 
-    LiveData<List<Pedido>> getAllNotes() { return mAllNotes; }
+    LiveData<List<Plato>> getAllPlatos() { return mAllPlatos; }
 
-    public void insert(Pedido pedido) { mRepository.insert(pedido); }
+    public void insert(Plato plato) { mRepository.insert(plato); }
 
-    public void update(Pedido pedido) { mRepository.update(pedido); }
-    public void delete(Pedido pedido) { mRepository.delete(pedido); }
+    public void update(Plato plato) { mRepository.update(plato); }
+    public void delete(Plato plato) { mRepository.delete(plato); }
 }

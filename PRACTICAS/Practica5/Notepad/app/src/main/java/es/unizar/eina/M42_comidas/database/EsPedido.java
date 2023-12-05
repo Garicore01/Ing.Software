@@ -22,10 +22,10 @@ import androidx.room.Index;
 )
 
 public class EsPedido {
-    public final int pedidoId;
-    public final int platoId;
-    public final int numero;
-    public final int precioTotal;
+    public int pedidoId;
+    public int platoId;
+    public int numero;
+    public int precioTotal;
     /**
      * Constructor de la clase EsPedido.
      * inicializa los atributos de la clase pedidoId y platoId.

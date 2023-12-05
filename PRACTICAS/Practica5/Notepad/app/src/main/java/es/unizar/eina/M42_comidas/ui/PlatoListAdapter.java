@@ -119,7 +119,7 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Plato oldItem, @NonNull Plato newItem) {
-            return oldItem.getId() == newItem.getId();
+            return oldItem.getIdPlato() == newItem.getIdPlato();
         }
 
         @Override

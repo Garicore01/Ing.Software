@@ -56,10 +56,14 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
                 PlatoDao daoPlato = INSTANCE.PlatoDao();
                 daoPlato.deleteAll();
 
+
                 Pedido pedido = new Pedido("Gariko","678903987",new Date(),"Espera");
                 daoPedido.insert(pedido);
                 pedido = new Pedido("Gariko2","678903987",new Date(),"Recogido");
                 daoPedido.insert(pedido);
+
+                Plato plato = new Plato("Arroz con pollo", "Mierda",5,"Comida de mierda");
+                daoPlato.insert(plato);
 
             });
         }

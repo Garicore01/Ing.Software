@@ -27,6 +27,9 @@
         <activity
             android:name=".ui.M42_crearPlato"
             android:exported="false" />
+        <activity
+            android:name=".ui.M42_listarPlatos"
+            android:exported="false" />
     </application>
 
 </manifest>

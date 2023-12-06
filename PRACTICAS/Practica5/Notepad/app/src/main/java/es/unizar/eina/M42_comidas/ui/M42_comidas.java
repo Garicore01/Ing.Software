@@ -45,8 +45,15 @@ public class M42_comidas extends AppCompatActivity {
             Intent intent = new Intent(M42_comidas.this, M42_crearPlato.class);
             startActivity(intent);
         }
-    });
-        
+        });
+        Button button_listarPlato = findViewById(R.id.button_listarPlatos);
+        button_listarPlato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(M42_comidas.this, M42_listarPlatos.class);
+                startActivity(intent);
+            }
+        });
  
     }
 

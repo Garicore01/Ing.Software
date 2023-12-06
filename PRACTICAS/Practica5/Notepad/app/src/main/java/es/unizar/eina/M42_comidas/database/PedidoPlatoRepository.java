@@ -17,6 +17,7 @@ public class PedidoPlatoRepository {
 
     private PedidoDao mPedidoDao;
     private LiveData<List<Pedido>> mAllPedidos;
+
     private PlatoDao mPlatoDao;
     private LiveData<List<Plato>> mAllDishes;
 
@@ -103,6 +104,7 @@ public class PedidoPlatoRepository {
         });
         return result[0];
     }
+
 
     /** Modifica una nota
      * @param plato

@@ -30,9 +30,9 @@ public interface PlatoDao {
      * @return un valor entero con el numero de filas modificadas.
      */
     @Update
-    int update(Plato note);
+    int update(Plato plato);
 
-        /**
+    /**
      * Elimina todos los pedidos de la base de datos
      */
     @Query("DELETE FROM Plato")

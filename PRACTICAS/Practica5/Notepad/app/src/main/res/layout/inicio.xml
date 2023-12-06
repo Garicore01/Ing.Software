@@ -86,7 +86,7 @@
         tools:layout_editor_absoluteY="454dp">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_listarPlatos"
             android:layout_width="0dp"
             android:layout_height="122dp"
             android:layout_weight="1"

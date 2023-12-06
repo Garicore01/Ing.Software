@@ -75,7 +75,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
+
 
 public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     private int position;
@@ -104,14 +106,11 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     @Override
     public void onBindViewHolder(PlatoViewHolder holder, int position) {
         Plato current = getItem(position);
-        holder.bind(current.getNombre()); // Asegúrate de tener un método getNombre en la clase Plato
+        holder.bind(current.getNombre()); // Asegúrate de tener un método getNombrePlato en la clase Plato
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                setPosition(holder.getAdapterPosition());
-                return false;
-            }
+        holder.itemView.setOnLongClickListener(v -> {
+            setPosition(holder.getAdapterPosition());
+            return false;
         });
     }
 

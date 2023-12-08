@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import es.unizar.eina.M42_comidas.database.Plato;
+import es.unizar.eina.M42_comidas.database.Pedido;
 
-public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
+public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
     private int position;
 
     public int getPosition() {
@@ -20,13 +20,13 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
         this.position = position;
     }
 
-    public PlatoListAdapter(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
+    public PedidoListAdapter(@NonNull DiffUtil.ItemCallback<Pedido> diffCallback) {
         super(diffCallback);
     }
 
     @Override
-    public PlatoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return PlatoViewHolder.create(parent);
+    public PedidoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return PedidoViewHolder.create(parent);
     }
 
     public Note getCurrent() {
@@ -34,7 +34,7 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PlatoViewHolder holder, int position) {
+    public void onBindViewHolder(PedidoViewHolder holder, int position) {
 
         Note current = getItem(position);
         holder.bind(current.getTitle());
@@ -78,7 +78,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import es.unizar.eina.M42_comidas.database.Pedido;
 
 
-public class PedidoListAdapter extends ListAdapter<Pedido, PlatoViewHolder> {
+public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
     private int position;
 
     public int getPosition() {
@@ -94,8 +94,8 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PlatoViewHolder> {
     }
 
     @Override
-    public PlatoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return PlatoViewHolder.create(parent);
+    public PedidoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return PedidoViewHolder.create(parent);
     }
 
     public Pedido getCurrent() {
@@ -103,9 +103,9 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PlatoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PlatoViewHolder holder, int position) {
+    public void onBindViewHolder(PedidoViewHolder holder, int position) {
         Pedido current = getItem(position);
-        holder.bind(current.getNombreCliente()); // Asegúrate de tener un método getNombre en la clase Plato
+        holder.bind(current.getNombreCliente()); // Asegúrate de tener un método getNombre en la clase Pedido
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -116,7 +116,7 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PlatoViewHolder> {
         });
     }
 
-    static class PlatoDiff extends DiffUtil.ItemCallback<Pedido> {
+    static class PedidoDiff extends DiffUtil.ItemCallback<Pedido> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Pedido oldItem, @NonNull Pedido newItem) {

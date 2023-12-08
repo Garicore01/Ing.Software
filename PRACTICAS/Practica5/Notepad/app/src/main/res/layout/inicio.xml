@@ -48,7 +48,7 @@
         tools:layout_editor_absoluteY="454dp">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/button_addPedido"
             android:layout_width="16dp"
             android:layout_height="120dp"
             android:layout_weight="1"
@@ -94,7 +94,7 @@
             android:text="Listar Platos" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button_listarPedidos"
             android:layout_width="0dp"
             android:layout_height="122dp"
             android:layout_weight="1"

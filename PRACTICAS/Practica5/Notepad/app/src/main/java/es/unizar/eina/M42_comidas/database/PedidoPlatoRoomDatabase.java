@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.Date;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Plato.class,Pedido.class}, version = 1, exportSchema = false)
+@Database(entities = {Plato.class,Pedido.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
 
@@ -62,12 +62,12 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
                 pedido = new Pedido("Gariko2","678903987",new Date(),"Recogido");
                 daoPedido.insert(pedido);
 
-                Plato plato = new Plato("Arroz con pollo", "Mierda",5,"Comida de mierda");
-                Plato plato2 = new Plato("Arroz con pollo1", "Mierda",5,"Comida de mierda");
-                Plato plato3 = new Plato("Arroz con pollo2", "Mierda",5,"Comida de mierda");
-                Plato plato4 = new Plato("Arroz con pollo3", "Mierda",5,"Comida de mierda");
-                Plato plato5 = new Plato("Arroz con pollo4", "Mierda",5,"Comida de mierda");
-                Plato plato6 = new Plato("Arroz con pollo5", "Mierda",5,"Comida de mierda");
+                Plato plato = new Plato("Arroz con pollo", "Mierda","5","Comida de mierda");
+                Plato plato2 = new Plato("Arroz con pollo1", "Mierda","5","Comida de mierda");
+                Plato plato3 = new Plato("Arroz con pollo2", "Mierda","5","Comida de mierda");
+                Plato plato4 = new Plato("Arroz con pollo3", "Mierda","5","Comida de mierda");
+                Plato plato5 = new Plato("Arroz con pollo4", "Mierda","5","Comida de mierda");
+                Plato plato6 = new Plato("Arroz con pollo5", "Mierda","5","Comida de mierda");
                 daoPlato.insert(plato);
 
 

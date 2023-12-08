@@ -56,7 +56,13 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
 
         @Override
         public boolean areContentsTheSame(@NonNull Plato oldItem, @NonNull Plato newItem) {
-            return oldItem.getNombre().equals(newItem.getNombre());
+            return oldItem.getNombre().equals(newItem.getNombre()) &&
+                    oldItem.getDescripcion().equals(newItem.getDescripcion()) &&
+                    oldItem.getCategoria().equals(newItem.getCategoria()) &&
+                    oldItem.getPrecio().equals(newItem.getPrecio());
+
         }
+
+
     }
 }

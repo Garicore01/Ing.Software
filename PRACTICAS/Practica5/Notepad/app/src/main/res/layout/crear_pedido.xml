@@ -40,12 +40,12 @@
         tools:layout_editor_absoluteY="140dp" />
 
     <EditText
-        android:id="@+id/nombre_plato_crear_pedido"
+        android:id="@+id/nombre_cliente_crear_pedido"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Nombre del plato"
+        android:hint="Nombre del cliente"
         android:inputType="text"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="18sp"

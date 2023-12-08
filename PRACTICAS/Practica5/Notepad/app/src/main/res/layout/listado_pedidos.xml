@@ -39,7 +39,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/listado_platos"
+        android:id="@+id/listado_pedidos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Listado de pedidos"
@@ -122,5 +122,16 @@
             android:layout_height="wrap_content"
             android:text="Precio: 10 euros" />
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPedidos"
+        android:layout_width="407dp"
+        android:layout_height="640dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.903" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

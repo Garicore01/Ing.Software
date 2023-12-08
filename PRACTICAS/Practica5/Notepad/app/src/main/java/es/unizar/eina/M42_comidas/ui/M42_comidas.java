@@ -1,22 +1,13 @@
 package es.unizar.eina.M42_comidas.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import es.unizar.eina.M42_comidas.database.Plato;
-import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.R;
 
 
@@ -42,7 +33,7 @@ public class M42_comidas extends AppCompatActivity {
         button_addPlato.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(M42_comidas.this, M42_crearPlato.class);
+            Intent intent = new Intent(M42_comidas.this, M42_editarPlato.class);
             startActivity(intent);
         }
         });

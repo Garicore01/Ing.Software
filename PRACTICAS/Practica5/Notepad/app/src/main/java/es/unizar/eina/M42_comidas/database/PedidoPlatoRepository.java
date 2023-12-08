@@ -68,7 +68,7 @@ public class PedidoPlatoRepository {
         return result[0];
     }
 
-    /** Elimina una nota
+    /** Elimina un pedido
      * @param pedido
      * @return un valor entero con el numero de filas eliminadas.
      */
@@ -91,7 +91,7 @@ public class PedidoPlatoRepository {
         return mAllDishes;
     }
 
-    /** Inserta una nota
+    /** Inserta un plato
      * @param plato
      * @return un valor entero largo con el identificador del plato que se ha creado.
      */

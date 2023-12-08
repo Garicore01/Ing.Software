@@ -33,12 +33,13 @@ class PlatoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateCo
         return new PlatoViewHolder(view);
     }
 
-
+    // En este método esta la logica para mantener pulsado un plato y que aparezca la opción 
+    // de eliminar o editar.
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        //super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(Menu.NONE, M42_comidas.DELETE_ID, Menu.NONE, R.string.menu_delete);
-        menu.add(Menu.NONE, M42_comidas.EDIT_ID, Menu.NONE, R.string.menu_edit);
+
+        menu.add(Menu.NONE, M42_listarPlatos.DELETE_ID, Menu.NONE, R.string.menu_delete);
+        menu.add(Menu.NONE, M42_listarPlatos.EDIT_ID, Menu.NONE, R.string.menu_edit);
     }
 
 

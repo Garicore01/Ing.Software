@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,7 +25,9 @@ public class M42_listarPlatos extends AppCompatActivity {
 
     public static final int ACTIVITY_CREATE = 1;
 
-    public static final int ACTIVITY_EDIT = 2;
+    public static final int EDIT_ID = 2;
+    
+    public static final int DELETE_ID = 3;
 
 
 
@@ -44,6 +48,23 @@ public class M42_listarPlatos extends AppCompatActivity {
             mPlatoAdapter.submitList(platos);
         });
 
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        Plato current = mPlatoAdapter.getCurrent();
+        switch (item.getItemId()) {
+            case DELETE_ID:
+                Toast.makeText(
+                        getApplicationContext(),
+                        "Deleting " + current.getNombre(),
+                        Toast.LENGTH_LONG).show();
+                mPlatoViewModel.delete(current);
+                return true;
+            case EDIT_ID:
+                //editPlato(current);
+                return true;
+        }
+        return super.onContextItemSelected(item);
     }
 
 

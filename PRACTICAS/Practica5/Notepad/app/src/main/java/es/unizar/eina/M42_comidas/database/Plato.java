@@ -47,7 +47,7 @@ public class Plato {
      * Metodo getter que establece el id del plato
      * @return idPlato
      */
-    public int getIdPlato(){
+    public int getIdPlato() {
         return this.idPlato;
     }
 

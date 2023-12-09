@@ -12,16 +12,30 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import es.unizar.eina.M42_comidas.R;
+import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_comidas extends AppCompatActivity {
     private PlatoViewModel mPlatoViewModel;
+    private PedidoViewModel mPedidoViewModel;
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-    public static final int ACTIVITY_CREATE = 1;
 
-    public static final int ACTIVITY_EDIT = 2;
+    public static final int ACTIVITY_PLATOS_CREATE = 1;
+
+    public static final int ACTIVITY_PLATOS_EDIT = 2;
+
+    public static final int ACTIVITY_PEDIDO_CREATE = 3;
+
+    public static final int ACTIVITY_PEDIDO_EDIT = 4;
+
 
     static final int INSERT_ID = Menu.FIRST;
     static final int DELETE_ID = Menu.FIRST + 1;
@@ -34,6 +48,7 @@ public class M42_comidas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio);
         mPlatoViewModel = new ViewModelProvider(this).get(PlatoViewModel.class);
+        mPedidoViewModel = new ViewModelProvider(this).get(PedidoViewModel.class);
 
         Button button_addPlato = findViewById(R.id.button_addPlato);
         button_addPlato.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +56,7 @@ public class M42_comidas extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(M42_comidas.this, M42_editarPlato.class);
-            Log.d("Prueba", "EStoy en plato");
-            startActivityForResult(intent, ACTIVITY_CREATE);
+            startActivityForResult(intent, ACTIVITY_PLATOS_CREATE);
 
         }
         });
@@ -62,7 +76,7 @@ public class M42_comidas extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(M42_comidas.this, M42_editarPedido.class);
                 Log.d("Prueba", "EStoy en pedido");
-                startActivity(intent);
+                startActivityForResult(intent, ACTIVITY_PEDIDO_CREATE);
             }
         });
 
@@ -81,7 +95,7 @@ public class M42_comidas extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("Platos onActivityResult", "en onActivityResult");
 
-        Bundle extras = data.getExtras();
+        
 
         if (resultCode != RESULT_OK) {
             Toast.makeText(
@@ -89,25 +103,17 @@ public class M42_comidas extends AppCompatActivity {
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show();
         } else {
+            Bundle extras = data.getExtras();
             switch (requestCode) {
-                case ACTIVITY_CREATE:
-                    Log.d("Platos onActivityResult", "ACTIVITY_CREATE");
-                    Log.d("OBJETO PLATO CEADO 1", "SE HA CREADO EL OBJETO PLATO");
+                case ACTIVITY_PLATOS_CREATE:
                     Plato newPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)
                             ,  extras.getString(M42_editarPlato.PLATO_PRECIO)
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
-                    Log.d("OBJETO PLATO CEADO 2", "SE HA CREADO EL OBJETO PLATO");
-                    mPlatoViewModel.insert(newPlato);
-                    Log.d("OBJETO PLATO CEADO 3", "SE HA CREADO EL OBJETO PLATO");
-                    break;
 
-                case ACTIVITY_EDIT:
-                    Log.d("Platos onActivityResult", "ACTIVITY_EDIT");
-                    Log.d("ACTIVITY_EDIT", "Name: " + extras.getString(M42_editarPlato.PLATO_NOMBRE));
-                    Log.d("ACTIVITY_EDIT", "Description: " + extras.getString(M42_editarPlato.PLATO_DESCRIPCION));
-                    Log.d("ACTIVITY_EDIT", "Price: " + extras.getString(M42_editarPlato.PLATO_PRECIO));
-                    Log.d("ACTIVITY_EDIT", "Category: " + extras.getString(M42_editarPlato.PLATO_CATEGORIA));
+                    mPlatoViewModel.insert(newPlato);
+                    break;
+                case ACTIVITY_PLATOS_EDIT:
 
                     int id = extras.getInt(M42_editarPlato.PLATO_ID);
                     Plato updatedPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
@@ -116,6 +122,33 @@ public class M42_comidas extends AppCompatActivity {
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
                     updatedPlato.setIdPlato(id);
                     mPlatoViewModel.update(updatedPlato);
+                    break;
+                case ACTIVITY_PEDIDO_CREATE:
+                    Pedido newPedido = null;
+                    try {
+                        newPedido = new Pedido(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE)
+                                , extras.getString(M42_editarPedido.PEDIDO_TELEFONO)
+                                ,  formato.parse(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA)),
+                                "En preparacion");
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                    mPedidoViewModel.insert(newPedido);
+                    break;
+
+                
+                case ACTIVITY_PEDIDO_EDIT:
+
+                    Pedido newIpdatedPedido = null;
+                    try {
+                        newIpdatedPedido = new Pedido(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE)
+                                , extras.getString(M42_editarPedido.PEDIDO_TELEFONO)
+                                ,  formato.parse(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA)),
+                                "En preparacion");
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                    mPedidoViewModel.update(newIpdatedPedido);
                     break;
             }
         }

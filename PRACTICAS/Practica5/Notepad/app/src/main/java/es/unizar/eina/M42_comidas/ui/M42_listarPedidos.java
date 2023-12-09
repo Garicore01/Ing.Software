@@ -1,5 +1,6 @@
 package es.unizar.eina.M42_comidas.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -25,6 +26,7 @@ public class M42_listarPedidos extends AppCompatActivity {
     private PedidoListAdapter mPedidoAdapter;
 
     public static final int ACTIVITY_CREATE = 1;
+    public static final int ACTIVITY_EDIT = 2;
 
     public static final int EDIT_ID = 2;
 
@@ -62,10 +64,21 @@ public class M42_listarPedidos extends AppCompatActivity {
                 mPedidoViewModel.delete(current);
                 return true;
             case EDIT_ID:
-                //M42_editarPedido(current);
+                editarPedido(current);
                 return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+
+
+    private void editarPedido(Pedido current) {
+        Intent intent = new Intent(this, M42_editarPedido.class);
+        intent.putExtra(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE, current.getNombreCliente());
+        intent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, current.getTelefonoCliente());
+        intent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, current.getFechaRecogida());
+        intent.putExtra(M42_editarPedido.PEDIDO_ID, current.getIdPedido());
+        startActivityForResult(intent, ACTIVITY_EDIT);
     }
 
 

@@ -2,20 +2,32 @@ package es.unizar.eina.M42_comidas.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 import es.unizar.eina.M42_comidas.R;
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_editarPedido extends AppCompatActivity {
     public static final String PEDIDO_NOMBRE_CLIENTE = "title";
-    public static final String PEDIDO_TELEFONO = "Primero";
-    public static final String PEDIDO_FECHA_RECOGIDA = "10.0";
+    public static final String PEDIDO_TELEFONO = "666666666";
+    public static final String PEDIDO_FECHA_RECOGIDA = "";
     public static final String PEDIDO_ID = "id";
+
+
+    public static final int ACTIVITY_CREATE = 1;
+
+    public static final int ACTIVITY_EDIT = 2;
 
     private EditText mNombreText;
     private EditText mTelefonoText;
@@ -32,7 +44,16 @@ public class M42_editarPedido extends AppCompatActivity {
         mNombreText = findViewById(R.id.nombre_cliente_crear_pedido);
         mTelefonoText = findViewById(R.id.telefono_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
+        mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
 
+         // Configura el click en el EditText para mostrar el DatePickerDialog
+         mFechaText.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 mostrarDatePickerDialog();
+             }
+        
+         });
 
         mSaveButton = findViewById(R.id.button6);
         mSaveButton.setOnClickListener(view -> {
@@ -50,7 +71,62 @@ public class M42_editarPedido extends AppCompatActivity {
             }
             finish();
         });
+        
 
-
+        populateFields();
     }
+
+    private void populateFields () {
+        mId = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras!=null) {
+            mNombreText.setText(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE));
+            mTelefonoText.setText(extras.getString(M42_editarPedido.PEDIDO_TELEFONO));
+            mFechaText.setText(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA));
+            mId = extras.getInt(M42_editarPedido.PEDIDO_ID);
+        }
+    }
+     private void mostrarDatePickerDialog() {
+            // Obtiene la fecha actual
+            Calendar calendario = Calendar.getInstance();
+            int año = calendario.get(Calendar.YEAR);
+            int mes = calendario.get(Calendar.MONTH);
+            int día = calendario.get(Calendar.DAY_OF_MONTH);
+    
+            // Crea un DatePickerDialog y configura la acción al seleccionar una fecha
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            // Actualiza el texto del EditText con la fecha seleccionada
+                            mFechaText.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+    
+                            // Llama a la función para mostrar el TimePickerDialog
+                            mostrarTimePickerDialog();
+                        }
+                    }, año, mes, día);
+    
+            // Muestra el DatePickerDialog
+            datePickerDialog.show();
+        };
+    
+        private void mostrarTimePickerDialog() {
+            // Obtiene la hora actual
+            Calendar calendario = Calendar.getInstance();
+            int hora = calendario.get(Calendar.HOUR_OF_DAY);
+            int minuto = calendario.get(Calendar.MINUTE);
+    
+            // Crea un TimePickerDialog y configura la acción al seleccionar una hora
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            // Actualiza el texto del EditText con la hora seleccionada
+                            mFechaText.append(" " + hourOfDay + ":" + minute);
+                        }
+                    }, hora, minuto, true);
+    
+            // Muestra el TimePickerDialog
+            timePickerDialog.show();
+        }
 }

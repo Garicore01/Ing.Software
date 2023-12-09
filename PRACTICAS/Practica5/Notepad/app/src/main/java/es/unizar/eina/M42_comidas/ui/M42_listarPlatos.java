@@ -55,9 +55,8 @@ public class M42_listarPlatos extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Platos onActivityResult", "en onActivityResult");
 
-        Bundle extras = data.getExtras();
+        
 
         if (resultCode != RESULT_OK) {
             Toast.makeText(
@@ -65,26 +64,16 @@ public class M42_listarPlatos extends AppCompatActivity {
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show();
         } else {
+            Bundle extras = data.getExtras();
             switch (requestCode) {
                 case ACTIVITY_CREATE:
-                    Log.d("Platos onActivityResult", "ACTIVITY_CREATE");
-                    Log.d("OBJETO PLATO CEADO 1", "SE HA CREADO EL OBJETO PLATO");
                     Plato newPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)
                             ,  extras.getString(M42_editarPlato.PLATO_PRECIO)
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
-                    Log.d("OBJETO PLATO CEADO 2", "SE HA CREADO EL OBJETO PLATO");
                     mPlatoViewModel.insert(newPlato);
-                    Log.d("OBJETO PLATO CEADO 3", "SE HA CREADO EL OBJETO PLATO");
                     break;
-
                 case ACTIVITY_EDIT:
-                    Log.d("Platos onActivityResult", "ACTIVITY_EDIT");
-                    Log.d("ACTIVITY_EDIT", "Name: " + extras.getString(M42_editarPlato.PLATO_NOMBRE));
-                    Log.d("ACTIVITY_EDIT", "Description: " + extras.getString(M42_editarPlato.PLATO_DESCRIPCION));
-                    Log.d("ACTIVITY_EDIT", "Price: " + extras.getString(M42_editarPlato.PLATO_PRECIO));
-                    Log.d("ACTIVITY_EDIT", "Category: " + extras.getString(M42_editarPlato.PLATO_CATEGORIA));
-                    Log.d("ACTIVITY_EDIT", "Id: " +  extras.getInt(M42_editarPlato.PLATO_ID));
                     int id = extras.getInt(M42_editarPlato.PLATO_ID);
                     Plato updatedPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)

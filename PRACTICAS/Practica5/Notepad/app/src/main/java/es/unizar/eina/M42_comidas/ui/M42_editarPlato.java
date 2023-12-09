@@ -21,9 +21,9 @@ public class M42_editarPlato extends AppCompatActivity {
     public static final String PLATO_DESCRIPCION = "body";
     public static final String PLATO_ID = "id";
 
-    public static final int ACTIVITY_CREATE = 1;
+    public static final int ACTIVITY_PLATOS_CREATE = 1;
 
-    public static final int ACTIVITY_EDIT = 2;
+    public static final int ACTIVITY_PLATOS_EDIT = 2;
     private PlatoViewModel mPlatoViewModel;
 
     private EditText mNombreText;
@@ -53,7 +53,7 @@ public class M42_editarPlato extends AppCompatActivity {
             } else {
                 replyIntent.putExtra(M42_editarPlato.PLATO_NOMBRE, mNombreText.getText().toString());
                 replyIntent.putExtra(M42_editarPlato.PLATO_DESCRIPCION, mDescripcionText.getText().toString());
-                replyIntent.putExtra(M42_editarPlato.PLATO_PRECIO, mPrecio.getText().toString()); //comprobar error
+                replyIntent.putExtra(M42_editarPlato.PLATO_PRECIO, mPrecio.getText().toString());
                 replyIntent.putExtra(M42_editarPlato.PLATO_CATEGORIA, mCategoriaText.getText().toString());
                 if (mId!=null) {
                     replyIntent.putExtra(M42_editarPlato.PLATO_ID, mId.intValue());
@@ -63,7 +63,6 @@ public class M42_editarPlato extends AppCompatActivity {
             // Se envian los datos a la clase que la invoco.
             finish();
         });
-        populateFields();
     }
     private void populateFields () {
         mId = null;

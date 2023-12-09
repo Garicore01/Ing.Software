@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,9 +11,7 @@
         android:layout_height="67dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/volver_atras"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:srcCompat="@mipmap/volver_atras" />
 
     <TextView
         android:id="@+id/crear_pedido"
@@ -25,122 +22,105 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView27"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="83dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView27" />
 
     <ImageView
         android:id="@+id/imageView29"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="54dp"
+        android:layout_height="62dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crear_pedido"
-        app:srcCompat="@mipmap/nombre_pedido_mod_plato"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="140dp" />
+        app:srcCompat="@mipmap/nombre_pedido_mod_plato" />
 
     <EditText
         android:id="@+id/nombre_cliente_crear_pedido"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="341dp"
+        android:layout_height="61dp"
         android:ems="10"
         android:hint="Nombre del cliente"
         android:inputType="text"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView29"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="140dp" />
-
-    <ImageView
-        android:id="@+id/imageView31"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_plato_crear_pedido"
-        app:srcCompat="@mipmap/telefono_cliente"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="208dp" />
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toEndOf="@+id/imageView29"
+        app:layout_constraintTop_toTopOf="@+id/imageView29" />
 
     <EditText
         android:id="@+id/telefono_crear_pedido"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="341dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="Teléfono del cliente"
         android:inputType="phone"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView31"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="257dp" />
+        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintStart_toEndOf="@+id/imageView31"
+        app:layout_constraintTop_toTopOf="@+id/imageView31" />
 
     <ImageView
-        android:id="@+id/imageView33"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:id="@+id/imageView31"
+        android:layout_width="54dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefono_crear_pedido"
-        app:srcCompat="@mipmap/fecha_recogida"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="325dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView29"
+        app:srcCompat="@mipmap/telefono_cliente" />
 
     <EditText
         android:id="@+id/fecha_recogida_crear_pedido"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="341dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="Fecha de recogida"
         android:inputType="none"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView33"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="369dp" />
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toEndOf="@+id/imageView33"
+        app:layout_constraintTop_toTopOf="@+id/imageView33" />
 
     <ImageView
-        android:id="@+id/imageView34"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:id="@+id/imageView33"
+        android:layout_width="54dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_recogida_crear_pedido"
-        app:srcCompat="@mipmap/anyadir_plato"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="437dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView31"
+        app:srcCompat="@mipmap/fecha_recogida" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="#856464"
         android:text="Añadir Platos"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView34" />
+        app:layout_constraintTop_toBottomOf="@+id/fecha_recogida_crear_pedido" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#4CAF50"
         android:text="Guardar"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="618dp" />
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

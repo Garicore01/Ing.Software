@@ -1,19 +1,17 @@
 package es.unizar.eina.M42_comidas.database;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-import es.unizar.eina.M42_comidas.database.EsPedido;
 
 import java.util.List;
 
 /** Definicion de un Data Access Object para la tabla N:M entre Plato y Pedido */
 @Dao
-public interface esPedidoDao {
+public interface EsPedidoDao {
 
     /**
      * Inserta una relacion Plato-Pedido en la base de datos

@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.Date;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Plato.class,Pedido.class}, version = 2, exportSchema = false)
+@Database(entities = {Plato.class,Pedido.class,esPedido.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
 

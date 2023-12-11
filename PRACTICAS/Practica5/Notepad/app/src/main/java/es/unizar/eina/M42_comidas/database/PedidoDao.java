@@ -33,11 +33,12 @@ public interface PedidoDao {
 
     /**
      * Elimina un pedido de la base de datos
-     * @param pedido
+     * @param idPedido
      * @return un valor entero con el numero de filas eliminadas.
      */
     @Delete
-    int delete(Pedido pedido);
+    @Query("DELETE FROM Pedido WHERE idPedido = :idPedido")
+    int delete(int idPedido);
 
 
     /**

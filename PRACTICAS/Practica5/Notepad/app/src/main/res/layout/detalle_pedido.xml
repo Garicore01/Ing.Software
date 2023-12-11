@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/detalle_plato3"
-        android:layout_width="300dp"
-        android:layout_height="53dp"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
         android:text="Detalles del plato"
         android:textAlignment="center"
         android:textSize="25sp"
@@ -28,7 +28,7 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/volver_atras" />
+        app:srcCompat="@mipmap/" />
 
     <TextView
         android:id="@+id/platos_pedido"

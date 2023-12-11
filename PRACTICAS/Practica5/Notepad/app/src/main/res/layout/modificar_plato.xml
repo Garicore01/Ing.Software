@@ -24,7 +24,7 @@
         android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/volver_atras" />
+        app:srcCompat="@mipmap/" />
 
     <EditText
         android:id="@+id/nombre_plato_mod_plato"

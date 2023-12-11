@@ -6,25 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/selecciona_plato"
-        android:layout_width="0dp"
-        android:layout_height="37dp"
-        android:text="Seleccione el plato"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="48dp" />
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="78dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selecciona_plato">
+        tools:layout_editor_absoluteY="54dp"
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/boton_anyadir"
@@ -41,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="33dp"
             android:layout_weight="1"
-            android:text="1"
+            android:hint="1"
             android:textAlignment="center"
             android:textSize="22sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -53,12 +43,22 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="-"
-            android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/num_cantidad_plato" />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/nombre_plato"
+        android:layout_width="409dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
+        android:hint="Nombre del plato"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boton_quitar"
+        tools:ignore="NotSibling" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -66,5 +66,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="150dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

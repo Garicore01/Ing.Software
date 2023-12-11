@@ -61,4 +61,13 @@ public interface PlatoDao {
      */
     @Query("SELECT * FROM Plato ORDER BY nombre ASC")
     LiveData<List<Plato>> getOrderedPlatos();
+
+    /**
+     * Devuelve el plato cuyo id es idPlato
+     * @param idPlato
+     * @return un plato con id = idPlato
+     */
+    @Query("SELECT * FROM Plato WHERE idPlato = :idPlato")
+    Plato getPlatoById(int idPlato);
+
 }

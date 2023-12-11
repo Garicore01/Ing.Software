@@ -48,7 +48,25 @@ public interface esPedidoDao {
     @Query("DELETE FROM esPedido")
     void deleteAll();
 
+    /**
+     * Obtiene un plato de la base de datos
+     * @param idPedido
+     * @return Devuelve una lista de idPlato asociados al pedido con idPedido
+    */
+    @Query("SELECT platoId FROM esPedido WHERE pedidoId = :idPedido" )
+    List<Integer> getPlatoPedido(int idPedido);
+
+    /**
+     * Obtiene el precio del todos los platos de la base de datos
+     * @param idPedido
+     * @return Devuelve el precio total de un pedido
+    */
+    @Query("SELECT SUM(precio) FROM esPedido WHERE pedidoId = :idPedido" )
+    int getPrecioTotal(int idPedido);
+
+
 }
+
 
 
 

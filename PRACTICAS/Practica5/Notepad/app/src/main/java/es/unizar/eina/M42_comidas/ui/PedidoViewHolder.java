@@ -40,6 +40,7 @@ class PedidoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateC
 
         menu.add(Menu.NONE, M42_listarPedidos.DELETE_ID, Menu.NONE, R.string.menu_deletePedido);
         menu.add(Menu.NONE, M42_listarPedidos.EDIT_ID, Menu.NONE, R.string.menu_editPedido);
+        //menu.add(Menu.NONE, M42_listarPedidos.SEND_MESSAGE, Menu.NONE, R.string.menu_sendMessage);
     }
 
 

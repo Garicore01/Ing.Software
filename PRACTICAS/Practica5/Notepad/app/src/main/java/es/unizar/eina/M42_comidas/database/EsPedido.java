@@ -13,7 +13,7 @@ import androidx.room.Index;
                             childColumns = "pedidoId"),
                 @ForeignKey(entity = Plato.class,
                             parentColumns = "idPlato",
-                            childColumns = "idPlato")
+                            childColumns = "platoId")
         },
         indices = {
                 @Index("idPedido"),
@@ -25,16 +25,17 @@ public class EsPedido {
     public int pedidoId;
     public int platoId;
     public int numero;
-    public int precioTotal;
+    public int precio;
     /**
      * Constructor de la clase EsPedido.
      * inicializa los atributos de la clase pedidoId y platoId.
      * @param pedidoId
      * @param platoId
      */
-    public EsPedido(final int pedidoId, final int platoId) {
+    public EsPedido(final int pedidoId, final int platoId,final int cantidad) {
         this.pedidoId = pedidoId;
         this.platoId = platoId;
+        this.numero = cantidad;
     }
 
     /**
@@ -46,11 +47,11 @@ public class EsPedido {
     }
 
     /**
-     * Setter del atributo precioTotal.
-     * @param precioTotal
+     * Setter del atributo precio.
+     * @param precio
      */
-    public void setPrecioTotal(final int precioTotal) {
-        this.precioTotal = precioTotal;
+    public void setPrecio(final int precio) {
+        this.precio = precio;
     }
 
     /**
@@ -78,11 +79,12 @@ public class EsPedido {
     }
 
     /**
-     * Getter del atributo precioTotal.
-     * @return precioTotal
+     * Getter del atributo precio.
+     * @return precio
      */
-    public int getPrecioTotal() {
-        return precioTotal;
+
+    public int getPrecio() {
+        return precio;
     }
 
 }

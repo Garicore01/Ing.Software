@@ -3,39 +3,54 @@ package es.unizar.eina.M42_comidas.database;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 
 /** Definicion de clase relacion entre pedido y plato*/
-@Entity(tableName = "esPedido",
-        primaryKeys = { "idPedido", "idPlato" },
+@Entity(tableName = "EsPedido",
+        primaryKeys = { "pedidoId", "platoId" },
         foreignKeys = {
                 @ForeignKey(entity = Pedido.class,
-                            parentColumns = "pedidoId",
-                            childColumns = "pedidoId"),
+                            parentColumns = "idPedido",
+                            childColumns = "pedidoId",
+                            onDelete = ForeignKey.CASCADE),
                 @ForeignKey(entity = Plato.class,
                             parentColumns = "idPlato",
-                            childColumns = "platoId")
+                            childColumns = "platoId",
+                            onDelete = ForeignKey.CASCADE)
         },
         indices = {
-                @Index("idPedido"),
-                @Index("idPlato")
+                @Index("pedidoId"),
+                @Index("platoId")
         }
 )
-
 public class EsPedido {
+    @ColumnInfo(name = "pedidoId")
     public int pedidoId;
+    
+    @ColumnInfo(name = "platoId")
     public int platoId;
+    
+    @NonNull
+    @ColumnInfo(name = "numero")
     public int numero;
-    public int precio;
+    
+    @NonNull
+    @ColumnInfo(name = "precio")
+    public double precio;
+
     /**
      * Constructor de la clase EsPedido.
      * inicializa los atributos de la clase pedidoId y platoId.
      * @param pedidoId
      * @param platoId
      */
-    public EsPedido(final int pedidoId, final int platoId,final int cantidad) {
+    public EsPedido(final int pedidoId, final int platoId,final int numero,final double precio) {
         this.pedidoId = pedidoId;
         this.platoId = platoId;
-        this.numero = cantidad;
+        this.numero = numero;
+        this.precio = precio;
     }
 
     /**
@@ -50,7 +65,7 @@ public class EsPedido {
      * Setter del atributo precio.
      * @param precio
      */
-    public void setPrecio(final int precio) {
+    public void setPrecio(final double precio) {
         this.precio = precio;
     }
 
@@ -83,7 +98,7 @@ public class EsPedido {
      * @return precio
      */
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 

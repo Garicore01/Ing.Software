@@ -91,7 +91,7 @@
         app:srcCompat="@mipmap/fecha_recogida" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/boton_anyadir_platos"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="60dp"
@@ -107,13 +107,13 @@
         android:id="@+id/button6"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#4CAF50"
         android:text="Guardar"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/boton_anyadir_platos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

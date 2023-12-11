@@ -43,7 +43,7 @@ public interface EsPedidoDao {
     /**
      * Elimina todas las relaciones Plato-Pedido de la base de datos
      */
-    @Query("DELETE FROM esPedido")
+    @Query("DELETE FROM EsPedido")
     void deleteAll();
 
     /**
@@ -60,7 +60,7 @@ public interface EsPedidoDao {
      * @return Devuelve el precio total de un pedido
     */
     @Query("SELECT SUM(precio) FROM esPedido WHERE pedidoId = :idPedido" )
-    int getPrecioTotal(int idPedido);
+    double getPrecioTotal(int idPedido);
 
 
 }

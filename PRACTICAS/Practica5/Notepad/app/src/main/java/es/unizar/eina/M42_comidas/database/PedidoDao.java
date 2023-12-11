@@ -37,8 +37,9 @@ public interface PedidoDao {
      * @return un valor entero con el numero de filas eliminadas.
      */
     @Delete
-    @Query("DELETE FROM Pedido WHERE idPedido = :idPedido")
-    int delete(int idPedido);
+    int delete(Pedido pedido);
+
+
 
 
     /**

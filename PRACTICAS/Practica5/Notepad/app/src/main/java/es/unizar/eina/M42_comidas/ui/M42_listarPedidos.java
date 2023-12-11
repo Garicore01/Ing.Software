@@ -77,13 +77,11 @@ public class M42_listarPedidos extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        
-
         if (resultCode != RESULT_OK) {
             Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
+                getApplicationContext(),
+                R.string.empty_not_saved,
+                Toast.LENGTH_LONG).show();
         } else {
             Bundle extras = data.getExtras();
             Log.d("Prueba","he vuelto de actualizar");

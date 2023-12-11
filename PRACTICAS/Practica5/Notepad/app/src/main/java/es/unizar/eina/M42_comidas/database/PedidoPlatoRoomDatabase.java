@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.Date;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Plato.class,Pedido.class,esPedido.class}, version = 2, exportSchema = false)
+@Database(entities = {Plato.class,Pedido.class,EsPedido.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
 
@@ -24,6 +24,7 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     public abstract PedidoDao PedidoDao();
+    public abstract EsPedidoDao EsPedidoDao();
 
     static PedidoPlatoRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -55,6 +56,9 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
                 
                 PlatoDao daoPlato = INSTANCE.PlatoDao();
                 daoPlato.deleteAll();
+
+                EsPedidoDao daoEsPedido = INSTANCE.EsPedidoDao();
+                daoEsPedido.deleteAll();
 
 
                 Pedido pedido = new Pedido("Gariko","678903987",new Date(),"Espera");

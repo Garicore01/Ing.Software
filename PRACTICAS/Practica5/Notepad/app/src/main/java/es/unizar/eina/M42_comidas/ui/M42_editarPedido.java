@@ -29,11 +29,14 @@ public class M42_editarPedido extends AppCompatActivity {
 
     public static final int ACTIVITY_EDIT = 2;
 
+    public static final int ACTIVITY_ADD_PLATOS_PEDIDO = 3;
+
     private EditText mNombreText;
     private EditText mTelefonoText;
     private EditText mFechaText;
     private Integer mId;
 
+    Button mBotonAnyadirPlatos;
     Button mSaveButton;
 
     @Override
@@ -45,12 +48,22 @@ public class M42_editarPedido extends AppCompatActivity {
         mTelefonoText = findViewById(R.id.telefono_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
+        mBotonAnyadirPlatos = findViewById(R.id.boton_anyadir_platos);
 
          // Configura el click en el EditText para mostrar el DatePickerDialog
          mFechaText.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  mostrarDatePickerDialog();
+             }
+         });
+
+         // Configura el click en el EditText para mostrar el DatePickerDialog
+         mBotonAnyadirPlatos.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                Intent intent = new Intent(M42_editarPedido.this, M42_listarPlatosAdd.class);
+                startActivityForResult(intent, ACTIVITY_ADD_PLATOS_PEDIDO);
              }
         
          });

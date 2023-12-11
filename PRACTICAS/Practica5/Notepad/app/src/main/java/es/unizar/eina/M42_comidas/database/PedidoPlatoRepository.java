@@ -7,8 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import es.unizar.eina.M42_comidas.database.Pedido;
-import es.unizar.eina.M42_comidas.database.PedidoDao;
+
 
 
 
@@ -21,6 +20,8 @@ public class PedidoPlatoRepository {
     private PlatoDao mPlatoDao;
     private LiveData<List<Plato>> mAllDishes;
 
+    private EsPedidoDao mEsPedidoDao;
+
     
     public PedidoPlatoRepository(Application application) {
         PedidoPlatoRoomDatabase db = PedidoPlatoRoomDatabase.getDatabase(application);
@@ -30,11 +31,15 @@ public class PedidoPlatoRepository {
 
         mPlatoDao = db.PlatoDao();
         mAllDishes = mPlatoDao.getAllPlatos();
+
+        mEsPedidoDao = db.EsPedidoDao();
     }
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
 
+
+    //-----------------------------------PEDIDOS-----------------------------------------------------------
     /** Obtiene todos los pedidos
      * @return un valor entero largo con el identificador de los pedidos que se han creado.
      */
@@ -84,6 +89,7 @@ public class PedidoPlatoRepository {
 
 
 
+    //-----------------------------------PLATOS-----------------------------------------------------------
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
@@ -129,4 +135,51 @@ public class PedidoPlatoRepository {
         });
         return result[0];
     }
+
+
+
+
+    //-----------------------------------ESPEDIDO-----------------------------------------------------------
+
+    /** Inserta un plato en un pedido
+     * @param plato
+     * @return un valor entero largo con el identificador del plato que se ha creado.
+     */
+    public long insert(int idPedido,Plato plato,int numero) {
+        final long[] result = {0};
+        // You must call this on a non-UI thread or your app will throw an exception. Room ensures
+        // that you're not doing any long running operations on the main thread, blocking the UI.
+        PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            result[0] = mEsPedidoDao.insert(new EsPedido(idPedido,plato.getIdPlato(),numero,Double.parseDouble(plato.getPrecio())));
+        });
+        return result[0];
+    }
+
+    /** Modifica una nota
+     * @param esPedido
+     * @return un valor entero con el numero de filas modificadas.
+     */
+    public int update(EsPedido esPedido) {
+        final int[] result = {0};
+        PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            result[0] = mEsPedidoDao.update(esPedido);
+        });
+        return result[0];
+    }
+
+    /** Elimina la relación entre Pedido y Plato
+     * @param esPedido
+     * @return un valor entero con el numero de filas eliminadas.
+     */
+    public int delete(EsPedido esPedido) {
+        final int[] result = {0};
+        PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            result[0] = mEsPedidoDao.delete(esPedido);
+        });
+        return result[0];
+    }
+
+    
+
+
 }

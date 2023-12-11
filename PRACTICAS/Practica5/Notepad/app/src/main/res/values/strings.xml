@@ -9,6 +9,8 @@
     <string name="menu_edit">Modificar Plato</string>
     <string name="menu_deletePedido">Eliminar Pedido</string>
     <string name="menu_editPedido">Modificar Pedido</string>
+    <string name="menu_mandarMensaje">Mandar SMS</string>
+
     <string name="title">Title</string>
     <string name="body">Body</string>
 </resources>

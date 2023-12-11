@@ -47,7 +47,7 @@ public class M42_editarPedido extends AppCompatActivity {
         mNombreText = findViewById(R.id.nombre_cliente_crear_pedido);
         mTelefonoText = findViewById(R.id.telefono_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
-        mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
+        //mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
         mBotonAnyadirPlatos = findViewById(R.id.boton_anyadir_platos);
 
          // Configura el click en el EditText para mostrar el DatePickerDialog

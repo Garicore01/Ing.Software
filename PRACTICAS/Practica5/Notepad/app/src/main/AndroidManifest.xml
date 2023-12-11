@@ -33,6 +33,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.M42_listarPlatosAdd"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.M42_editarPedido"
             android:exported="false" />
         <activity

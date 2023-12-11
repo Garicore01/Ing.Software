@@ -1,5 +1,6 @@
 package es.unizar.eina.M42_comidas.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -39,11 +41,13 @@ public class M42_listarPlatosAdd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listado_platos);
+        // Especifico la pantalla que tiene que mostrar.
+        setContentView(R.layout.anyadir_platos);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewPlatos);
+        RecyclerView recyclerView = findViewById(R.id.recyclerviewPlatosAdd);
         mPlatoAdapter = new PlatoListAdapter(new PlatoListAdapter.PlatoDiff());
         recyclerView.setAdapter(mPlatoAdapter);
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mPlatoViewModel = new ViewModelProvider(this).get(PlatoViewModel.class);

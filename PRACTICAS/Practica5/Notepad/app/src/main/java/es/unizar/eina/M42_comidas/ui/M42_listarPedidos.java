@@ -20,6 +20,8 @@ import java.util.List;
 import es.unizar.eina.M42_comidas.R;
 import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.PedidoDao;
+import es.unizar.eina.send.SendAbstraction;
+import es.unizar.eina.send.SendAbstractionImpl;
 
 
 /** Pantalla principal de la aplicacion M42_comidas */
@@ -28,6 +30,8 @@ public class M42_listarPedidos extends AppCompatActivity {
 
 
     private PedidoListAdapter mPedidoAdapter;
+
+    private SendAbstraction mSendAbstraction;
 
     public static final int ACTIVITY_CREATE = 1;
 
@@ -39,6 +43,10 @@ public class M42_listarPedidos extends AppCompatActivity {
     public static final int EDIT_ID = 2;
     
     public static final int DELETE_ID = 3;
+
+    public static final int MANDARMENSAJE = 4;
+
+    public static final String metodoSend = "sms";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class M42_listarPedidos extends AppCompatActivity {
             mPedidoAdapter.submitList(Pedidos);
         });
 
+        mSendAbstraction = new SendAbstractionImpl(this, metodoSend);
     }
 
     public boolean onContextItemSelected(MenuItem item) {
@@ -69,6 +78,9 @@ public class M42_listarPedidos extends AppCompatActivity {
                 return true;
             case EDIT_ID:
                 editarPedido(current);
+                return true;
+            case MANDARMENSAJE:
+                mSendAbstraction.send(current.getTelefonoCliente().toString(),"Su pedido está en preparacion");
                 return true;
         }
         return super.onContextItemSelected(item);

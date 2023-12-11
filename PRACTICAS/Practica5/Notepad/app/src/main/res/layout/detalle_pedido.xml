@@ -27,8 +27,7 @@
         android:layout_height="67dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/platos_pedido"

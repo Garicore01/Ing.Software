@@ -6,33 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/volver_a_atras"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="75dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="16dp"
-        android:drawableBottom="@mipmap/volver_atras"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="60dp"
-        android:layout_height="64dp"
-        android:clickable="true"
-        app:backgroundTint="#03A9F4"
-        app:srcCompat="@drawable/ic_add_black_24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="335dp"
-        tools:layout_editor_absoluteY="16dp" />
-
     <TextView
         android:id="@+id/listado_pedidos"
-        android:layout_width="211dp"
-        android:layout_height="43dp"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
         android:text="Listado de pedidos"
         android:textAlignment="center"
         android:textSize="25sp"
@@ -40,15 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/divider"
+    <Spinner
+        android:id="@+id/spinnerOrdenarPor"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listado_platos"
-        tools:layout_editor_absoluteY="82dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listado_pedidos" />
 
     <Button
         android:id="@+id/boton_ordenar"
@@ -56,19 +32,8 @@
         android:layout_height="wrap_content"
         android:text="Ordenar por"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="118dp" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="42dp"
-        android:layout_height="41dp"
-        app:srcCompat="@mipmap/ordenar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="118dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenarPor"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -78,50 +43,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton_ordenar"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="134dp">
+        android:layout_marginTop="16dp">
 
-        <TextView
-            android:id="@+id/numero_pedido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pedido 43"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/contenido_pedido"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Contenido: Arroz tres delicias (1) + tarta queso (1)" />
-
-        <TextView
-            android:id="@+id/nombre_cliente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cliente: Gari Arellano" />
-
-        <TextView
-            android:id="@+id/fecha_recogida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fecha recogida: 03/01/24 - 21:00" />
-
-        <TextView
-            android:id="@+id/precio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Precio: 10 euros" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPedidos"
+            android:layout_width="407dp"
+            android:layout_height="640dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPedidos"
-        android:layout_width="407dp"
-        android:layout_height="640dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:layout_constraintVertical_bias="0.903" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

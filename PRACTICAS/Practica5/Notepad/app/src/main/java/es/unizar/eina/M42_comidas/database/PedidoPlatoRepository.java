@@ -85,6 +85,24 @@ public class PedidoPlatoRepository {
         return result[0];
     }
 
+    /**
+     * @return Devuelve la lista de Pedidos ordenados por fecha
+     */
+    public LiveData<List<Pedido>> obtenerPedidosPorFecha() {
+        return mPedidoDao.getAllPedidosOrderedByDate();
+    }
+    /**
+     * @return Devuelve la lista de Pedidos ordenados por Nombre de cliente
+     */
+    public LiveData<List<Pedido>> obtenerPedidosPorNombre() {
+        return mPedidoDao.getAllPedidosOrderedByNombre();
+    }
+    /**
+     * @return Devuelve la lista de Pedidos ordenados por Telefono
+     */
+    public LiveData<List<Pedido>> obtenerPedidosPorTelefono() {
+        return mPedidoDao.getAllPedidosOrderedByTelefono();
+    }
 
 
 

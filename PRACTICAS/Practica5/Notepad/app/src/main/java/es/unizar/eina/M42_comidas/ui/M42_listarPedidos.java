@@ -11,6 +11,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -38,6 +43,8 @@ public class M42_listarPedidos extends AppCompatActivity {
     public static final int ACTIVITY_EDIT = 2;
 
     private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private Spinner spinnerOrdenarPor;
+    private String criterioSeleccionado;
 
 
     public static final int EDIT_ID = 2;
@@ -59,11 +66,60 @@ public class M42_listarPedidos extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mPedidoViewModel = new ViewModelProvider(this).get(PedidoViewModel.class);
+
         mPedidoViewModel.getAllPedidos().observe(this,Pedidos -> {
             mPedidoAdapter.submitList(Pedidos);
         });
 
         mSendAbstraction = new SendAbstractionImpl(this, metodoSend);
+
+
+        spinnerOrdenarPor = findViewById(R.id.spinnerOrdenarPor);
+
+        // Crear un ArrayAdapter utilizando el array de recursos opciones_ordenamiento
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.criterios_ordenamiento, android.R.layout.simple_spinner_item);
+
+        // Especificar el diseño a utilizar cuando la lista de opciones aparezca
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Asignar el adaptador al Spinner
+        spinnerOrdenarPor.setAdapter(adapter);
+
+        // Configurar el listener para manejar las selecciones del Spinner
+        spinnerOrdenarPor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Aquí puedes manejar la selección del usuario
+                criterioSeleccionado = parentView.getItemAtPosition(position).toString();
+                // Puedes hacer lo que necesites con el criterio seleccionado
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Método llamado cuando no se ha seleccionado nada
+                criterioSeleccionado = "Fecha";
+            }
+        });
+
+        // Añade el listener al botón "Ordenar por"
+        Button botonOrdenar = findViewById(R.id.boton_ordenar);
+        botonOrdenar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+
+                // Ordena los pedidos según el criterio seleccionado
+                mPedidoViewModel.obtenerPedidosOrdenados(criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                    @Override
+                    public void onChanged(List<Pedido> pedidos) {
+                        // Actualiza tu adaptador con la nueva lista de pedidos
+                        Log.d("ACTUALIZO", "PANTALLA");
+                        mPedidoAdapter.submitList(pedidos);
+                    }
+                });
+            }
+        });
     }
 
     public boolean onContextItemSelected(MenuItem item) {

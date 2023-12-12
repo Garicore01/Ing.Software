@@ -60,7 +60,7 @@ public interface PedidoDao {
      * Devuelve todos los pedidos de la base de datos ordenados por nombre
      * @return una lista de pedidos ordenados por nombre
      */
-    @Query("SELECT * FROM Pedido ORDER BY nombreCliente ASC")
+    @Query("SELECT * FROM Pedido ORDER BY nombreCliente DESC")
     LiveData<List<Pedido>> getAllPedidosOrderedByNombre();
 
 

@@ -49,6 +49,8 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+    implementation 'com.google.android.material:material:1.5.0'
+
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"

@@ -13,4 +13,9 @@
 
     <string name="title">Title</string>
     <string name="body">Body</string>
+    <string-array name="criterios_ordenamiento">
+        <item>Fecha</item>
+        <item>Nombre de Cliente</item>
+        <item>Número de Teléfono</item>
+    </string-array>
 </resources>

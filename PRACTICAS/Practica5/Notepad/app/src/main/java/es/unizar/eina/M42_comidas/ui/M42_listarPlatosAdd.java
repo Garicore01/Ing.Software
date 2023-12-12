@@ -25,7 +25,7 @@ import es.unizar.eina.M42_comidas.database.PlatoDao;
 public class M42_listarPlatosAdd extends AppCompatActivity {
     private PlatoViewModel mPlatoViewModel;
 
-    private PlatoListAdapter mPlatoAdapter;
+    private PlatoListAdapterPedidos mPlatoAdapter;
 
     public static final int ACTIVITY_CREATE = 1;
     public static final int ACTIVITY_EDIT = 2;
@@ -45,7 +45,7 @@ public class M42_listarPlatosAdd extends AppCompatActivity {
         setContentView(R.layout.anyadir_platos);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlatosAdd);
-        mPlatoAdapter = new PlatoListAdapter(new PlatoListAdapter.PlatoDiff());
+        mPlatoAdapter = new PlatoListAdapterPedidos(new PlatoListAdapterPedidos.PlatoDiff());
         recyclerView.setAdapter(mPlatoAdapter);
 
 

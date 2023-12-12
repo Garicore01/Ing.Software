@@ -14,7 +14,7 @@ import es.unizar.eina.M42_comidas.database.Plato;
 import es.unizar.eina.M42_comidas.R;
 
 
-public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
+public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderPedidos> {
     private int position;
 
     public int getPosition() {
@@ -25,13 +25,13 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
         this.position = position;
     }
 
-    public PlatoListAdapter(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
+    public PlatoListAdapterPedidos(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
         super(diffCallback);
     }
 
     @Override
-    public PlatoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return PlatoViewHolder.create(parent);
+    public PlatoViewHolderPedidos onCreateViewHolder(ViewGroup parent, int viewType) {
+        return PlatoViewHolderPedidos.create(parent);
     }
 
     public Plato getCurrent() {
@@ -39,7 +39,7 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PlatoViewHolder holder, int position) {
+    public void onBindViewHolder(PlatoViewHolderPedidos holder, int position) {
         Plato current = getItem(position);
         holder.bind(current.getNombre()); // Asegúrate de tener un método getNombrePlato en la clase Plato
 

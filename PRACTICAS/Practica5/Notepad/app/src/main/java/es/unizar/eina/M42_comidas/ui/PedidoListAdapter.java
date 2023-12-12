@@ -105,7 +105,7 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
     @Override
     public void onBindViewHolder(PedidoViewHolder holder, int position) {
         Pedido current = getItem(position);
-        holder.bind(current.getNombreCliente()); // Asegúrate de tener un método getNombre en la clase Pedido
+        holder.bind(current.getNombreCliente());
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

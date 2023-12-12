@@ -55,22 +55,22 @@ public class M42_editarPedido extends AppCompatActivity {
         mBotonAnyadirPlatos = findViewById(R.id.boton_anyadir_platos);
 
          // Configura el click en el EditText para mostrar el DatePickerDialog
-         mFechaText.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 mostrarDatePickerDialog();
-             }
-         });
+        mFechaText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDatePickerDialog();
+            }
+        });
 
-         // Configura el click en el EditText para mostrar el DatePickerDialog
-         mBotonAnyadirPlatos.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                Intent intent = new Intent(M42_editarPedido.this, M42_listarPlatosAdd.class);
-                startActivityForResult(intent, ACTIVITY_ADD_PLATOS_PEDIDO);
-             }
-        
-         });
+        // Configura el click en el EditText para mostrar el DatePickerDialog
+        mBotonAnyadirPlatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent intent = new Intent(M42_editarPedido.this, M42_listarPlatosAdd.class);
+            startActivityForResult(intent, ACTIVITY_ADD_PLATOS_PEDIDO);
+            }
+    
+        });
 
         mSaveButton = findViewById(R.id.button6);
         mSaveButton.setOnClickListener(view -> {
@@ -118,21 +118,17 @@ public class M42_editarPedido extends AppCompatActivity {
                         // Obtiene el día de la semana
                         Calendar selectedDate = new GregorianCalendar(year, month, dayOfMonth);
                         int dayOfWeek = selectedDate.get(Calendar.DAY_OF_WEEK);
-                        Log.d("Calendario", "EStoy evaluando el calendario "+dayOfWeek+" siendo TUESDAT "+Calendar.TUESDAY+ " y SUNDAY "+Calendar.SUNDAY);
                         // Verifica que el día seleccionado esté en el rango permitido
                         if (dayOfWeek != Calendar.MONDAY) {
                             // Actualiza el texto del EditText con la fecha seleccionada
                             fechaHora = dayOfMonth + "/" + (month + 1) + "/" + year;
 
-                            Log.d("Calendario", "He puesto la fecha");
     
                             // Llama a la función para mostrar el TimePickerDialog
                             mostrarTimePickerDialog();
                         } else {
                             // Muestra un mensaje indicando que el día seleccionado no es válido
-                            Toast.makeText(M42_editarPedido.this, "Selecciona un día del martes al domingo", Toast.LENGTH_SHORT).show();
-                            Log.d("Calendario", "NO he puesto la fecha");
-                        }
+                            Toast.makeText(getApplicationContext(), R.string.fecha_incorrecta,Toast.LENGTH_LONG).show();                    }
                     }
                 }, año, mes, día);
     
@@ -158,7 +154,8 @@ public class M42_editarPedido extends AppCompatActivity {
                                 mFechaText.setText(fechaHora);
                             } else {
                                 // Muestra un mensaje indicando que la hora seleccionada no es válida
-                                Toast.makeText(M42_editarPedido.this, "Selecciona una hora entre las 19:00 y las 23:00", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.hora_incorrecta,Toast.LENGTH_LONG).show();
+
                             }
                         }
                     }, hora, minuto, true);

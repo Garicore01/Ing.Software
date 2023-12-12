@@ -1,78 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="78dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="54dp"
-        tools:ignore="MissingConstraints">
-
-        <Button
-            android:id="@+id/boton_anyadir"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="+"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/num_cantidad_plato"
-            android:layout_width="0dp"
-            android:layout_height="33dp"
-            android:layout_weight="1"
-            android:hint="1"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toEndOf="@+id/boton_anyadir" />
-
-        <Button
-            android:id="@+id/boton_quitar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="-"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/num_cantidad_plato" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/nombre_plato"
-        android:layout_width="409dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="16dp"
-        android:hint="Nombre del plato"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boton_quitar"
-        tools:ignore="NotSibling" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+        android:layout_width="391dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
 
-    <View
-        android:id="@+id/divider6"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="150dp" />
+        <TextView
+            android:id="@+id/nombre_plato"
+            android:layout_width="381dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del plato"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/boton_quitar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling" 
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_plato">
+
+            <Button
+                android:id="@+id/boton_anyadir"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="+"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/num_cantidad_plato"
+                android:layout_width="0dp"
+                android:layout_height="73dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toEndOf="@+id/boton_anyadir" />
+
+            <Button
+                android:id="@+id/boton_quitar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/num_cantidad_plato" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

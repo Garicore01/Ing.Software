@@ -114,6 +114,8 @@ public class PedidoPlatoRepository {
     public LiveData<List<Plato>> getAllPlatos() {
         return mAllDishes;
     }
+    // Room executes all queries on a separate thread.
+    // Observed LiveData will notify the observer when the data has changed.
 
     /** Inserta un plato
      * @param plato

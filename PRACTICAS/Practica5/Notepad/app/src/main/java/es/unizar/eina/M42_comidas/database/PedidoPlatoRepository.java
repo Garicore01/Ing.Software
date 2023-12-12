@@ -159,6 +159,19 @@ public class PedidoPlatoRepository {
 
 
 
+    /**
+     * @return Devuelve la lista de Platos ordenados por nombre
+     */
+    public LiveData<List<Plato>> obtenerPlatosPorNombre() {
+        return mPlatoDao.getOrderedPlatosByName();
+    }
+
+    /**
+     * @return Devuelve la lista de Platos ordenados por categoria
+     */
+    public LiveData<List<Plato>> obtenerPlatosPorCategoria() {
+        return mPlatoDao.getOrderedPlatosByCategoy();
+    }
     //-----------------------------------ESPEDIDO-----------------------------------------------------------
 
     /** Inserta un plato en un pedido

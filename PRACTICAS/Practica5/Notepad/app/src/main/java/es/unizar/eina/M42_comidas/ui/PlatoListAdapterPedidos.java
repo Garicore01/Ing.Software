@@ -16,6 +16,7 @@ import es.unizar.eina.M42_comidas.R;
 
 public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderPedidos> {
     private int position;
+    
 
     public int getPosition() {
         return position;

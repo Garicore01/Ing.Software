@@ -17,8 +17,10 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 import es.unizar.eina.M42_comidas.R;
+import es.unizar.eina.M42_comidas.database.Plato;
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_editarPedido extends AppCompatActivity {
@@ -39,6 +41,8 @@ public class M42_editarPedido extends AppCompatActivity {
     private EditText mFechaText;
     private Integer mId;
     private String fechaHora;
+    private Map<Plato, Integer> platosSeleccionados;
+
 
     Button mBotonAnyadirPlatos;
     Button mSaveButton;
@@ -51,7 +55,6 @@ public class M42_editarPedido extends AppCompatActivity {
         mNombreText = findViewById(R.id.nombre_cliente_crear_pedido);
         mTelefonoText = findViewById(R.id.telefono_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
-        //mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
         mBotonAnyadirPlatos = findViewById(R.id.boton_anyadir_platos);
 
          // Configura el click en el EditText para mostrar el DatePickerDialog

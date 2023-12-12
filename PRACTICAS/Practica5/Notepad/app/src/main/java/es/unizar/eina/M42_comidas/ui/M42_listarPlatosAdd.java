@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Map;
 
 import es.unizar.eina.M42_comidas.R;
 import es.unizar.eina.M42_comidas.database.Plato;
@@ -26,7 +27,7 @@ public class M42_listarPlatosAdd extends AppCompatActivity {
     private PlatoViewModel mPlatoViewModel;
 
     private PlatoListAdapterPedidos mPlatoAdapter;
-
+    
 
 
 
@@ -47,6 +48,24 @@ public class M42_listarPlatosAdd extends AppCompatActivity {
         mPlatoViewModel.getAllPlatos().observe(this,platos -> {
             mPlatoAdapter.submitList(platos);
         });
+
+
+        // mSaveButton = findViewById(R.id.button6);
+        // mSaveButton.setOnClickListener(view -> {
+        //     Intent replyIntent = new Intent();
+        //     if (TextUtils.isEmpty(mNombreText.getText())) {
+        //         setResult(RESULT_CANCELED, replyIntent);
+        //     } else {
+        //         replyIntent.putExtra(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE, mNombreText.getText().toString());
+        //         replyIntent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, mTelefonoText.getText().toString());
+        //         replyIntent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, mFechaText.getText().toString()); //comprobar error
+        //         if (mId!=null) {
+        //             replyIntent.putExtra(M42_editarPedido.PEDIDO_ID, mId.intValue());
+        //         }
+        //         setResult(RESULT_OK, replyIntent);
+        //     }
+        //     finish();
+        // });
 
     }
 

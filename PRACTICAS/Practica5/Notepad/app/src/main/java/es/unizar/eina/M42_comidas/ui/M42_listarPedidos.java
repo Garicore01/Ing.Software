@@ -74,11 +74,11 @@ public class M42_listarPedidos extends AppCompatActivity {
         mSendAbstraction = new SendAbstractionImpl(this, metodoSend);
 
 
-        spinnerOrdenarPor = findViewById(R.id.spinnerOrdenarPor);
+        spinnerOrdenarPor = findViewById(R.id.PedidosspinnerOrdenarPor);
 
         // Crear un ArrayAdapter utilizando el array de recursos opciones_ordenamiento
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.criterios_ordenamiento, android.R.layout.simple_spinner_item);
+                R.array.criterios_ordenamiento_pedidos, android.R.layout.simple_spinner_item);
 
         // Especificar el diseño a utilizar cuando la lista de opciones aparezca
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

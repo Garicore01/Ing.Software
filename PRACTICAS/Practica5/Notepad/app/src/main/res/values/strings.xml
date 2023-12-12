@@ -15,9 +15,14 @@
 
     <string name="title">Title</string>
     <string name="body">Body</string>
-    <string-array name="criterios_ordenamiento">
+    <string-array name="criterios_ordenamiento_pedidos">
         <item>Fecha</item>
         <item>Nombre de Cliente</item>
         <item>Número de Teléfono</item>
+    </string-array>
+    <string-array name="criterios_ordenamiento_platos">
+        <item>Nombre del plato</item>
+        <item>Categoría del plato</item>
+        <item>Ambos</item>
     </string-array>
 </resources>

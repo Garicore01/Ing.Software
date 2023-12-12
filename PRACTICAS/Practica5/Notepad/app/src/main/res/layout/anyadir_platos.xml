@@ -6,19 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="408dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#4CAF50"
-        android:text="Guardar"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerviewPlatosAdd" />
-
     <TextView
         android:id="@+id/selecciona_plato"
         android:layout_width="0dp"
@@ -42,8 +29,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewPlatosAdd"
-        android:layout_width="410dp"
-        android:layout_height="563dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
         android:paddingLeft="@dimen/small_padding"
         android:paddingRight="@dimen/small_padding"

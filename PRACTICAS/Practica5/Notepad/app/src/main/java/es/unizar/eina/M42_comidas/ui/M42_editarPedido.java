@@ -15,8 +15,10 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Map;
 
 import es.unizar.eina.M42_comidas.R;
@@ -41,8 +43,6 @@ public class M42_editarPedido extends AppCompatActivity {
     private EditText mFechaText;
     private Integer mId;
     private String fechaHora;
-    private Map<Plato, Integer> platosSeleccionados;
-
 
     Button mBotonAnyadirPlatos;
     Button mSaveButton;
@@ -69,8 +69,8 @@ public class M42_editarPedido extends AppCompatActivity {
         mBotonAnyadirPlatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(M42_editarPedido.this, M42_listarPlatosAdd.class);
-            startActivityForResult(intent, ACTIVITY_ADD_PLATOS_PEDIDO);
+                Intent intent = new Intent(M42_editarPedido.this, M42_listarPlatosAdd.class);
+                startActivityForResult(intent, ACTIVITY_ADD_PLATOS_PEDIDO);
             }
     
         });

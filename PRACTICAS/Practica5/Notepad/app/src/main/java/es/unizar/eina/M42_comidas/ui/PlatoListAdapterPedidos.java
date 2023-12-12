@@ -42,12 +42,8 @@ public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderP
     @Override
     public void onBindViewHolder(PlatoViewHolderPedidos holder, int position) {
         Plato current = getItem(position);
-        holder.bind(current.getNombre()); // Asegúrate de tener un método getNombrePlato en la clase Plato
+        holder.bind(current.getNombre(),current.getIdPlato());
 
-        holder.itemView.setOnLongClickListener(v -> {
-            setPosition(holder.getAdapterPosition());
-            return false;
-        });
     }
 
     static class PlatoDiff extends DiffUtil.ItemCallback<Plato> {

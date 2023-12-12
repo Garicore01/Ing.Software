@@ -13,14 +13,16 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import es.unizar.eina.M42_comidas.R;
+import es.unizar.eina.M42_comidas.database.Plato;
 
 public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
     private final TextView mNombreItemView;
     private final TextView mCantidadItemView;
+    private int mPlato;
     private Button incrementButton;
     private Button decrementButton;
-    private int count = 0;
-
+    private int count;
+    GlobalState globalState;
 
 
     
@@ -34,6 +36,7 @@ public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
         
         incrementButton.setOnClickListener(v -> {
             count++;
+            globalState.agregarAlMapa(mPlato, count);
             mCantidadItemView.setText(String.valueOf(count));
             Toast.makeText(itemView.getContext(), "Count: " + count, Toast.LENGTH_SHORT).show();
             Log.d("TAG", "Count: " + count);
@@ -42,6 +45,7 @@ public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
         decrementButton.setOnClickListener(v -> {
             if(count > 0){
                 count--;
+                globalState.agregarAlMapa(mPlato, count);
             }
             mCantidadItemView.setText(String.valueOf(count));
             Toast.makeText(itemView.getContext(), "Count: " + count, Toast.LENGTH_SHORT).show();
@@ -50,9 +54,15 @@ public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(String text) {
+    public void bind(String text,Integer plato) {
+        globalState = GlobalState.getInstance();
+        globalState.printAll();
+        count = globalState.obtenerDelMapa(plato);
+        Log.d("Count", "Count: " + count);
+
         mNombreItemView.setText(text);
         mCantidadItemView.setText(String.valueOf(count));
+        mPlato = plato;
     }
 
     static PlatoViewHolderPedidos create(ViewGroup parent) {

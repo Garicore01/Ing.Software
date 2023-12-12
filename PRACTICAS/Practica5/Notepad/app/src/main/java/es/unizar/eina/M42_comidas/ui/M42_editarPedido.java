@@ -7,13 +7,16 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import es.unizar.eina.M42_comidas.R;
 
@@ -35,6 +38,7 @@ public class M42_editarPedido extends AppCompatActivity {
     private EditText mTelefonoText;
     private EditText mFechaText;
     private Integer mId;
+    private String fechaHora;
 
     Button mBotonAnyadirPlatos;
     Button mSaveButton;
@@ -99,29 +103,43 @@ public class M42_editarPedido extends AppCompatActivity {
             mId = extras.getInt(M42_editarPedido.PEDIDO_ID);
         }
     }
-     private void mostrarDatePickerDialog() {
-            // Obtiene la fecha actual
-            Calendar calendario = Calendar.getInstance();
-            int año = calendario.get(Calendar.YEAR);
-            int mes = calendario.get(Calendar.MONTH);
-            int día = calendario.get(Calendar.DAY_OF_MONTH);
+    private void mostrarDatePickerDialog() {
+        // Obtiene la fecha actual
+        Calendar calendario = Calendar.getInstance();
+        int año = calendario.get(Calendar.YEAR);
+        int mes = calendario.get(Calendar.MONTH);
+        int día = calendario.get(Calendar.DAY_OF_MONTH);
     
-            // Crea un DatePickerDialog y configura la acción al seleccionar una fecha
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        // Crea un DatePickerDialog y configura la acción al seleccionar una fecha
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Obtiene el día de la semana
+                        Calendar selectedDate = new GregorianCalendar(year, month, dayOfMonth);
+                        int dayOfWeek = selectedDate.get(Calendar.DAY_OF_WEEK);
+                        Log.d("Calendario", "EStoy evaluando el calendario "+dayOfWeek+" siendo TUESDAT "+Calendar.TUESDAY+ " y SUNDAY "+Calendar.SUNDAY);
+                        // Verifica que el día seleccionado esté en el rango permitido
+                        if (dayOfWeek != Calendar.MONDAY) {
                             // Actualiza el texto del EditText con la fecha seleccionada
-                            mFechaText.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                            fechaHora = dayOfMonth + "/" + (month + 1) + "/" + year;
+
+                            Log.d("Calendario", "He puesto la fecha");
     
                             // Llama a la función para mostrar el TimePickerDialog
                             mostrarTimePickerDialog();
+                        } else {
+                            // Muestra un mensaje indicando que el día seleccionado no es válido
+                            Toast.makeText(M42_editarPedido.this, "Selecciona un día del martes al domingo", Toast.LENGTH_SHORT).show();
+                            Log.d("Calendario", "NO he puesto la fecha");
                         }
-                    }, año, mes, día);
+                    }
+                }, año, mes, día);
     
-            // Muestra el DatePickerDialog
-            datePickerDialog.show();
-        };
+        // Muestra el DatePickerDialog
+        datePickerDialog.show();
+    }
+    
     
         private void mostrarTimePickerDialog() {
             // Obtiene la hora actual
@@ -134,8 +152,14 @@ public class M42_editarPedido extends AppCompatActivity {
                     new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            // Actualiza el texto del EditText con la hora seleccionada
-                            mFechaText.append(" " + hourOfDay + ":" + minute);
+                            if (hourOfDay >= 19 && hourOfDay < 23) {
+                                // Actualiza el texto del EditText con la hora seleccionada
+                                fechaHora = fechaHora + " " + hourOfDay + ":" + minute;
+                                mFechaText.setText(fechaHora);
+                            } else {
+                                // Muestra un mensaje indicando que la hora seleccionada no es válida
+                                Toast.makeText(M42_editarPedido.this, "Selecciona una hora entre las 19:00 y las 23:00", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }, hora, minuto, true);
     

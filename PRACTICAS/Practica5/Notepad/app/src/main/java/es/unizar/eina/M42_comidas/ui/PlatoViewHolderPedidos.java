@@ -18,11 +18,11 @@ import es.unizar.eina.M42_comidas.database.Plato;
 public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
     private final TextView mNombreItemView;
     private final TextView mCantidadItemView;
-    private int mPlato;
+
     private Button incrementButton;
     private Button decrementButton;
-    private int count;
     GlobalState globalState;
+    private ElemEsPedido elemEsPedido;
 
 
     
@@ -35,34 +35,28 @@ public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
         
         
         incrementButton.setOnClickListener(v -> {
-            count++;
-            globalState.agregarAlMapa(mPlato, count);
-            mCantidadItemView.setText(String.valueOf(count));
-            Toast.makeText(itemView.getContext(), "Count: " + count, Toast.LENGTH_SHORT).show();
-            Log.d("TAG", "Count: " + count);
+            elemEsPedido.cantidad++;
+            globalState.agregarAlMapa(elemEsPedido.platoId, elemEsPedido);
+            mCantidadItemView.setText(String.valueOf(elemEsPedido.cantidad));
         });
 
         decrementButton.setOnClickListener(v -> {
-            if(count > 0){
-                count--;
-                globalState.agregarAlMapa(mPlato, count);
+            if(elemEsPedido.cantidad > 0){
+                elemEsPedido.cantidad--;
+                globalState.agregarAlMapa(elemEsPedido.platoId, elemEsPedido);
             }
-            mCantidadItemView.setText(String.valueOf(count));
-            Toast.makeText(itemView.getContext(), "Count: " + count, Toast.LENGTH_SHORT).show();
-            Log.d("TAG", "Count: " + count);
+            mCantidadItemView.setText(String.valueOf(elemEsPedido.cantidad));
         });
-
+        elemEsPedido = new ElemEsPedido();
     }
 
-    public void bind(String text,Integer plato) {
+    public void bind(String text,ElemEsPedido elemEsPedido) {
+        
         globalState = GlobalState.getInstance();
-        globalState.printAll();
-        count = globalState.obtenerDelMapa(plato);
-        Log.d("Count", "Count: " + count);
-
+        this.elemEsPedido = elemEsPedido;
         mNombreItemView.setText(text);
-        mCantidadItemView.setText(String.valueOf(count));
-        mPlato = plato;
+        mCantidadItemView.setText(String.valueOf(elemEsPedido.cantidad));
+
     }
 
     static PlatoViewHolderPedidos create(ViewGroup parent) {

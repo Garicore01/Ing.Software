@@ -38,11 +38,13 @@ public class M42_editarPedido extends AppCompatActivity {
 
     public static final int ACTIVITY_ADD_PLATOS_PEDIDO = 3;
 
+
     private EditText mNombreText;
     private EditText mTelefonoText;
     private EditText mFechaText;
     private Integer mId;
     private String fechaHora;
+    private GlobalState globalState;
 
     Button mBotonAnyadirPlatos;
     Button mSaveButton;
@@ -52,6 +54,7 @@ public class M42_editarPedido extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_pedido);
 
+        globalState = GlobalState.getInstance();
         mNombreText = findViewById(R.id.nombre_cliente_crear_pedido);
         mTelefonoText = findViewById(R.id.telefono_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
@@ -74,6 +77,7 @@ public class M42_editarPedido extends AppCompatActivity {
             }
     
         });
+        
 
         mSaveButton = findViewById(R.id.button6);
         mSaveButton.setOnClickListener(view -> {

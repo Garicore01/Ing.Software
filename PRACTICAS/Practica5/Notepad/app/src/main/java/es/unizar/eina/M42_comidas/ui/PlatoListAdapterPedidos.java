@@ -42,7 +42,12 @@ public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderP
     @Override
     public void onBindViewHolder(PlatoViewHolderPedidos holder, int position) {
         Plato current = getItem(position);
-        holder.bind(current.getNombre(),current.getIdPlato());
+        ElemEsPedido elemEsPedido = new ElemEsPedido();
+        GlobalState globalState = GlobalState.getInstance();
+        elemEsPedido.platoId = current.getIdPlato();
+        elemEsPedido.cantidad = globalState.obtenerDelMapaCantidad(elemEsPedido.platoId); //luego habrá que hacer una consulta para obtener este dato en el caso de actualizar
+        elemEsPedido.precio = Double.parseDouble(current.getPrecio());
+        holder.bind(current.getNombre(),elemEsPedido);
 
     }
 

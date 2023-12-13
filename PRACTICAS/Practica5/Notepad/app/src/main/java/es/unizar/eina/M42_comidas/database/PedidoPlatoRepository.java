@@ -6,9 +6,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-
-
-
+import java.util.concurrent.CountDownLatch;
 
 
 /** Definicion de clase repositorio para los pedidos */
@@ -52,13 +50,21 @@ public class PedidoPlatoRepository {
      * @return un valor entero largo con el identificador del pedido que se ha creado.
      */
     public long insert(Pedido pedido) {
+        final CountDownLatch latch = new CountDownLatch(1); // Para esperar a que se complete la inserción
         final long[] result = {0};
-        // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-        // that you're not doing any long running operations on the main thread, blocking the UI.
+    
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             result[0] = mPedidoDao.insert(pedido);
+            latch.countDown(); // Liberar el contador
         });
-        return result[0];
+    
+        try {
+            latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    
+        return result[0]; // Devolver el id del pedido insertado
     }
 
     /** Modifica una nota
@@ -178,12 +184,12 @@ public class PedidoPlatoRepository {
      * @param plato
      * @return un valor entero largo con el identificador del plato que se ha creado.
      */
-    public long insert(int idPedido,Plato plato,int numero) {
+    public long insert(EsPedido esPedido) {
         final long[] result = {0};
         // You must call this on a non-UI thread or your app will throw an exception. Room ensures
         // that you're not doing any long running operations on the main thread, blocking the UI.
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mEsPedidoDao.insert(new EsPedido(idPedido,plato.getIdPlato(),numero,Double.parseDouble(plato.getPrecio())));
+            result[0] = mEsPedidoDao.insert(esPedido);
         });
         return result[0];
     }
@@ -210,6 +216,10 @@ public class PedidoPlatoRepository {
             result[0] = mEsPedidoDao.delete(esPedido);
         });
         return result[0];
+    }
+
+    public LiveData<List<EsPedido>> obtenerEsPedidoPorIdPedido(int idPedido) {
+        return mEsPedidoDao.getPlatoPedido(idPedido);
     }
 
     

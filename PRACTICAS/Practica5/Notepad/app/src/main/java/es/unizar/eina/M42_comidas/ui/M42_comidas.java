@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -12,19 +13,23 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import es.unizar.eina.M42_comidas.R;
+import es.unizar.eina.M42_comidas.database.EsPedido;
 import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.Map;
 
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_comidas extends AppCompatActivity {
     private PlatoViewModel mPlatoViewModel;
     private PedidoViewModel mPedidoViewModel;
+    private EsPedidoViewModel mEsPedidoViewModel;
+    private GlobalState globalState= GlobalState.getInstance();
+        
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 
@@ -43,16 +48,18 @@ public class M42_comidas extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio);
         mPlatoViewModel = new ViewModelProvider(this).get(PlatoViewModel.class);
         mPedidoViewModel = new ViewModelProvider(this).get(PedidoViewModel.class);
+        mEsPedidoViewModel = new ViewModelProvider(this).get(EsPedidoViewModel.class);
 
         Button button_addPlato = findViewById(R.id.button_addPlato);
         button_addPlato.setOnClickListener(new View.OnClickListener() {
-
+        
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(M42_comidas.this, M42_editarPlato.class);
@@ -75,7 +82,7 @@ public class M42_comidas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(M42_comidas.this, M42_editarPedido.class);
-                Log.d("Prueba", "EStoy en pedido");
+                globalState.vaciarMapa();
                 startActivityForResult(intent, ACTIVITY_PEDIDO_CREATE);
             }
         });
@@ -93,9 +100,6 @@ public class M42_comidas extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Platos onActivityResult", "en onActivityResult");
-
-        
 
         if (resultCode != RESULT_OK) {
             Toast.makeText(
@@ -133,7 +137,20 @@ public class M42_comidas extends AppCompatActivity {
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
-                    mPedidoViewModel.insert(newPedido);
+                    SystemClock.sleep(1000);
+                    long idPedido = mPedidoViewModel.insert(newPedido);
+                    Log.d("Prueba", "Id Pedido"+idPedido);
+                    
+                    Map<Integer, ElemEsPedido> map = globalState.getCantidadPlatosMap();
+
+                    for (Map.Entry<Integer, ElemEsPedido> entry : map.entrySet()) {
+                        Integer key = entry.getKey();
+                        ElemEsPedido value = entry.getValue();
+                        EsPedido esPedido = new EsPedido((int)idPedido,key, value.cantidad, value.precio);
+                       mEsPedidoViewModel.insert(esPedido);
+                    }
+                        
+                   
                     break;
 
                 

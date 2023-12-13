@@ -1,5 +1,6 @@
 package es.unizar.eina.M42_comidas.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -51,8 +52,8 @@ public interface EsPedidoDao {
      * @param idPedido
      * @return Devuelve una lista de idPlato asociados al pedido con idPedido
     */
-    @Query("SELECT platoId FROM esPedido WHERE pedidoId = :idPedido" )
-    List<Integer> getPlatoPedido(int idPedido);
+    @Query("SELECT  pedidoId as pedidoId, platoId as platoId, numero as numero, precio as precio FROM esPedido WHERE pedidoId = :idPedido" )
+    LiveData<List<EsPedido>> getPlatoPedido(int idPedido);
 
     /**
      * Obtiene el precio del todos los platos de la base de datos

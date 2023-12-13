@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import es.unizar.eina.M42_comidas.R;
+import es.unizar.eina.M42_comidas.database.EsPedido;
 import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.PedidoDao;
 import es.unizar.eina.send.SendAbstraction;
@@ -32,6 +34,8 @@ import es.unizar.eina.send.SendAbstractionImpl;
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_listarPedidos extends AppCompatActivity {
     private PedidoViewModel mPedidoViewModel;
+
+    private PlatoViewModel mPlatoViewModel;
 
 
     private PedidoListAdapter mPedidoAdapter;
@@ -48,7 +52,7 @@ public class M42_listarPedidos extends AppCompatActivity {
 
 
     public static final int EDIT_ID = 2;
-    
+
     public static final int DELETE_ID = 3;
 
     public static final int MANDARMENSAJE = 4;
@@ -184,6 +188,24 @@ public class M42_listarPedidos extends AppCompatActivity {
         intent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, current.getTelefonoCliente());
         intent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, formato.format(current.getFechaRecogida()));
         intent.putExtra(M42_editarPedido.PEDIDO_ID, current.getIdPedido());
+        GlobalState globalState = GlobalState.getInstance();
+        globalState.vaciarMapa();
+        EsPedidoViewModel mEsPedidoViewModel = new ViewModelProvider(this).get(EsPedidoViewModel.class);
+        LiveData<List<EsPedido>> listaPlatos = mEsPedidoViewModel.getAllPlatosFromPedido(current.getIdPedido());
+
+
+        listaPlatos.observe(this, new Observer<List<EsPedido>>() {
+            @Override
+            public void onChanged(List<EsPedido> esPedidos) {
+                for (EsPedido esPedido : esPedidos) {
+                    ElemEsPedido elem = new ElemEsPedido();
+                    elem.platoId = esPedido.getPlatoId();
+                    elem.cantidad = esPedido.getNumero();
+                    elem.precio = esPedido.getPrecio();
+                    globalState.agregarAlMapa(esPedido.getPlatoId(),elem);
+                }
+            }
+        });
         startActivityForResult(intent, ACTIVITY_EDIT);
     }
 

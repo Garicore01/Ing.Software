@@ -30,7 +30,6 @@ public class GlobalState {
 
 
     public void agregarAlMapa(Integer clave, ElemEsPedido valor) {
-        Log.d("GlobalState", "agregarAlMapa: " + clave + " " + valor.platoId + " " + valor.cantidad + " " + valor.precio);
         cantidadPlatosMap.put(clave, valor);
 
     }

@@ -28,8 +28,8 @@ public interface EsPedidoDao {
      * @param esPedido
      * @return un valor entero con el numero de filas modificadas.
      */
-    @Update
-    int update(EsPedido esPedido);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long update(EsPedido esPedido);
 
 
     /**

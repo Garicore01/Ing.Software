@@ -198,8 +198,8 @@ public class PedidoPlatoRepository {
      * @param esPedido
      * @return un valor entero con el numero de filas modificadas.
      */
-    public int update(EsPedido esPedido) {
-        final int[] result = {0};
+    public long update(EsPedido esPedido) {
+        final long[] result = {0};
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             result[0] = mEsPedidoDao.update(esPedido);
         });

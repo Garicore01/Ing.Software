@@ -13,23 +13,29 @@ import es.unizar.eina.M42_comidas.R;
 
 class PedidoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
     private final TextView mNoteItemView;
+    private final TextView mTelClient;
+    private final TextView mDatePedido;
 
 
 
     private PedidoViewHolder(View itemView) {
         super(itemView);
-        mNoteItemView = itemView.findViewById(R.id.textView);
+        mNoteItemView = itemView.findViewById(R.id.nombre_cliente_lista);
+        mTelClient = itemView.findViewById(R.id.telefono_lista);
+        mDatePedido = itemView.findViewById(R.id.fecha_recogida_lista);
 
         itemView.setOnCreateContextMenuListener(this);
     }
 
-    public void bind(String text) {
+    public void bind(String text, String text2, String text3) {
         mNoteItemView.setText(text);
+        mTelClient.setText(text2);
+        mDatePedido.setText(text3);
     }
 
     static PedidoViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+                .inflate(R.layout.pedido_plantilla, parent, false);
         return new PedidoViewHolder(view);
     }
 

@@ -56,5 +56,4 @@
         tools:listitem="@layout/seleccionar_plato_plantilla" />
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

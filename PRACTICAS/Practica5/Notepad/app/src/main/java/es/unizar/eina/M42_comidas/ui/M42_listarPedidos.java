@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import es.unizar.eina.M42_comidas.R;
 import es.unizar.eina.M42_comidas.database.EsPedido;
@@ -37,6 +38,8 @@ public class M42_listarPedidos extends AppCompatActivity {
 
     private PlatoViewModel mPlatoViewModel;
 
+    private EsPedidoViewModel mEsPedidoViewModel;
+
 
     private PedidoListAdapter mPedidoAdapter;
 
@@ -49,6 +52,7 @@ public class M42_listarPedidos extends AppCompatActivity {
     private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private Spinner spinnerOrdenarPor;
     private String criterioSeleccionado;
+    private GlobalState globalState;
 
 
     public static final int EDIT_ID = 2;
@@ -70,6 +74,8 @@ public class M42_listarPedidos extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mPedidoViewModel = new ViewModelProvider(this).get(PedidoViewModel.class);
+
+        mEsPedidoViewModel = new ViewModelProvider(this).get(EsPedidoViewModel.class);
 
         mPedidoViewModel.getAllPedidos().observe(this,Pedidos -> {
             mPedidoAdapter.submitList(Pedidos);
@@ -172,7 +178,18 @@ public class M42_listarPedidos extends AppCompatActivity {
                     }
                     Log.d("Prueba","voy a meter el  pedido nuevo ");
                     newPedido.setIdPedido(id);
+                    
                     mPedidoViewModel.update(newPedido);
+                    globalState = GlobalState.getInstance();
+                    Map<Integer, ElemEsPedido> map = globalState.getCantidadPlatosMap();
+                    Log.d("Prueba","voy a meter los platos del pedido nuevo ");
+                    for (Map.Entry<Integer, ElemEsPedido> entry : map.entrySet()) {
+                        Integer key = entry.getKey();
+                        ElemEsPedido value = entry.getValue();
+                        Log.d("Prueba","voy a meter el plato "+key+" del pedido "+id+" con cantidad "+value.cantidad+" y precio "+value.precio);
+                        EsPedido esPedido = new EsPedido(id,key, value.cantidad, value.precio);
+                        mEsPedidoViewModel.update(esPedido);
+                    }
                     Log.d("Prueba","ya esta metido  pedido nuevo ");
                     break;
             }
@@ -188,7 +205,7 @@ public class M42_listarPedidos extends AppCompatActivity {
         intent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, current.getTelefonoCliente());
         intent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, formato.format(current.getFechaRecogida()));
         intent.putExtra(M42_editarPedido.PEDIDO_ID, current.getIdPedido());
-        GlobalState globalState = GlobalState.getInstance();
+        globalState = GlobalState.getInstance();
         globalState.vaciarMapa();
         EsPedidoViewModel mEsPedidoViewModel = new ViewModelProvider(this).get(EsPedidoViewModel.class);
         LiveData<List<EsPedido>> listaPlatos = mEsPedidoViewModel.getAllPlatosFromPedido(current.getIdPedido());

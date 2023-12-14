@@ -79,6 +79,7 @@ public class M42_listarPedidos extends AppCompatActivity {
 
         mPedidoViewModel.getAllPedidos().observe(this,Pedidos -> {
             mPedidoAdapter.submitList(Pedidos);
+
         });
 
         mSendAbstraction = new SendAbstractionImpl(this, metodoSend);

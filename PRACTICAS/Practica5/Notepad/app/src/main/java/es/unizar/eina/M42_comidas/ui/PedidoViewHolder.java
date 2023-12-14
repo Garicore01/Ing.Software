@@ -23,7 +23,6 @@ class PedidoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateC
         mNoteItemView = itemView.findViewById(R.id.nombre_cliente_lista);
         mTelClient = itemView.findViewById(R.id.telefono_lista);
         mDatePedido = itemView.findViewById(R.id.fecha_recogida_lista);
-
         itemView.setOnCreateContextMenuListener(this);
     }
 
@@ -31,6 +30,7 @@ class PedidoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateC
         mNoteItemView.setText(text);
         mTelClient.setText(text2);
         mDatePedido.setText(text3);
+
     }
 
     static PedidoViewHolder create(ViewGroup parent) {

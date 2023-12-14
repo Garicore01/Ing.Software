@@ -46,7 +46,13 @@ public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderP
         GlobalState globalState = GlobalState.getInstance();
         elemEsPedido.platoId = current.getIdPlato();
         elemEsPedido.cantidad = globalState.obtenerDelMapaCantidad(elemEsPedido.platoId); //luego habrá que hacer una consulta para obtener este dato en el caso de actualizar
-        elemEsPedido.precio = Double.parseDouble(current.getPrecio());
+        if (globalState.existeEnMapa(elemEsPedido.platoId)==1) {
+            elemEsPedido.precio = globalState.obtenerDelMapaPrecio(elemEsPedido.platoId);
+        }else{
+            elemEsPedido.precio = Double.parseDouble(current.getPrecio());
+        }
+        
+
         holder.bind(current.getNombre(),elemEsPedido);
 
     }

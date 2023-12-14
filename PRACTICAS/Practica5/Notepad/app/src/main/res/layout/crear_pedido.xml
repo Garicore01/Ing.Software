@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light">
 
+
+
     <TextView
         android:id="@+id/crear_pedido"
         android:layout_width="0dp"
@@ -15,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="32dp" />
+        tools:layout_editor_absoluteY="32dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView29"
@@ -90,24 +93,48 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView31"
         app:srcCompat="@mipmap/fecha_recogida" />
 
+    <TextView
+        android:id="@+id/precioTot"
+        android:layout_width="341dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="42dp"
+        android:text="Crear/Modificar Pedido"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView25"
+        app:layout_constraintTop_toBottomOf="@+id/fecha_recogida_crear_pedido"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="54dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView33"
+        app:srcCompat="@mipmap/fecha_recogida"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/boton_anyadir_platos"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="63dp"
         android:backgroundTint="#856464"
         android:text="Añadir Platos"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_recogida_crear_pedido" />
+        app:layout_constraintTop_toBottomOf="@+id/precioTot"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="52dp"
         android:backgroundTint="#4CAF50"
         android:text="Guardar"
         android:textSize="20sp"

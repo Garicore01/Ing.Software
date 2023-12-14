@@ -147,7 +147,7 @@ public class M42_comidas extends AppCompatActivity {
                         Integer key = entry.getKey();
                         ElemEsPedido value = entry.getValue();
                         EsPedido esPedido = new EsPedido((int)idPedido,key, value.cantidad, value.precio);
-                       mEsPedidoViewModel.insert(esPedido);
+                        mEsPedidoViewModel.insert(esPedido);
                     }
                         
                    

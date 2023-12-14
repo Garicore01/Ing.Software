@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class M42_editarPedido extends AppCompatActivity {
     public static final String PEDIDO_TELEFONO = "666666666";
     public static final String PEDIDO_FECHA_RECOGIDA = "";
     public static final String PEDIDO_ID = "id";
+    public static final String PRECIO_TOTAL = "0.0";
 
 
     public static final int ACTIVITY_CREATE = 1;
@@ -42,6 +44,7 @@ public class M42_editarPedido extends AppCompatActivity {
     private EditText mNombreText;
     private EditText mTelefonoText;
     private EditText mFechaText;
+    private TextView mPrecioTotal;
     private Integer mId;
     private String fechaHora;
     private GlobalState globalState;
@@ -58,6 +61,7 @@ public class M42_editarPedido extends AppCompatActivity {
         mNombreText = findViewById(R.id.nombre_cliente_crear_pedido);
         mTelefonoText = findViewById(R.id.telefono_crear_pedido);
         mFechaText = findViewById(R.id.fecha_recogida_crear_pedido);
+        mPrecioTotal = findViewById(R.id.precioTot);
         mBotonAnyadirPlatos = findViewById(R.id.boton_anyadir_platos);
 
          // Configura el click en el EditText para mostrar el DatePickerDialog
@@ -109,6 +113,13 @@ public class M42_editarPedido extends AppCompatActivity {
             mFechaText.setText(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA));
             mId = extras.getInt(M42_editarPedido.PEDIDO_ID);
         }
+        Map<Integer, ElemEsPedido> cantidadPlatosMap = globalState.getCantidadPlatosMap();
+            double sum = 0;
+            for (Map.Entry<Integer, ElemEsPedido> entry : cantidadPlatosMap.entrySet()) {
+                ElemEsPedido value = entry.getValue();
+                sum += value.cantidad * value.precio;
+            }
+            mPrecioTotal.setText(String.valueOf(sum));
     }
     private void mostrarDatePickerDialog() {
         // Obtiene la fecha actual
@@ -170,4 +181,16 @@ public class M42_editarPedido extends AppCompatActivity {
             // Muestra el TimePickerDialog
             timePickerDialog.show();
         }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Map<Integer, ElemEsPedido> cantidadPlatosMap = globalState.getCantidadPlatosMap();
+        double sum = 0;
+        for (Map.Entry<Integer, ElemEsPedido> entry : cantidadPlatosMap.entrySet()) {
+            ElemEsPedido value = entry.getValue();
+            sum += value.cantidad * value.precio;
+        }
+        mPrecioTotal.setText(String.valueOf(sum));
+    }
 }

@@ -18,25 +18,21 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="26dp" />
 
-    <EditText
+
+    <Spinner
         android:id="@+id/categoria_plato_crear_plato"
-        android:layout_width="368dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Categoria"
-        android:textSize="25sp"
+        android:layout_width="323dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView21"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crear_plato" />
 
     <ImageView
         android:id="@+id/imageView21"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crear_plato"
         app:srcCompat="@mipmap/categoria_pedido_mod_plato" />

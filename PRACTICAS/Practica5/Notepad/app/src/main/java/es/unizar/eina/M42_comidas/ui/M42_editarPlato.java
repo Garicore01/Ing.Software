@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import es.unizar.eina.M42_comidas.R;
@@ -32,6 +36,9 @@ public class M42_editarPlato extends AppCompatActivity {
     private EditText mPrecio;
     private Integer mId;
 
+    private Spinner spinnerCategoria;
+    private String categoriaSeleccionada;
+
     Button mSaveButton;
 
     @Override
@@ -40,10 +47,36 @@ public class M42_editarPlato extends AppCompatActivity {
         setContentView(R.layout.crear_platos);
 
         mNombreText = findViewById(R.id.nombre_plato_crear_plato);
-        mCategoriaText = findViewById(R.id.categoria_plato_crear_plato);
+        //mCategoriaText = findViewById(R.id.categoria_plato_crear_plato);
         mPrecio = findViewById(R.id.precio_plato_crear_plato);
         mDescripcionText = findViewById(R.id.descripcion_plato_crear_plato);
 
+
+        spinnerCategoria = findViewById(R.id.categoria_plato_crear_plato);
+
+        // Crear un ArrayAdapter utilizando el array de recursos opciones_ordenamiento
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categorias_plato, android.R.layout.simple_spinner_item);
+
+        // Especificar el diseño a utilizar cuando la lista de opciones aparezca
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Asignar el adaptador al Spinner
+        spinnerCategoria.setAdapter(adapter);
+
+        // Configurar el listener para manejar las selecciones del Spinner
+        spinnerCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Aquí puedes manejar la selección del usuario
+                categoriaSeleccionada = parentView.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Método llamado cuando no se ha seleccionado nada
+
+            }
+        });
 
         mSaveButton = findViewById(R.id.button2);
         mSaveButton.setOnClickListener(view -> {
@@ -54,7 +87,7 @@ public class M42_editarPlato extends AppCompatActivity {
                 replyIntent.putExtra(M42_editarPlato.PLATO_NOMBRE, mNombreText.getText().toString());
                 replyIntent.putExtra(M42_editarPlato.PLATO_DESCRIPCION, mDescripcionText.getText().toString());
                 replyIntent.putExtra(M42_editarPlato.PLATO_PRECIO, mPrecio.getText().toString());
-                replyIntent.putExtra(M42_editarPlato.PLATO_CATEGORIA, mCategoriaText.getText().toString());
+                replyIntent.putExtra(M42_editarPlato.PLATO_CATEGORIA, categoriaSeleccionada);
                 if (mId!=null) {
                     replyIntent.putExtra(M42_editarPlato.PLATO_ID, mId.intValue());
                 }
@@ -63,13 +96,14 @@ public class M42_editarPlato extends AppCompatActivity {
             // Se envian los datos a la clase que la invoco.
             finish();
         });
+        populateFields ();
     }
     private void populateFields () {
         mId = null;
         Bundle extras = getIntent().getExtras();
         if (extras!=null) {
             mNombreText.setText(extras.getString(M42_editarPlato.PLATO_NOMBRE));
-            mCategoriaText.setText(extras.getString(M42_editarPlato.PLATO_CATEGORIA));
+            categoriaSeleccionada = extras.getString(M42_editarPlato.PLATO_CATEGORIA);
             mPrecio.setText(extras.getString(M42_editarPlato.PLATO_PRECIO));
             mDescripcionText.setText(extras.getString(M42_editarPlato.PLATO_DESCRIPCION));
             mId = extras.getInt(M42_editarPlato.PLATO_ID);

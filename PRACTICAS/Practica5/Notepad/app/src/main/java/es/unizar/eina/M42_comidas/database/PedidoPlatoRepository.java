@@ -113,6 +113,8 @@ public class PedidoPlatoRepository {
 
 
 
+
+
     //-----------------------------------PLATOS-----------------------------------------------------------
 
     // Room executes all queries on a separate thread.
@@ -177,6 +179,13 @@ public class PedidoPlatoRepository {
      */
     public LiveData<List<Plato>> obtenerPlatosPorCategoria() {
         return mPlatoDao.getOrderedPlatosByCategoy();
+    }
+
+    /**
+     * @return Devuelve la lista de Platos ordenados por categoria y nombre
+     */
+    public LiveData<List<Plato>> obtenerPlatosPorCategoriayNombre() {
+        return mPlatoDao.getOrderedPlatosByCategoyAndName();
     }
     //-----------------------------------ESPEDIDO-----------------------------------------------------------
 

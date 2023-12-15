@@ -74,7 +74,7 @@ public interface PlatoDao {
      * Devuelve todos los platos de la base de datos ordenados por nombre
      * @return una lista de platos ordenados por nombre
      */
-    @Query("SELECT * FROM Plato ORDER BY categoria ASC")
+    @Query("SELECT * FROM Plato ORDER BY nombre,categoria ASC")
     LiveData<List<Plato>> getOrderedPlatosByCategoyAndName();
 
     /**

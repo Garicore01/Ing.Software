@@ -17,6 +17,7 @@ public class PlatoViewModel extends AndroidViewModel {
     private final LiveData<List<Plato>> mAllPlatos;
     private final LiveData<List<Plato>> platosPorNombre;
     private final LiveData<List<Plato>> platosPorCategoria;
+    private final LiveData<List<Plato>> platosPorCategoriayNombre;
 
     public PlatoViewModel(Application application) {
         super(application);
@@ -24,12 +25,13 @@ public class PlatoViewModel extends AndroidViewModel {
         mAllPlatos = mRepository.getAllPlatos();
         platosPorNombre = mRepository.obtenerPlatosPorNombre();
         platosPorCategoria = mRepository.obtenerPlatosPorCategoria();
+        platosPorCategoriayNombre = mRepository.obtenerPlatosPorCategoriayNombre();
     }
 
     public LiveData<List<Plato>> obtenerPlatosOrdenados(String criterio) {
         switch (criterio) {
             case "Ambos":
-                return platosPorNombre;
+                return platosPorCategoriayNombre;
             case "Nombre del plato":
                 return platosPorNombre;
             case "Categoría del plato":

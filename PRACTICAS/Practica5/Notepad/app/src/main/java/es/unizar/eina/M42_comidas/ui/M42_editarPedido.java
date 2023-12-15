@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -31,6 +34,8 @@ public class M42_editarPedido extends AppCompatActivity {
     public static final String PEDIDO_TELEFONO = "666666666";
     public static final String PEDIDO_FECHA_RECOGIDA = "";
     public static final String PEDIDO_ID = "id";
+
+    public static final String PEDIDO_ESTADO = "SOLICITADO";
     public static final String PRECIO_TOTAL = "0.0";
 
 
@@ -49,8 +54,14 @@ public class M42_editarPedido extends AppCompatActivity {
     private String fechaHora;
     private GlobalState globalState;
 
+    private ArrayAdapter<CharSequence> adapter;
+
+    private Spinner spinnerEstado;
+    private String estadoSeleccionado;
+
     Button mBotonAnyadirPlatos;
     Button mSaveButton;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,7 +92,35 @@ public class M42_editarPedido extends AppCompatActivity {
             }
     
         });
-        
+
+
+        spinnerEstado = findViewById(R.id.PedidospinnerEstado);
+
+        // Crear un ArrayAdapter utilizando el array de recursos opciones_ordenamiento
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.estados_pedido, android.R.layout.simple_spinner_item);
+
+        // Especificar el diseño a utilizar cuando la lista de opciones aparezca
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Asignar el adaptador al Spinner
+        spinnerEstado.setAdapter(adapter);
+
+        // Configurar el listener para manejar las selecciones del Spinner
+        spinnerEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Aquí puedes manejar la selección del usuario
+                estadoSeleccionado = parentView.getItemAtPosition(position).toString();
+                // Puedes hacer lo que necesites con el criterio seleccionado
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Método llamado cuando no se ha seleccionado nada
+                estadoSeleccionado = "SOLICITADO";
+            }
+        });
 
         mSaveButton = findViewById(R.id.button6);
         mSaveButton.setOnClickListener(view -> {
@@ -92,6 +131,7 @@ public class M42_editarPedido extends AppCompatActivity {
                 replyIntent.putExtra(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE, mNombreText.getText().toString());
                 replyIntent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, mTelefonoText.getText().toString());
                 replyIntent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, mFechaText.getText().toString()); //comprobar error
+                replyIntent.putExtra(M42_editarPedido.PEDIDO_ESTADO, estadoSeleccionado);
                 if (mId!=null) {
                     replyIntent.putExtra(M42_editarPedido.PEDIDO_ID, mId.intValue());
                 }
@@ -112,6 +152,7 @@ public class M42_editarPedido extends AppCompatActivity {
             mTelefonoText.setText(extras.getString(M42_editarPedido.PEDIDO_TELEFONO));
             mFechaText.setText(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA));
             mId = extras.getInt(M42_editarPedido.PEDIDO_ID);
+            estadoSeleccionado = extras.getString(M42_editarPedido.PEDIDO_ESTADO);
         }
         Map<Integer, ElemEsPedido> cantidadPlatosMap = globalState.getCantidadPlatosMap();
             double sum = 0;
@@ -120,6 +161,8 @@ public class M42_editarPedido extends AppCompatActivity {
                 sum += value.cantidad * value.precio;
             }
             mPrecioTotal.setText(String.valueOf(sum));
+        int spinnerPosition = adapter.getPosition(estadoSeleccionado);
+        spinnerEstado.setSelection(spinnerPosition);
     }
     private void mostrarDatePickerDialog() {
         // Obtiene la fecha actual

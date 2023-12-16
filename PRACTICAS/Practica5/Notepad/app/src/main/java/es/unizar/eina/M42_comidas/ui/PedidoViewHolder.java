@@ -20,9 +20,9 @@ class PedidoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateC
 
     private PedidoViewHolder(View itemView) {
         super(itemView);
-        mNoteItemView = itemView.findViewById(R.id.nombre_cliente_lista);
-        mTelClient = itemView.findViewById(R.id.telefono_lista);
-        mDatePedido = itemView.findViewById(R.id.fecha_recogida_lista);
+        mNoteItemView = itemView.findViewById(R.id.nombre_plato_lista);
+        mTelClient = itemView.findViewById(R.id.precio_plato_lista);
+        mDatePedido = itemView.findViewById(R.id.categoria_plato_lista);
         itemView.setOnCreateContextMenuListener(this);
     }
 

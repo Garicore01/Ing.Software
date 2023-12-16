@@ -133,7 +133,7 @@ public class M42_comidas extends AppCompatActivity {
                         newPedido = new Pedido(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE)
                                 , extras.getString(M42_editarPedido.PEDIDO_TELEFONO)
                                 ,  formato.parse(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA)),
-                                "En preparacion");
+                                extras.getString(M42_editarPedido.PEDIDO_ESTADO));
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
@@ -161,7 +161,7 @@ public class M42_comidas extends AppCompatActivity {
                         newIpdatedPedido = new Pedido(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE)
                                 , extras.getString(M42_editarPedido.PEDIDO_TELEFONO)
                                 ,  formato.parse(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA)),
-                                "En preparacion");
+                                extras.getString(M42_editarPedido.PEDIDO_ESTADO));
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }

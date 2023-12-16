@@ -114,26 +114,29 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView33"
         app:srcCompat="@mipmap/dollar_foreground"
         tools:ignore="MissingConstraints" />
+
     <Spinner
         android:id="@+id/PedidospinnerEstado"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="407dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView25" />
+
     <Button
         android:id="@+id/boton_anyadir_platos"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="51dp"
         android:backgroundTint="#856464"
         android:text="Añadir Platos"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/precioTot"
+        app:layout_constraintTop_toBottomOf="@+id/PedidospinnerEstado"
         tools:ignore="MissingConstraints" />
 
     <Button

@@ -47,13 +47,7 @@
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="454dp">
 
-        <Button
-            android:id="@+id/button_addPedido"
-            android:layout_width="16dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:backgroundTint="#2E98EC"
-            android:text="Crear Pedido" />
+
 
         <Button
             android:id="@+id/button_addPlato"
@@ -69,6 +63,14 @@
             android:visibility="visible"
             app:iconPadding="8dp"
             app:iconTint="#00A62D2D" />
+
+        <Button
+            android:id="@+id/button_addPedido"
+            android:layout_width="16dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2E98EC"
+            android:text="Crear Pedido" />
 
     </LinearLayout>
 

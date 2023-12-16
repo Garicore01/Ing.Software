@@ -147,8 +147,15 @@ public class M42_listarPedidos extends AppCompatActivity {
                 editarPedido(current);
                 return true;
             case MANDARMENSAJE:
-                mSendAbstraction.send(current.getTelefonoCliente().toString(),"Su pedido está en preparacion");
-                return true;
+            if(current.getEstado().equals("SOLICITADO")){
+                mSendAbstraction.send(current.getTelefonoCliente().toString(),"Su pedido se ha registrado correctamente.");
+            }else if (current.getEstado().equals("PREPARADO")) {
+                mSendAbstraction.send(current.getTelefonoCliente().toString(),"Su ha sido preparado y ya puede pasarse a recogerlo a la hora seleccionada.");
+            }else if (current.getEstado().equals("RECOGIDO")) {
+                mSendAbstraction.send(current.getTelefonoCliente().toString(),"Su pedido ha sido recogido ¡Gracias por confiar en nosotros!");
+            }
+            return true;
+                
         }
         return super.onContextItemSelected(item);
     }
@@ -173,7 +180,7 @@ public class M42_listarPedidos extends AppCompatActivity {
                         newPedido = new Pedido(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE)
                         , extras.getString(M42_editarPedido.PEDIDO_TELEFONO)
                         ,  formato.parse(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA)),
-                        "En preparacion");
+                        extras.getString(M42_editarPedido.PEDIDO_ESTADO));
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }

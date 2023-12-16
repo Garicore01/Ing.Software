@@ -35,14 +35,14 @@
             app:layout_constraintTop_toBottomOf="@+id/nombre_plato">
 
             <Button
-                android:id="@+id/boton_anyadir"
+                android:id="@+id/boton_quitar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="+"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="-"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/num_cantidad_plato" />
 
             <TextView
                 android:id="@+id/num_cantidad_plato"
@@ -55,15 +55,16 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toEndOf="@+id/boton_anyadir" />
 
+
             <Button
-                android:id="@+id/boton_quitar"
+                android:id="@+id/boton_anyadir"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="-"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/num_cantidad_plato" />
+                android:text="+"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

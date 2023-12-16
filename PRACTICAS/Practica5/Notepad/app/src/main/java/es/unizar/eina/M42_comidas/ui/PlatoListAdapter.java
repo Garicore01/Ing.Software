@@ -41,7 +41,7 @@ public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {
     @Override
     public void onBindViewHolder(PlatoViewHolder holder, int position) {
         Plato current = getItem(position);
-        holder.bind(current.getNombre()); // Asegúrate de tener un método getNombrePlato en la clase Plato
+        holder.bind(current.getNombre(),current.getCategoria(),current.getPrecio()); // Asegúrate de tener un método getNombrePlato en la clase Plato
 
         holder.itemView.setOnLongClickListener(v -> {
             setPosition(holder.getAdapterPosition());

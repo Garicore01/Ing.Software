@@ -12,24 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.unizar.eina.M42_comidas.R;
 
 class PlatoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
-    private final TextView mNoteItemView;
+    private final TextView mNombreView;
+    private final TextView mCategoriaView;
+    private final TextView mPrecioView;
 
 
 
     private PlatoViewHolder(View itemView) {
         super(itemView);
-        mNoteItemView = itemView.findViewById(R.id.textView);
+        mNombreView = itemView.findViewById(R.id.nombre_plato_lista);
+        mCategoriaView = itemView.findViewById(R.id.categoria_plato_lista);
+        mPrecioView = itemView.findViewById(R.id.precio_plato_lista);
 
         itemView.setOnCreateContextMenuListener(this);
     }
 
-    public void bind(String text) {
-        mNoteItemView.setText(text);
+    public void bind(String text, String categoria, String precio) {
+        mNombreView.setText(text);
+        mCategoriaView.setText(categoria);
+        mPrecioView.setText(precio);
     }
 
     static PlatoViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+                .inflate(R.layout.plato_plantilla, parent, false);
         return new PlatoViewHolder(view);
     }
 

@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Nombre del cliente"
+                android:hint="Nombre Plato"
                 android:inputType="text"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="18sp"
@@ -62,13 +62,13 @@
                 app:srcCompat="@mipmap/telefono_cliente" />
 
             <TextView
-                android:id="@+id/precio_plato_lista"
+                android:id="@+id/categoria_plato_lista"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Teléfono del cliente"
+                android:hint="Categoria plato"
                 android:inputType="phone"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="18sp"
@@ -96,15 +96,15 @@
                 app:srcCompat="@mipmap/fecha_recogida" />
 
             <TextView
-                android:id="@+id/categoria_plato_lista"
-                android:layout_width="298dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:clickable="true"
+                android:id="@+id/precio_plato_lista"
+
+                android:layout_width="299dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
+                android:hint="Precio plato"
                 android:focusable="false"
-                android:hint="Fecha de recogida"
-                android:inputType="none"
+                android:inputType="phone"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

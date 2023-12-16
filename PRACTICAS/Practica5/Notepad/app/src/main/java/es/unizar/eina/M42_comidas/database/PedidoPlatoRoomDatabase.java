@@ -61,17 +61,17 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
                 daoEsPedido.deleteAll();
 
 
-                Pedido pedido = new Pedido("Gariko","678903987",new Date(),"Espera");
+                Pedido pedido = new Pedido("Gariko","678903987",new Date(),"SOLICITADO");
                 daoPedido.insert(pedido);
-                pedido = new Pedido("Gariko2","678903987",new Date(),"Recogido");
+                pedido = new Pedido("Gariko2","678903987",new Date(),"SOLICITADO");
                 daoPedido.insert(pedido);
 
-                Plato plato = new Plato("Arroz con pollo", "Mierda","5","Comida de mierda");
-                Plato plato2 = new Plato("Arroz con pollo1", "Mierda","5","Comida de mierda");
-                Plato plato3 = new Plato("Arroz con pollo2", "Mierda","5","Comida de mierda");
-                Plato plato4 = new Plato("Arroz con pollo3", "Mierda","5","Comida de mierda");
-                Plato plato5 = new Plato("Arroz con pollo4", "Mierda","5","Comida de mierda");
-                Plato plato6 = new Plato("Arroz con pollo5", "Mierda","5","Comida de mierda");
+                Plato plato = new Plato("Arroz con pollo", "Mierda","9.99","Comida de mierda");
+                Plato plato2 = new Plato("Pollo frito", "Mierda","9","Comida de mierda");
+                Plato plato3 = new Plato("Lentejas", "Mierda","5.85","Comida de mierda");
+                Plato plato4 = new Plato("Paella de marisco", "Mierda","19.99","Comida de mierda");
+                Plato plato5 = new Plato("Tacos de carne mixta", "Mierda","4.75","Comida de mierda");
+                Plato plato6 = new Plato("Algo random", "Mierda","6.5","Comida de mierda");
                 daoPlato.insert(plato);
 
 

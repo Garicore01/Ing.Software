@@ -120,10 +120,4 @@ public class Pedido {
         this.fechaRecogida = fechaRecogida;
     }
 
-    public String converFecha(Date fechaRecogida){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String fechaComoTexto = sdf.format(fechaRecogida);
-        return fechaComoTexto;
-    }
-
 }

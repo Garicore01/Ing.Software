@@ -110,7 +110,9 @@ public class PedidoPlatoRepository {
         return mPedidoDao.getAllPedidosOrderedByTelefono();
     }
 
-
+    public LiveData<List<Pedido>> obtenerEsPedidoFiltrado(String filtro) {
+        return mPedidoDao.getAllPedidosFiltered(filtro);
+    }
 
 
 
@@ -230,6 +232,7 @@ public class PedidoPlatoRepository {
     public LiveData<List<EsPedido>> obtenerEsPedidoPorIdPedido(int idPedido) {
         return mEsPedidoDao.getPlatoPedido(idPedido);
     }
+
 
     
 

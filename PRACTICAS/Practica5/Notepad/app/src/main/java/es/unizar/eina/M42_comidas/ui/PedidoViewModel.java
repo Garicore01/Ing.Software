@@ -20,6 +20,10 @@ public class PedidoViewModel extends AndroidViewModel {
     private LiveData<List<Pedido>> pedidosPorNombre;
     private LiveData<List<Pedido>> pedidosPorTelefono;
 
+    private LiveData<List<Pedido>> pedidosPreparados;
+    private LiveData<List<Pedido>> pedidosSolicitados;
+    private LiveData<List<Pedido>> pedidosRecogidos;
+
     public PedidoViewModel(Application application) {
         super(application);
         mRepository = new PedidoPlatoRepository(application);
@@ -27,6 +31,9 @@ public class PedidoViewModel extends AndroidViewModel {
         pedidosPorFecha = mRepository.obtenerPedidosPorFecha();
         pedidosPorNombre = mRepository.obtenerPedidosPorTelefono();
         pedidosPorTelefono = mRepository.obtenerPedidosPorTelefono();
+        pedidosPreparados = mRepository.obtenerEsPedidoFiltrado("PREPARADO");
+        pedidosSolicitados = mRepository.obtenerEsPedidoFiltrado("SOLICITADO");
+        pedidosRecogidos = mRepository.obtenerEsPedidoFiltrado("RECOGIDO");
     }
 
     LiveData<List<Pedido>> getAllPedidos() { return mAllPedidos; }
@@ -39,6 +46,19 @@ public class PedidoViewModel extends AndroidViewModel {
                 return pedidosPorNombre;
             case "Número de Teléfono":
                 return pedidosPorTelefono;
+            default:
+                return pedidosPorFecha;
+        }
+    }
+
+    public LiveData<List<Pedido>> obtenerPedidosFiltrados(String filtro) {
+        switch (filtro) {
+            case "PREPARADO":
+                return pedidosPreparados;
+            case "SOLICITADO":
+                return pedidosSolicitados;
+            case "RECOGIDO":
+                return pedidosRecogidos;
             default:
                 return pedidosPorFecha;
         }

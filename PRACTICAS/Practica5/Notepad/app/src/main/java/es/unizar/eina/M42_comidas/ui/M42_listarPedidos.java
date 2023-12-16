@@ -52,6 +52,9 @@ public class M42_listarPedidos extends AppCompatActivity {
     private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private Spinner spinnerOrdenarPor;
     private String criterioSeleccionado;
+
+    private Spinner spinnerFiltrarPor;
+    private String filtroSeleccionado;
     private GlobalState globalState;
 
 
@@ -131,6 +134,54 @@ public class M42_listarPedidos extends AppCompatActivity {
                 });
             }
         });
+
+        spinnerFiltrarPor = findViewById(R.id.PedidosspinnerFiltraPor);
+
+        // Crear un ArrayAdapter utilizando el array de recursos opciones_ordenamiento
+        ArrayAdapter<CharSequence> adapterFiltro = ArrayAdapter.createFromResource(this,
+                R.array.estados_pedido, android.R.layout.simple_spinner_item);
+
+        // Especificar el diseño a utilizar cuando la lista de opciones aparezca
+        adapterFiltro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Asignar el adaptador al Spinner
+        spinnerFiltrarPor.setAdapter(adapterFiltro);
+
+        // Configurar el listener para manejar las selecciones del Spinner
+        spinnerFiltrarPor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Aquí puedes manejar la selección del usuario
+                filtroSeleccionado = parentView.getItemAtPosition(position).toString();
+                // Puedes hacer lo que necesites con el criterio seleccionado
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Método llamado cuando no se ha seleccionado nada
+                criterioSeleccionado = "";
+            }
+        });
+
+        // Añade el listener al botón "Ordenar por"
+        Button botonFiltrar = findViewById(R.id.boton_filtrar);
+        botonFiltrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FILTRO", filtroSeleccionado);
+
+                // Ordena los pedidos según el criterio seleccionado
+                mPedidoViewModel.obtenerPedidosFiltrados(filtroSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                    @Override
+                    public void onChanged(List<Pedido> pedidos) {
+                        // Actualiza tu adaptador con la nueva lista de pedidos
+                        Log.d("ACTUALIZO", "PANTALLA");
+                        mPedidoAdapter.submitList(pedidos);
+                    }
+                });
+            }
+        });
+
     }
 
     public boolean onContextItemSelected(MenuItem item) {

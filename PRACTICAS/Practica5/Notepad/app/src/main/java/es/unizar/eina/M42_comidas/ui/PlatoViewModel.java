@@ -41,6 +41,8 @@ public class PlatoViewModel extends AndroidViewModel {
         }
     }
 
+
+
     LiveData<List<Plato>> getAllPlatos() { return mAllPlatos; }
 
     public void insert(Plato plato) { mRepository.insert(plato); }

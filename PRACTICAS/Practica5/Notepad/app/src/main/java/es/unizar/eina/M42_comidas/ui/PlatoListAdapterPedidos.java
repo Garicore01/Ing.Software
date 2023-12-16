@@ -49,7 +49,7 @@ public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderP
         if (globalState.existeEnMapa(elemEsPedido.platoId)==1) {
             elemEsPedido.precio = globalState.obtenerDelMapaPrecio(elemEsPedido.platoId);
         }else{
-            elemEsPedido.precio = Double.parseDouble(current.getPrecio());
+            elemEsPedido.precio = current.getPrecio();
         }
         
 
@@ -69,7 +69,7 @@ public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderP
             return oldItem.getNombre().equals(newItem.getNombre()) &&
                     oldItem.getDescripcion().equals(newItem.getDescripcion()) &&
                     oldItem.getCategoria().equals(newItem.getCategoria()) &&
-                    oldItem.getPrecio().equals(newItem.getPrecio());
+                    oldItem.getPrecio() == newItem.getPrecio();
 
         }
 

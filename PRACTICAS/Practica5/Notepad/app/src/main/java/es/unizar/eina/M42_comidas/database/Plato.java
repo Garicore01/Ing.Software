@@ -22,7 +22,7 @@ public class Plato {
 
     @NonNull
     @ColumnInfo(name = "precio")
-    private String precio;
+    private double precio;
 
     @NonNull
     @ColumnInfo(name = "categoria")
@@ -35,7 +35,7 @@ public class Plato {
      * @param precio
      * @param categoria
     */
-    public Plato(@NonNull String nombre, @NonNull String descripcion, @NonNull String precio, @NonNull String categoria) {
+    public Plato(@NonNull String nombre, @NonNull String descripcion, @NonNull double precio, @NonNull String categoria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -97,7 +97,7 @@ public class Plato {
      * Metodo getter que devuelve el precio del plato
      * @return precio
      */
-    public String getPrecio() {
+    public double getPrecio() {
         return this.precio;
     }
 
@@ -106,7 +106,7 @@ public class Plato {
      * @param precio
      */
 
-    public void setPrecio(@NonNull String precio) {
+    public void setPrecio(@NonNull double precio) {
         this.precio = precio;
     }
     /**

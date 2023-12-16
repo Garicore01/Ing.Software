@@ -86,7 +86,7 @@ public class M42_editarPlato extends AppCompatActivity {
             } else {
                 replyIntent.putExtra(M42_editarPlato.PLATO_NOMBRE, mNombreText.getText().toString());
                 replyIntent.putExtra(M42_editarPlato.PLATO_DESCRIPCION, mDescripcionText.getText().toString());
-                replyIntent.putExtra(M42_editarPlato.PLATO_PRECIO, mPrecio.getText().toString());
+                replyIntent.putExtra(M42_editarPlato.PLATO_PRECIO,mPrecio.getText().toString()); //COMPROBAR
                 replyIntent.putExtra(M42_editarPlato.PLATO_CATEGORIA, categoriaSeleccionada);
                 if (mId!=null) {
                     replyIntent.putExtra(M42_editarPlato.PLATO_ID, mId.intValue());

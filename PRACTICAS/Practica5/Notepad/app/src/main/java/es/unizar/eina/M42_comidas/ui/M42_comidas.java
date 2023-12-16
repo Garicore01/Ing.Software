@@ -112,7 +112,7 @@ public class M42_comidas extends AppCompatActivity {
                 case ACTIVITY_PLATOS_CREATE:
                     Plato newPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)
-                            ,  extras.getString(M42_editarPlato.PLATO_PRECIO)
+                            ,  Double.parseDouble(extras.getString(M42_editarPlato.PLATO_PRECIO))
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
 
                     mPlatoViewModel.insert(newPlato);
@@ -122,7 +122,7 @@ public class M42_comidas extends AppCompatActivity {
                     int id = extras.getInt(M42_editarPlato.PLATO_ID);
                     Plato updatedPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)
-                            , extras.getString(M42_editarPlato.PLATO_PRECIO)
+                            , Double.parseDouble(extras.getString(M42_editarPlato.PLATO_PRECIO))
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
                     updatedPlato.setIdPlato(id);
                     mPlatoViewModel.update(updatedPlato);

@@ -120,19 +120,21 @@ public class M42_listarPlatos extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         } else {
             Bundle extras = data.getExtras();
+            double precio = Double.parseDouble(extras.getString(M42_editarPlato.PLATO_PRECIO));;
             switch (requestCode) {
                 case ACTIVITY_CREATE:
                     Plato newPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)
-                            ,  extras.getString(M42_editarPlato.PLATO_PRECIO)
+                            , precio
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
                     mPlatoViewModel.insert(newPlato);
                     break;
                 case ACTIVITY_EDIT:
                     int id = extras.getInt(M42_editarPlato.PLATO_ID);
+                     
                     Plato updatedPlato = new Plato(extras.getString(M42_editarPlato.PLATO_NOMBRE)
                             , extras.getString(M42_editarPlato.PLATO_DESCRIPCION)
-                            , extras.getString(M42_editarPlato.PLATO_PRECIO)
+                            , precio
                             , extras.getString(M42_editarPlato.PLATO_CATEGORIA));
                     updatedPlato.setIdPlato(id);
                     mPlatoViewModel.update(updatedPlato);
@@ -164,7 +166,7 @@ public class M42_listarPlatos extends AppCompatActivity {
         intent.putExtra(M42_editarPlato.PLATO_NOMBRE, current.getNombre());
         intent.putExtra(M42_editarPlato.PLATO_DESCRIPCION, current.getDescripcion());
         intent.putExtra(M42_editarPlato.PLATO_CATEGORIA, current.getCategoria());
-        intent.putExtra(M42_editarPlato.PLATO_PRECIO, current.getPrecio());
+        intent.putExtra(M42_editarPlato.PLATO_PRECIO, String.valueOf(current.getPrecio()));
         intent.putExtra(M42_editarPlato.PLATO_ID, current.getIdPlato());
         startActivityForResult(intent, ACTIVITY_EDIT);
     }

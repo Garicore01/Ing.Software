@@ -110,8 +110,21 @@ public class PedidoPlatoRepository {
         return mPedidoDao.getAllPedidosOrderedByTelefono();
     }
 
-    public LiveData<List<Pedido>> obtenerEsPedidoFiltrado(String filtro) {
+    public LiveData<List<Pedido>> obtenerPedidosFiltrado(String filtro) {
         return mPedidoDao.getAllPedidosFiltered(filtro);
+    }
+
+    public LiveData<List<Pedido>> obtenerPedidosFiltradoYOrdenado(String filtro, String criterio) {
+        switch (criterio) {
+            case "NOMBRE":
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByNombre(filtro);
+            case "FECHA":
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByDate(filtro);
+            case "NUMERO":
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByTelefono(filtro);
+            default:
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByNombre(filtro);
+        }
     }
 
 

@@ -82,6 +82,15 @@ public interface PedidoDao {
     @Query("SELECT * FROM Pedido WHERE estado like :filtro ")
     LiveData<List<Pedido>> getAllPedidosFiltered(String filtro);
 
+    @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY telefonoCliente ASC ")
+    LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByTelefono(String filtro);
+
+    @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY fechaRecogida ASC ")
+    LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByDate(String filtro);
+
+    @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY nombreCliente ASC")
+    LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByNombre(String filtro);
+
 }
 
 

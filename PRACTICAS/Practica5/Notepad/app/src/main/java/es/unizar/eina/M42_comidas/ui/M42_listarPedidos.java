@@ -51,11 +51,14 @@ public class M42_listarPedidos extends AppCompatActivity {
 
     private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private Spinner spinnerOrdenarPor;
-    private String criterioSeleccionado;
+    private String criterioSeleccionado = "";
 
     private Spinner spinnerFiltrarPor;
-    private String filtroSeleccionado;
+    private String filtroSeleccionado = "";
     private GlobalState globalState;
+
+    private Boolean usuarioRealizoSeleccionFiltrar = false;
+    private Boolean usuarioRealizoSeleccionOrdenar = false;
 
 
     public static final int EDIT_ID = 2;
@@ -66,10 +69,13 @@ public class M42_listarPedidos extends AppCompatActivity {
 
     public static final String metodoSend = "sms";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listado_pedidos);
+        usuarioRealizoSeleccionOrdenar = false;
+        usuarioRealizoSeleccionFiltrar = false;
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewPedidos);
         mPedidoAdapter = new PedidoListAdapter(new PedidoListAdapter.PedidoDiff());
@@ -106,54 +112,6 @@ public class M42_listarPedidos extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Aquí puedes manejar la selección del usuario
                 criterioSeleccionado = parentView.getItemAtPosition(position).toString();
-                // Puedes hacer lo que necesites con el criterio seleccionado
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Método llamado cuando no se ha seleccionado nada
-                criterioSeleccionado = "Fecha";
-            }
-        });
-
-        // Añade el listener al botón "Ordenar por"
-        Button botonOrdenar = findViewById(R.id.boton_ordenar);
-        botonOrdenar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
-
-                // Ordena los pedidos según el criterio seleccionado
-                mPedidoViewModel.obtenerPedidosOrdenados(criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
-                    @Override
-                    public void onChanged(List<Pedido> pedidos) {
-                        // Actualiza tu adaptador con la nueva lista de pedidos
-                        Log.d("ACTUALIZO", "PANTALLA");
-                        mPedidoAdapter.submitList(pedidos);
-                    }
-                });
-            }
-        });
-
-        spinnerFiltrarPor = findViewById(R.id.PedidosspinnerFiltraPor);
-
-        // Crear un ArrayAdapter utilizando el array de recursos opciones_ordenamiento
-        ArrayAdapter<CharSequence> adapterFiltro = ArrayAdapter.createFromResource(this,
-                R.array.estados_pedido, android.R.layout.simple_spinner_item);
-
-        // Especificar el diseño a utilizar cuando la lista de opciones aparezca
-        adapterFiltro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Asignar el adaptador al Spinner
-        spinnerFiltrarPor.setAdapter(adapterFiltro);
-
-        // Configurar el listener para manejar las selecciones del Spinner
-        spinnerFiltrarPor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Aquí puedes manejar la selección del usuario
-                filtroSeleccionado = parentView.getItemAtPosition(position).toString();
-                // Puedes hacer lo que necesites con el criterio seleccionado
             }
 
             @Override
@@ -164,14 +122,44 @@ public class M42_listarPedidos extends AppCompatActivity {
         });
 
         // Añade el listener al botón "Ordenar por"
-        Button botonFiltrar = findViewById(R.id.boton_filtrar);
-        botonFiltrar.setOnClickListener(new View.OnClickListener() {
+        Button botonOrdenar = findViewById(R.id.boton_ordenar);
+        botonOrdenar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("FILTRO", filtroSeleccionado);
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
 
-                // Ordena los pedidos según el criterio seleccionado
-                mPedidoViewModel.obtenerPedidosFiltrados(filtroSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                if (filtroSeleccionado.equals("")) {
+                    Log.d("FILTRO SELECCIONADO VACIO", filtroSeleccionado);
+                    // Ordena los pedidos según el criterio seleccionado
+                    mPedidoViewModel.obtenerPedidosOrdenados(criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                        @Override
+                        public void onChanged(List<Pedido> pedidos) {
+                            // Actualiza tu adaptador con la nueva lista de pedidos
+                            Log.d("ACTUALIZO", "PANTALLA");
+                            mPedidoAdapter.submitList(pedidos);
+                        }
+                    });
+                } else {
+                    Log.d("FILTRO SELECCIONADO NO VACIO", filtroSeleccionado);
+                    mPedidoViewModel.obtenerPedidosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                        @Override
+                        public void onChanged(List<Pedido> pedidos) {
+                            // Actualiza tu adaptador con la nueva lista de pedidos
+                            Log.d("ACTUALIZO", "PANTALLA");
+                            mPedidoAdapter.submitList(pedidos);
+                        }
+                    });
+                }
+            }
+        });
+
+        Button BotonfiltroSolicitado = findViewById(R.id.boton_filtroSolicitado);
+
+        BotonfiltroSolicitado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("SOLICITADO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override
                     public void onChanged(List<Pedido> pedidos) {
                         // Actualiza tu adaptador con la nueva lista de pedidos
@@ -182,6 +170,39 @@ public class M42_listarPedidos extends AppCompatActivity {
             }
         });
 
+        Button BotonfiltroPreparado = findViewById(R.id.boton_filtroPreparado);
+
+        BotonfiltroPreparado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("PREPARADO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                    @Override
+                    public void onChanged(List<Pedido> pedidos) {
+                        // Actualiza tu adaptador con la nueva lista de pedidos
+                        Log.d("ACTUALIZO", "PANTALLA");
+                        mPedidoAdapter.submitList(pedidos);
+                    }
+                });
+            }
+        });
+
+        Button BotonfiltroRecogido = findViewById(R.id.boton_filtroRecogido);
+
+        BotonfiltroRecogido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("RECOGIDO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                    @Override
+                    public void onChanged(List<Pedido> pedidos) {
+                        // Actualiza tu adaptador con la nueva lista de pedidos
+                        Log.d("ACTUALIZO", "PANTALLA");
+                        mPedidoAdapter.submitList(pedidos);
+                    }
+                });
+            }
+        });
     }
 
     public boolean onContextItemSelected(MenuItem item) {

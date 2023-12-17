@@ -186,6 +186,8 @@ public class M42_listarPedidos extends AppCompatActivity {
 
     public boolean onContextItemSelected(MenuItem item) {
         Pedido current = mPedidoAdapter.getCurrent();
+        Log.d("DEBUG", "Selected position: " + mPedidoAdapter.getPosition());
+        Log.d("DEBUG", "Selected Pedido ID: " + current.getIdPedido());
         switch (item.getItemId()) {
             case DELETE_ID:
                 Toast.makeText(

@@ -63,7 +63,7 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
 
                 Pedido pedido = new Pedido("Gariko","678903987",new Date(),"SOLICITADO");
                 daoPedido.insert(pedido);
-                pedido = new Pedido("Gariko2","678903987",new Date(),"SOLICITADO");
+                pedido = new Pedido("Gariko2","678903982",new Date(),"SOLICITADO");
                 daoPedido.insert(pedido);
 
                 Plato plato = new Plato("Arroz con pollo", "Mierda",9.99,"Comida de mierda");

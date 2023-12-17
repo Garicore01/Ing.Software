@@ -30,12 +30,12 @@
 
             <TextView
                 android:id="@+id/nombre_plato_lista"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="315dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Nombre del cliente"
-                android:inputType="text"
+                android:inputType="none"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/telefono_crear_pedido"
@@ -63,13 +63,13 @@
 
             <TextView
                 android:id="@+id/precio_plato_lista"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="315dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Teléfono del cliente"
-                android:inputType="phone"
+                android:inputType="none"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/fecha_recogida_crear_pedido"
@@ -97,12 +97,10 @@
 
             <TextView
                 android:id="@+id/categoria_plato_lista"
-                android:layout_width="298dp"
-                android:layout_height="wrap_content"
+                android:layout_width="315dp"
+                android:layout_height="46dp"
                 android:layout_marginTop="12dp"
-                android:clickable="true"
                 android:ems="10"
-                android:focusable="false"
                 android:hint="Fecha de recogida"
                 android:inputType="none"
                 android:textColorHint="@android:color/darker_gray"

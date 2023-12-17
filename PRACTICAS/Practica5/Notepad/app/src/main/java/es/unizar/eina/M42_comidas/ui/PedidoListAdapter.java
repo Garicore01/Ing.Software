@@ -51,13 +51,11 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
 
 
         holder.bind(current.getNombreCliente(),current.getTelefonoCliente(),formato.format(current.getFechaRecogida()));
-
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                setPosition(holder.getAdapterPosition());
-                return false;
-            }
+        
+        holder.itemView.setOnLongClickListener(v -> {
+            Log.d("PedidoListAdapter", "Evento de click largo");
+            setPosition(holder.getAdapterPosition());
+            return false;
         });
     }
 

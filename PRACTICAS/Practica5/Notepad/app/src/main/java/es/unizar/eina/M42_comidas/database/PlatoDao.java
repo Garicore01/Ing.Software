@@ -85,26 +85,8 @@ public interface PlatoDao {
     @Query("SELECT * FROM Plato WHERE idPlato = :idPlato")
     Plato getPlatoById(int idPlato);
 
-    /**
-     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por numero de telefono
-     * @return una lista de pedidos ordenados por fecha
-     */
-    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY nombre  ASC")
-    LiveData<List<Plato>> getAllPlatosFilteredAndOrderedByNombre(String filtro);
-
-    /**
-     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por numero de telefono
-     * @return una lista de pedidos ordenados por fecha
-     */
-    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY categoria  ASC")
-    LiveData<List<Plato>> getAllPlatosFilteredAndOrderedByCategoria(String filtro);
-
-    /**
-     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por numero de telefono
-     * @return una lista de pedidos ordenados por fecha
-     */
-    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY nombre,categoria  ASC")
-    LiveData<List<Plato>> getAllPlatosFilteredAndOrderedByNombreYCategoria(String filtro);
+    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY :criterio  ASC")
+    LiveData<List<Plato>> getAllPlatosFilteredAndOrdered(String filtro, String criterio);
 
 
 }

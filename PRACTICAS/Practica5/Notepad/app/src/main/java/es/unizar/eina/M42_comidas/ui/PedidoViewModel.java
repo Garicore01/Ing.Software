@@ -67,36 +67,15 @@ public class PedidoViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Pedido>> obtenerPedidosFiltradosyOrdenados(String filtroSeleccionado, String criterioSeleccionado) {
-        if (filtroSeleccionado.equals("PREPARADO")) {
-            if (criterioSeleccionado.equals("Fecha")) {
-                Log.d("ESTOY EN ", "PREPARADO + FECHA");
-                //return pedidosPreparadosYFecha;
-                return mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","FECHA");
-            } else if (criterioSeleccionado.equals("Nombre de Cliente")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","NOMBRE");
-            } else if (criterioSeleccionado.equals("Número de Teléfono")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","NUMERO");
-            }
-        } else if (filtroSeleccionado.equals("SOLICITADO")) {
-            Log.d("ESTOY EN ", "SOLICITADO");
-            if (criterioSeleccionado.equals("Fecha")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","FECHA");
-            } else if (criterioSeleccionado.equals("Nombre de Cliente")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","NOMBRE");
-            } else if (criterioSeleccionado.equals("Número de Teléfono")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","NUMERO");
-            }
-        } else if (filtroSeleccionado.equals("RECOGIDO")) {
-            Log.d("ESTOY EN ", "RECOGIDO");
-            if (criterioSeleccionado.equals("Fecha")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","FECHA");
-            } else if (criterioSeleccionado.equals("Nombre de Cliente")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","NOMBRE");
-            } else if (criterioSeleccionado.equals("Número de Teléfono")) {
-                return mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","NUMERO");
-            }
+        switch (criterioSeleccionado) {
+            case "Fecha":
+                criterioSeleccionado = "fechaRecogida";
+            case "Nombre de Cliente":
+                criterioSeleccionado = "nombreCliente";
+            case "Número de Teléfono":
+                criterioSeleccionado = "telefonoCliente";
         }
-        return pedidosPorFecha;
+        return mRepository.obtenerPedidosFiltradoYOrdenado(filtroSeleccionado, criterioSeleccionado);
     }
 
     public long insert(Pedido pedido) { return mRepository.insert(pedido); }

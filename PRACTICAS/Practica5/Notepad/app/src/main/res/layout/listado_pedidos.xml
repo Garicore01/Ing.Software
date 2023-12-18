@@ -80,7 +80,6 @@
             android:id="@+id/recyclerViewPedidos"
             android:layout_width="395dp"
             android:layout_height="574dp"
-            android:background="@drawable/background_cuadro_azul"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/pedido_plantilla" />
     </LinearLayout>

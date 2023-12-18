@@ -122,7 +122,8 @@ public class M42_listarPlatos extends AppCompatActivity {
         BotonfiltroPrimero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filtroSeleccionado = "PRIMEROS";
+                filtroSeleccionado = "PRIMERO";
+                Log.d("ENTRO EN", "PRIMERO");
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
                 mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
                     @Override
@@ -140,7 +141,8 @@ public class M42_listarPlatos extends AppCompatActivity {
         BotonfiltroSegundo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filtroSeleccionado = "SEGUNDOS";
+                filtroSeleccionado = "SEGUNDO";
+                Log.d("ENTRO EN", "SEGUNDO");
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
                 mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
                     @Override
@@ -158,7 +160,8 @@ public class M42_listarPlatos extends AppCompatActivity {
         BotonfiltroPostre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filtroSeleccionado = "POSTRES";
+                filtroSeleccionado = "POSTRE";
+                Log.d("ENTRO EN", "POSTRE");
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
                 mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
                     @Override

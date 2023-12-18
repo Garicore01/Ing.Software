@@ -30,38 +30,17 @@ public class PlatoViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Plato>> obtenerPlatosFiltradosyOrdenados(String filtro, String criterio) {
-        if (filtro.equals("PRIMEROS")) {
-            if (criterio.equals("Ambos")) {
-                Log.d("ESTOY EN ", "PREPARADO + FECHA");
-                //return pedidosPreparadosYFecha;
-                return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","AMBOS");
-            } else if (criterio.equals("Nombre de Cliente")) {
-                return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","NOMBRE");
-            } else if (criterio.equals("Categoria del plato")) {
-                return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","CATEGORIA");
-            }
-        } else if (filtro.equals("SEGUNDOS")) {
-            if (criterio.equals("Ambos")) {
-                Log.d("ESTOY EN ", "PREPARADO + FECHA");
-                //return pedidosPreparadosYFecha;
-                return mRepository.obtenerPlatosFiltradoYOrdenado("SEGUNDO","AMBOS");
-            } else if (criterio.equals("Nombre de Cliente")) {
-                return mRepository.obtenerPlatosFiltradoYOrdenado("SEGUNDO","NOMBRE");
-            } else if (criterio.equals("Categoria del plato")) {
-                return mRepository.obtenerPlatosFiltradoYOrdenado("SEGUNDO","CATEGORIA");
-            }
-        } else if (filtro.equals("POSTRES")) {
-            if (criterio.equals("Ambos")) {
-                Log.d("ESTOY EN ", "PREPARADO + FECHA");
-                //return pedidosPreparadosYFecha;
-                return mRepository.obtenerPlatosFiltradoYOrdenado("POSTRE","AMBOS");
-            } else if (criterio.equals("Nombre de Cliente")) {
-                return mRepository.obtenerPlatosFiltradoYOrdenado("POSTRE","NOMBRE");
-            } else if (criterio.equals("Categoria del plato")) {
-                return mRepository.obtenerPlatosFiltradoYOrdenado("POSTRE","CATEGORIA");
-            }
+        switch (criterio) {
+            case "Ambos":
+                criterio = "nombre,categoria";
+            case "Nombre del plato":
+                criterio = "nombre";
+            case "Categoría del plato":
+                criterio = "categoria";
+            default:
+               criterio = "nombre";
         }
-        return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","NOMBRE");
+        return mRepository.obtenerPlatosFiltradoYOrdenado(filtro,criterio);
     }
     public LiveData<List<Plato>> obtenerPlatosOrdenados(String criterio) {
         switch (criterio) {

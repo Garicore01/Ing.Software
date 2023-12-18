@@ -8,11 +8,15 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 /** Definicion de clase repositorio para los pedidos */
 public class PedidoPlatoRepository {
-
+    private final long TIMEOUT = 15000;
     private PedidoDao mPedidoDao;
     private LiveData<List<Pedido>> mAllPedidos;
 
@@ -51,21 +55,26 @@ public class PedidoPlatoRepository {
      * @return un valor entero largo con el identificador del pedido que se ha creado.
      */
     public long insert(Pedido pedido) {
-        final CountDownLatch latch = new CountDownLatch(1); // Para esperar a que se complete la inserción
-        final long[] result = {0};
+        AtomicLong result = new AtomicLong();
+        Semaphore resource = new Semaphore(0);
+        //final CountDownLatch latch = new CountDownLatch(1); // Para esperar a que se complete la inserción
+        //final long[] result = {0};
     
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mPedidoDao.insert(pedido);
-            latch.countDown(); // Liberar el contador
+            long value = mPedidoDao.insert(pedido);
+            result.set(value);
+            resource.release();
+            //latch.countDown(); // Liberar el contador
         });
     
         try {
-            latch.await(); // Esperar hasta que la inserción se complete
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
         }
     
-        return result[0]; // Devolver el id del pedido insertado
+        return result.get(); // Devolver el id del pedido insertado
     }
 
     /** Modifica una nota
@@ -73,11 +82,18 @@ public class PedidoPlatoRepository {
      * @return un valor entero con el numero de filas modificadas.
      */
     public int update(Pedido pedido) {
-        final int[] result = {0};
+        AtomicInteger result = new AtomicInteger();
+        Semaphore resource = new Semaphore(0);
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mPedidoDao.update(pedido);
+            result.set(mPedidoDao.update(pedido));
+            resource.release();
         });
-        return result[0];
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e ){
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+        return result.get();
     }
 
     /** Elimina un pedido
@@ -85,11 +101,18 @@ public class PedidoPlatoRepository {
      * @return un valor entero con el numero de filas eliminadas.
      */
     public int delete(Pedido pedido) {
-        final int[] result = {0};
+        AtomicInteger result = new AtomicInteger();
+        Semaphore resource = new Semaphore(0);
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mPedidoDao.delete(pedido);
+           result.set(mPedidoDao.delete(pedido));
+           resource.release();
         });
-        return result[0];
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e ){
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+        return result.get();
     }
 
     /**
@@ -109,24 +132,23 @@ public class PedidoPlatoRepository {
 
     }
 
-
+    /**
+     *
+     * @param filtro
+     * @return lista de pedidos filtrados.
+     */
     public LiveData<List<Pedido>> obtenerPedidosFiltrado(String filtro) {
         return mPedidoDao.getAllPedidosFiltered(filtro);
     }
 
+    /**
+     *
+     * @param filtro
+     * @param criterio
+     * @return lista de pedidos filtrados y ordenados.
+     */
     public LiveData<List<Pedido>> obtenerPedidosFiltradoYOrdenado(String filtro, String criterio) {
-        Log.d("PRIMERA VEZ EN", "PEDIDDOSFILTRADO Y ORDENADO");
-        switch (criterio) {
-            case "NOMBRE":
-                Log.d("OBTENERPEDIOS", criterio);
-                return mPedidoDao.getAllPedidosFilteredAndOrderedByNombre(filtro);
-            case "FECHA":
-                return mPedidoDao.getAllPedidosFilteredAndOrderedByDate(filtro);
-            case "NUMERO":
-                return mPedidoDao.getAllPedidosFilteredAndOrderedByTelefono(filtro);
-            default:
-                return mPedidoDao.getAllPedidosFilteredAndOrderedByNombre(filtro);
-        }
+        return mPedidoDao.getAllPedidosFilteredAndOrdered(filtro, criterio);
     }
 
 
@@ -147,13 +169,23 @@ public class PedidoPlatoRepository {
      * @return un valor entero largo con el identificador del plato que se ha creado.
      */
     public long insert(Plato plato) {
-        final long[] result = {0};
-        // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-        // that you're not doing any long running operations on the main thread, blocking the UI.
+        AtomicLong result = new AtomicLong();
+        Semaphore resource = new Semaphore(0);
+
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mPlatoDao.insert(plato);
+            long value = mPlatoDao.insert(plato);
+            result.set(value);
+            resource.release();
         });
-        return result[0];
+
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+
+        return result.get(); // Devolver el id del plato insertado
     }
 
 
@@ -162,11 +194,22 @@ public class PedidoPlatoRepository {
      * @return un valor entero con el numero de filas modificadas.
      */
     public int update(Plato plato) {
-        final int[] result = {0};
+        AtomicInteger result = new AtomicInteger();
+        Semaphore resource = new Semaphore(0);
+
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mPlatoDao.update(plato);
+            result.set(mPlatoDao.update(plato));
+            resource.release();
         });
-        return result[0];
+
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+
+        return result.get(); // Devolver el id del plato actualizado
     }
 
     /** Elimina una nota
@@ -174,11 +217,22 @@ public class PedidoPlatoRepository {
      * @return un valor entero con el numero de filas eliminadas.
      */
     public int delete(Plato plato) {
-        final int[] result = {0};
+        AtomicInteger result = new AtomicInteger();
+        Semaphore resource = new Semaphore(0);
+
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mPlatoDao.delete(plato);
+            result.set(mPlatoDao.delete(plato));
+            resource.release();
         });
-        return result[0];
+
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+
+        return result.get(); // Devolver el id del plato eliminado
     }
 
 
@@ -206,18 +260,7 @@ public class PedidoPlatoRepository {
     }
 
     public LiveData<List<Plato>> obtenerPlatosFiltradoYOrdenado(String filtro, String criterio) {
-        Log.d("PRIMERA VEZ EN", "PEDIDDOSFILTRADO Y ORDENADO");
-        switch (criterio) {
-            case "NOMBRE":
-                Log.d("OBTENERPEDIOS", criterio);
-                return mPlatoDao.getAllPlatosFilteredAndOrderedByNombre(filtro);
-            case "CATEGORIA":
-                return mPlatoDao.getAllPlatosFilteredAndOrderedByCategoria(filtro);
-            case "AMBOS":
-                return mPlatoDao.getAllPlatosFilteredAndOrderedByNombreYCategoria(filtro);
-            default:
-                return mPlatoDao.getAllPlatosFilteredAndOrderedByNombre(filtro);
-        }
+        return mPlatoDao.getAllPlatosFilteredAndOrdered(filtro,criterio);
     }
     //-----------------------------------ESPEDIDO-----------------------------------------------------------
 
@@ -226,13 +269,23 @@ public class PedidoPlatoRepository {
      * @return un valor entero largo con el identificador del plato que se ha creado.
      */
     public long insert(EsPedido esPedido) {
-        final long[] result = {0};
-        // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-        // that you're not doing any long running operations on the main thread, blocking the UI.
+        AtomicLong result = new AtomicLong();
+        Semaphore resource = new Semaphore(0);
+
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mEsPedidoDao.insert(esPedido);
+            long value = mEsPedidoDao.insert(esPedido);
+            result.set(value);
+            resource.release();
         });
-        return result[0];
+
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+
+        return result.get(); // Devolver el id del esPedido insertado
     }
 
     /** Modifica una nota
@@ -240,11 +293,22 @@ public class PedidoPlatoRepository {
      * @return un valor entero con el numero de filas modificadas.
      */
     public long update(EsPedido esPedido) {
-        final long[] result = {0};
+        AtomicLong result = new AtomicLong();
+        Semaphore resource = new Semaphore(0);
+
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mEsPedidoDao.update(esPedido);
+            result.set(mEsPedidoDao.update(esPedido));
+            resource.release();
         });
-        return result[0];
+
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+
+        return result.get(); // Devolver el id del esPedido actualizado
     }
 
     /** Elimina la relación entre Pedido y Plato
@@ -252,11 +316,22 @@ public class PedidoPlatoRepository {
      * @return un valor entero con el numero de filas eliminadas.
      */
     public int delete(EsPedido esPedido) {
-        final int[] result = {0};
+        AtomicInteger result = new AtomicInteger();
+        Semaphore resource = new Semaphore(0);
+
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
-            result[0] = mEsPedidoDao.delete(esPedido);
+            result.set(mEsPedidoDao.delete(esPedido));
+            resource.release();
         });
-        return result[0];
+
+        try {
+            resource.tryAcquire(TIMEOUT, TimeUnit.MILLISECONDS);
+            //latch.await(); // Esperar hasta que la inserción se complete
+        } catch (InterruptedException e) {
+            Log.d ( " PedidoPlatoRepository " , " InterruptedException : " + e . getMessage ( ) );
+        }
+
+        return result.get(); // Devolver el id del esPedido eliminado
     }
 
     public LiveData<List<EsPedido>> obtenerEsPedidoPorIdPedido(int idPedido) {

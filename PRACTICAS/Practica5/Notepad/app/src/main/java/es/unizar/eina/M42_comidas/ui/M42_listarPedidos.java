@@ -158,6 +158,7 @@ public class M42_listarPedidos extends AppCompatActivity {
         BotonfiltroSolicitado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                filtroSeleccionado = "SOLICITADO";
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
                 mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("SOLICITADO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override
@@ -175,6 +176,7 @@ public class M42_listarPedidos extends AppCompatActivity {
         BotonfiltroPreparado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                filtroSeleccionado = "PREPARADO";
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
                 mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("PREPARADO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override
@@ -192,6 +194,7 @@ public class M42_listarPedidos extends AppCompatActivity {
         BotonfiltroRecogido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                filtroSeleccionado = "RECOGIDO";
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
                 mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("RECOGIDO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override

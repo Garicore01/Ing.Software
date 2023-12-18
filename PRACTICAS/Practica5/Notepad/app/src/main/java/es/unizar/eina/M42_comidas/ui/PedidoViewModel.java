@@ -21,40 +21,20 @@ public class PedidoViewModel extends AndroidViewModel {
     private LiveData<List<Pedido>> pedidosPorTelefono;
 
     private LiveData<List<Pedido>> pedidosPreparados;
-    private LiveData<List<Pedido>> pedidosPreparadosYFecha;
-    private LiveData<List<Pedido>> pedidosPreparadosYNombre;
-    private LiveData<List<Pedido>> pedidosPreparadosYNumero;
-
     private LiveData<List<Pedido>> pedidosSolicitados;
-    private LiveData<List<Pedido>> pedidosSolicitadosYFecha;
-    private LiveData<List<Pedido>> pedidosSolicitadosYNombre;
-    private LiveData<List<Pedido>> pedidosSolicitadosYNumero;
-
     private LiveData<List<Pedido>> pedidosRecogidos;
-    private LiveData<List<Pedido>> pedidosRecogidosYFecha;
-    private LiveData<List<Pedido>> pedidosRecogidosYNombre;
-    private LiveData<List<Pedido>> pedidosRecogidosYNumero;
 
 
     public PedidoViewModel(Application application) {
         super(application);
         mRepository = new PedidoPlatoRepository(application);
         mAllPedidos = mRepository.getAllPedidos();
-        pedidosPorFecha = mRepository.obtenerPedidosPorFecha();
-        pedidosPorNombre = mRepository.obtenerPedidosPorTelefono();
-        pedidosPorTelefono = mRepository.obtenerPedidosPorTelefono();
+        pedidosPorFecha = mRepository.obtenerPedidosOrdenados("FECHA");
+        pedidosPorNombre = mRepository.obtenerPedidosOrdenados("NOMBRE");
+        pedidosPorTelefono = mRepository.obtenerPedidosOrdenados("NUMERO");
         pedidosPreparados = mRepository.obtenerPedidosFiltrado("PREPARADO");
-        pedidosPreparadosYFecha = mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","FECHA");
-        pedidosPreparadosYNombre = mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","NOMBRE");
-        pedidosPreparadosYNumero = mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","NUMERO");
         pedidosSolicitados = mRepository.obtenerPedidosFiltrado("SOLICITADO");
-        pedidosSolicitadosYFecha = mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","FECHA");
-        pedidosSolicitadosYNombre = mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","NOMBRE");
-        pedidosSolicitadosYNumero = mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","NUMERO");
         pedidosRecogidos = mRepository.obtenerPedidosFiltrado("RECOGIDO");
-        pedidosRecogidosYFecha = mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","FECHA");
-        pedidosRecogidosYNombre = mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","NOMBRE");
-        pedidosRecogidosYNumero = mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","NUMERO");
 
     }
 
@@ -87,29 +67,33 @@ public class PedidoViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Pedido>> obtenerPedidosFiltradosyOrdenados(String filtroSeleccionado, String criterioSeleccionado) {
-        if (filtroSeleccionado == "PREPARADO") {
-            if (criterioSeleccionado == "Fecha") {
-                return pedidosPreparadosYFecha;
-            } else if (criterioSeleccionado == "Nombre de Cliente") {
-                return pedidosPreparadosYNombre;
-            } else if (criterioSeleccionado == "Número de Teléfono") {
-                return pedidosPreparadosYNumero;
+        if (filtroSeleccionado.equals("PREPARADO")) {
+            if (criterioSeleccionado.equals("Fecha")) {
+                Log.d("ESTOY EN ", "PREPARADO + FECHA");
+                //return pedidosPreparadosYFecha;
+                return mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","FECHA");
+            } else if (criterioSeleccionado.equals("Nombre de Cliente")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","NOMBRE");
+            } else if (criterioSeleccionado.equals("Número de Teléfono")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("PREPARADO","NUMERO");
             }
-        } else if (filtroSeleccionado == "SOLICITADO") {
-            if (criterioSeleccionado == "Fecha") {
-                return pedidosSolicitadosYFecha;
-            } else if (criterioSeleccionado == "Nombre de Cliente") {
-                return pedidosSolicitadosYNombre;
-            } else if (criterioSeleccionado == "Número de Teléfono") {
-                return pedidosSolicitadosYNumero;
+        } else if (filtroSeleccionado.equals("SOLICITADO")) {
+            Log.d("ESTOY EN ", "SOLICITADO");
+            if (criterioSeleccionado.equals("Fecha")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","FECHA");
+            } else if (criterioSeleccionado.equals("Nombre de Cliente")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","NOMBRE");
+            } else if (criterioSeleccionado.equals("Número de Teléfono")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("SOLICITADO","NUMERO");
             }
-        } else if (filtroSeleccionado == "RECOGIDO") {
-            if (criterioSeleccionado == "Fecha") {
-                return pedidosRecogidosYFecha;
-            } else if (criterioSeleccionado == "Nombre de Cliente") {
-                return pedidosRecogidosYNombre;
-            } else if (criterioSeleccionado == "Número de Teléfono") {
-                return pedidosRecogidosYNumero;
+        } else if (filtroSeleccionado.equals("RECOGIDO")) {
+            Log.d("ESTOY EN ", "RECOGIDO");
+            if (criterioSeleccionado.equals("Fecha")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","FECHA");
+            } else if (criterioSeleccionado.equals("Nombre de Cliente")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","NOMBRE");
+            } else if (criterioSeleccionado.equals("Número de Teléfono")) {
+                return mRepository.obtenerPedidosFiltradoYOrdenado("RECOGIDO","NUMERO");
             }
         }
         return pedidosPorFecha;

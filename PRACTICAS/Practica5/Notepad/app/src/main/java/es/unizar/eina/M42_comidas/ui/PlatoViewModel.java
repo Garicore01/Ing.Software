@@ -1,6 +1,7 @@
 package es.unizar.eina.M42_comidas.ui;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -28,6 +29,40 @@ public class PlatoViewModel extends AndroidViewModel {
         platosPorCategoriayNombre = mRepository.obtenerPlatosPorCategoriayNombre();
     }
 
+    public LiveData<List<Plato>> obtenerPlatosFiltradosyOrdenados(String filtro, String criterio) {
+        if (filtro.equals("PRIMEROS")) {
+            if (criterio.equals("Ambos")) {
+                Log.d("ESTOY EN ", "PREPARADO + FECHA");
+                //return pedidosPreparadosYFecha;
+                return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","AMBOS");
+            } else if (criterio.equals("Nombre de Cliente")) {
+                return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","NOMBRE");
+            } else if (criterio.equals("Categoria del plato")) {
+                return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","CATEGORIA");
+            }
+        } else if (filtro.equals("SEGUNDOS")) {
+            if (criterio.equals("Ambos")) {
+                Log.d("ESTOY EN ", "PREPARADO + FECHA");
+                //return pedidosPreparadosYFecha;
+                return mRepository.obtenerPlatosFiltradoYOrdenado("SEGUNDO","AMBOS");
+            } else if (criterio.equals("Nombre de Cliente")) {
+                return mRepository.obtenerPlatosFiltradoYOrdenado("SEGUNDO","NOMBRE");
+            } else if (criterio.equals("Categoria del plato")) {
+                return mRepository.obtenerPlatosFiltradoYOrdenado("SEGUNDO","CATEGORIA");
+            }
+        } else if (filtro.equals("POSTRES")) {
+            if (criterio.equals("Ambos")) {
+                Log.d("ESTOY EN ", "PREPARADO + FECHA");
+                //return pedidosPreparadosYFecha;
+                return mRepository.obtenerPlatosFiltradoYOrdenado("POSTRE","AMBOS");
+            } else if (criterio.equals("Nombre de Cliente")) {
+                return mRepository.obtenerPlatosFiltradoYOrdenado("POSTRE","NOMBRE");
+            } else if (criterio.equals("Categoria del plato")) {
+                return mRepository.obtenerPlatosFiltradoYOrdenado("POSTRE","CATEGORIA");
+            }
+        }
+        return mRepository.obtenerPlatosFiltradoYOrdenado("PRIMERO","NOMBRE");
+    }
     public LiveData<List<Plato>> obtenerPlatosOrdenados(String criterio) {
         switch (criterio) {
             case "Ambos":
@@ -40,7 +75,6 @@ public class PlatoViewModel extends AndroidViewModel {
                 return platosPorNombre;
         }
     }
-
 
 
     LiveData<List<Plato>> getAllPlatos() { return mAllPlatos; }

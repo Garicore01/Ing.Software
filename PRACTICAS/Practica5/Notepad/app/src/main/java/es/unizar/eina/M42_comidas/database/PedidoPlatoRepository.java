@@ -2,6 +2,7 @@ package es.unizar.eina.M42_comidas.database;
 
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -94,29 +95,30 @@ public class PedidoPlatoRepository {
     /**
      * @return Devuelve la lista de Pedidos ordenados por fecha
      */
-    public LiveData<List<Pedido>> obtenerPedidosPorFecha() {
-        return mPedidoDao.getAllPedidosOrderedByDate();
+    public LiveData<List<Pedido>> obtenerPedidosOrdenados(String criterio) {
+        switch (criterio) {
+            case "FECHA":
+                return mPedidoDao.getAllPedidosOrderedByDate();
+            case "NUMERO":
+                return mPedidoDao.getAllPedidosOrderedByTelefono();
+            case "NOMBRE":
+                return mPedidoDao.getAllPedidosOrderedByNombre();
+            default:
+                return mPedidoDao.getAllPedidosOrderedByDate();
+        }
+
     }
-    /**
-     * @return Devuelve la lista de Pedidos ordenados por Nombre de cliente
-     */
-    public LiveData<List<Pedido>> obtenerPedidosPorNombre() {
-        return mPedidoDao.getAllPedidosOrderedByNombre();
-    }
-    /**
-     * @return Devuelve la lista de Pedidos ordenados por Telefono
-     */
-    public LiveData<List<Pedido>> obtenerPedidosPorTelefono() {
-        return mPedidoDao.getAllPedidosOrderedByTelefono();
-    }
+
 
     public LiveData<List<Pedido>> obtenerPedidosFiltrado(String filtro) {
         return mPedidoDao.getAllPedidosFiltered(filtro);
     }
 
     public LiveData<List<Pedido>> obtenerPedidosFiltradoYOrdenado(String filtro, String criterio) {
+        Log.d("PRIMERA VEZ EN", "PEDIDDOSFILTRADO Y ORDENADO");
         switch (criterio) {
             case "NOMBRE":
+                Log.d("OBTENERPEDIOS", criterio);
                 return mPedidoDao.getAllPedidosFilteredAndOrderedByNombre(filtro);
             case "FECHA":
                 return mPedidoDao.getAllPedidosFilteredAndOrderedByDate(filtro);
@@ -201,6 +203,21 @@ public class PedidoPlatoRepository {
      */
     public LiveData<List<Plato>> obtenerPlatosPorCategoriayNombre() {
         return mPlatoDao.getOrderedPlatosByCategoyAndName();
+    }
+
+    public LiveData<List<Plato>> obtenerPlatosFiltradoYOrdenado(String filtro, String criterio) {
+        Log.d("PRIMERA VEZ EN", "PEDIDDOSFILTRADO Y ORDENADO");
+        switch (criterio) {
+            case "NOMBRE":
+                Log.d("OBTENERPEDIOS", criterio);
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByNombre(filtro);
+            case "CATEGORIA":
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByCategoria(filtro);
+            case "AMBOS":
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByNombreYCategoria(filtro);
+            default:
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByNombre(filtro);
+        }
     }
     //-----------------------------------ESPEDIDO-----------------------------------------------------------
 

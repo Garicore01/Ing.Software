@@ -7,7 +7,7 @@
     android:layout_margin="8dp">
 
     <LinearLayout
-        android:layout_width="403dp"
+        android:layout_width="380dp"
         android:layout_height="170dp"
         android:background="@android:color/background_light"
         android:orientation="vertical"
@@ -59,7 +59,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/fecha_recogida_crear_pedido"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView29"
-                app:srcCompat="@mipmap/telefono_cliente" />
+                app:srcCompat="@mipmap/categoria_pedido_mod_plato" />
 
             <TextView
                 android:id="@+id/categoria_plato_lista"
@@ -93,7 +93,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/fecha_recogida_crear_pedido"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView31"
-                app:srcCompat="@mipmap/fecha_recogida" />
+                app:srcCompat="@mipmap/dollar_foreground" />
 
             <TextView
                 android:id="@+id/precio_plato_lista"

@@ -79,15 +79,31 @@ public interface PedidoDao {
     @Query("SELECT * FROM Pedido ORDER BY fechaRecogida ASC")
     LiveData<List<Pedido>> getAllPedidosOrderedByDate();
 
+    /**
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado
+     * @return una lista de pedidos filtrados por estado
+     */
     @Query("SELECT * FROM Pedido WHERE estado like :filtro ")
     LiveData<List<Pedido>> getAllPedidosFiltered(String filtro);
 
+    /**
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por numero de telefono
+     * @return una lista de pedidos ordenados por fecha
+     */
     @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY telefonoCliente ASC ")
     LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByTelefono(String filtro);
 
+    /**
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por numero de telefono
+     * @return una lista de pedidos ordenados por fecha
+     */
     @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY fechaRecogida ASC ")
     LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByDate(String filtro);
 
+    /**
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por numero de telefono
+     * @return una lista de pedidos ordenados por fecha
+     */
     @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY nombreCliente ASC")
     LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByNombre(String filtro);
 

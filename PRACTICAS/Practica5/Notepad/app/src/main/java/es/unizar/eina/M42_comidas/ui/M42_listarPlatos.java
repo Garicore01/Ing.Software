@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import es.unizar.eina.M42_comidas.R;
+import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
 import es.unizar.eina.M42_comidas.database.PlatoDao;
 
@@ -31,6 +32,7 @@ public class M42_listarPlatos extends AppCompatActivity {
     private PlatoListAdapter mPlatoAdapter;
 
     private Spinner spinnerOrdenarPor;
+    private String filtroSeleccionado = "";
     private String criterioSeleccionado;
 
     public static final int ACTIVITY_CREATE = 1;
@@ -77,13 +79,12 @@ public class M42_listarPlatos extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Aquí puedes manejar la selección del usuario
                 criterioSeleccionado = parentView.getItemAtPosition(position).toString();
-                // Puedes hacer lo que necesites con el criterio seleccionado
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // Método llamado cuando no se ha seleccionado nada
-                criterioSeleccionado = "Fecha";
+                criterioSeleccionado = "";
             }
         });
 
@@ -94,11 +95,78 @@ public class M42_listarPlatos extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
 
-                // Ordena los platos según el criterio seleccionado
-                mPlatoViewModel.obtenerPlatosOrdenados(criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
+                if (filtroSeleccionado.equals("")) {
+                    Log.d("FILTRO SELECCIONADO VACIO", filtroSeleccionado);
+                    // Ordena los pedidos según el criterio seleccionado
+                    mPlatoViewModel.obtenerPlatosOrdenados(criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
+                        @Override
+                        public void onChanged(List<Plato> platos) {
+                            // Actualiza tu adaptador con la nueva lista de pedidos
+                            Log.d("ACTUALIZO", "PANTALLA");
+                            mPlatoAdapter.submitList(platos);
+                        }
+                    });
+                } else {
+                    Log.d("FILTRO SELECCIONADO NO VACIO", filtroSeleccionado);
+                    mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
+                        @Override
+                        public void onChanged(List<Plato> platos) {
+                            // Actualiza tu adaptador con la nueva lista de pedidos
+                            Log.d("ACTUALIZO", "PANTALLA");
+                            mPlatoAdapter.submitList(platos);
+                        }
+                    });
+                }
+            }
+        });
+
+        Button BotonfiltroPrimero = findViewById(R.id.boton_filtroPrimero);
+
+        BotonfiltroPrimero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filtroSeleccionado = "PRIMEROS";
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+                mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
                     @Override
                     public void onChanged(List<Plato> platos) {
-                        // Actualiza tu adaptador con la nueva lista de platos
+                        // Actualiza tu adaptador con la nueva lista de pedidos
+                        Log.d("ACTUALIZO", "PANTALLA");
+                        mPlatoAdapter.submitList(platos);
+                    }
+                });
+            }
+        });
+
+        Button BotonfiltroSegundo = findViewById(R.id.boton_filtroSegundo);
+
+        BotonfiltroSegundo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filtroSeleccionado = "SEGUNDOS";
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+                mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
+                    @Override
+                    public void onChanged(List<Plato> platos) {
+                        // Actualiza tu adaptador con la nueva lista de pedidos
+                        Log.d("ACTUALIZO", "PANTALLA");
+                        mPlatoAdapter.submitList(platos);
+                    }
+                });
+            }
+        });
+
+        Button BotonfiltroPostre = findViewById(R.id.boton_filtroPostre);
+
+        BotonfiltroPostre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filtroSeleccionado = "POSTRES";
+                Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
+                mPlatoViewModel.obtenerPlatosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPlatos.this, new Observer<List<Plato>>() {
+                    @Override
+                    public void onChanged(List<Plato> platos) {
+                        // Actualiza tu adaptador con la nueva lista de pedidos
                         Log.d("ACTUALIZO", "PANTALLA");
                         mPlatoAdapter.submitList(platos);
                     }

@@ -3,7 +3,6 @@ package es.unizar.eina.M42_comidas.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -21,9 +20,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import es.unizar.eina.M42_comidas.R;
-import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
-import es.unizar.eina.M42_comidas.database.PlatoDao;
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_listarPlatos extends AppCompatActivity {

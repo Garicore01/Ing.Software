@@ -1,9 +1,9 @@
 package es.unizar.eina.M42_comidas.ui;
 
 import android.util.Log;
-import android.view.ContextMenu;
+
 import android.view.LayoutInflater;
-import android.view.Menu;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import es.unizar.eina.M42_comidas.R;
-import es.unizar.eina.M42_comidas.database.Plato;
 
 public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
     private final TextView mNombreItemView;

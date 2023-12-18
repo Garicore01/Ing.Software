@@ -1,17 +1,15 @@
 
 package es.unizar.eina.M42_comidas.ui;
 
-import android.view.LayoutInflater;
-import android.view.View;
+
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
-import es.unizar.eina.M42_comidas.R;
+
 
 
 public class PlatoListAdapter extends ListAdapter<Plato, PlatoViewHolder> {

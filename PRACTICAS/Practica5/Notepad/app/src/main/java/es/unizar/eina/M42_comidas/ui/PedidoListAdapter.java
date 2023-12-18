@@ -2,20 +2,15 @@
 package es.unizar.eina.M42_comidas.ui;
 
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import androidx.lifecycle.Observer;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
 
-import es.unizar.eina.M42_comidas.database.EsPedido;
+import java.text.SimpleDateFormat;
+
 import es.unizar.eina.M42_comidas.database.Pedido;
 
 
@@ -51,7 +46,7 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
 
 
         holder.bind(current.getNombreCliente(),current.getTelefonoCliente(),formato.format(current.getFechaRecogida()));
-        
+
         holder.itemView.setOnLongClickListener(v -> {
             Log.d("PedidoListAdapter", "Evento de click largo");
             setPosition(holder.getAdapterPosition());

@@ -3,7 +3,6 @@ package es.unizar.eina.M42_comidas.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -27,7 +26,6 @@ import java.util.Map;
 import es.unizar.eina.M42_comidas.R;
 import es.unizar.eina.M42_comidas.database.EsPedido;
 import es.unizar.eina.M42_comidas.database.Pedido;
-import es.unizar.eina.M42_comidas.database.PedidoDao;
 import es.unizar.eina.send.SendAbstraction;
 import es.unizar.eina.send.SendAbstractionImpl;
 

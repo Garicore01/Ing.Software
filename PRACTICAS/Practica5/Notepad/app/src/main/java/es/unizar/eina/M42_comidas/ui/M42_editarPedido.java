@@ -19,14 +19,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Map;
 
 import es.unizar.eina.M42_comidas.R;
-import es.unizar.eina.M42_comidas.database.Plato;
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_editarPedido extends AppCompatActivity {

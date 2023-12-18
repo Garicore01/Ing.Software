@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import es.unizar.eina.M42_comidas.R;
-import es.unizar.eina.M42_comidas.database.Plato;
 
 /** Pantalla principal de la aplicacion M42_comidas */
 public class M42_editarPlato extends AppCompatActivity {

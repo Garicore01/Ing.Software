@@ -1,27 +1,19 @@
 package es.unizar.eina.M42_comidas.ui;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
+
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.MenuItem;
+
 import android.widget.Button;
 import android.widget.Toast;
-
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import es.unizar.eina.M42_comidas.R;
-import es.unizar.eina.M42_comidas.database.Plato;
-import es.unizar.eina.M42_comidas.database.PlatoDao;
 
 
 public class M42_listarPlatosAdd extends AppCompatActivity {

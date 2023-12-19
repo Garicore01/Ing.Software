@@ -28,6 +28,7 @@ public class Pedido {
     @ColumnInfo(name = "fechaRecogida")
     private Date fechaRecogida;
 
+    @NonNull
     @ColumnInfo(name = "estado")
     private String estado;
 

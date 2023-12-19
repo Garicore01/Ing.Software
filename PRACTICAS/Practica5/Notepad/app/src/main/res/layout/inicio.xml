@@ -116,4 +116,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/botonTestCajaNegra"
+        android:layout_width="128dp"
+        android:layout_height="69dp"
+        android:backgroundTint="#E65A8A"
+        android:text="Test Caja Negra"
+        app:layout_constraintTop_toBottomOf="@+id/row2_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonTestSobrecarga"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <Button
+        android:id="@+id/botonTestSobrecarga"
+        android:layout_width="140dp"
+        android:layout_height="69dp"
+        android:backgroundTint="#E65A8A"
+        android:text="Test sobrecarga"
+        app:layout_constraintTop_toBottomOf="@+id/row2_buttons"
+        app:layout_constraintStart_toEndOf="@+id/botonTestCajaNegra"
+        app:layout_constraintEnd_toStartOf="@+id/botonTestVolumen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <Button
+        android:id="@+id/botonTestVolumen"
+        android:layout_width="110dp"
+        android:layout_height="69dp"
+        android:backgroundTint="#E65A8A"
+        android:text="Test volumen"
+        app:layout_constraintTop_toBottomOf="@+id/row2_buttons"
+        app:layout_constraintStart_toEndOf="@+id/botonTestSobrecarga"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,7 +67,7 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
                 daoPedido.insert(pedido);
 
                 Plato plato = new Plato("Arroz con pollo", "Mierda",9.99,"Comida de mierda");
-                Plato plato2 = new Plato("Pollo frito", "Mierda",9,"Comida de mierda");
+                Plato plato2 = new Plato("Pollo frito", "Mierda",9.0,"Comida de mierda");
                 Plato plato3 = new Plato("Lentejas", "Mierda",5.85,"Comida de mierda");
                 Plato plato4 = new Plato("Paella de marisco", "Mierda",19.99,"Comida de mierda");
                 Plato plato5 = new Plato("Tacos de carne mixta", "Mierda",4.75,"Comida de mierda");

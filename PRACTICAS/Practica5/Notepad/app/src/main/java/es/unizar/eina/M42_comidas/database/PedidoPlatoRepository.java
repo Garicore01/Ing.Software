@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
@@ -42,7 +44,7 @@ public class PedidoPlatoRepository {
     // Observed LiveData will notify the observer when the data has changed.
 
 
-    //-----------------------------------PEDIDOS-----------------------------------------------------------
+    //-----------------------------------PEDIDOS----------------------------------------------------
     /** Obtiene todos los pedidos
      * @return un valor entero largo con el identificador de los pedidos que se han creado.
      */
@@ -50,6 +52,43 @@ public class PedidoPlatoRepository {
         return mAllPedidos;
     }
 
+    /**
+     * Valida si los atributos del pedido son validos.
+     * @param pedido
+     * @return True si solo los atributos del pedido son válidos.
+     */
+    private boolean pedidoValido(Pedido pedido) {
+        if (pedido.getNombreCliente() == null || pedido.getNombreCliente().equals("")
+                || pedido.getFechaRecogida() == null
+                || pedido.getIdPedido() < 0 || pedido.getEstado() == null
+                || (!pedido.getEstado().equals("SOLICITADO")
+                && !pedido.getEstado().equals("PREPARADO") && !pedido.getEstado().equals("RECOGIDO"))
+                || pedido.getTelefonoCliente() == null || pedido.getTelefonoCliente().length() != 9
+                || pedido.getFechaRecogida() == null || !fechaValida(pedido.getFechaRecogida()))  {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Valida si una fecha es valida, es decir, si el Dia no es Lunes y la hora esta entre 19:30 y 23:00
+     * @param fecha
+     * @return True si solo si la fecha es valida.
+     */
+    private boolean fechaValida(Date fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+            return false;
+        }
+        int hora = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutos = calendar.get(Calendar.MINUTE);
+        if ((hora > 19 || (hora == 19 && minutos >= 30)) && hora < 23) {
+            return true;
+        }
+        return false;
+    }
     /** Inserta un pedido
      * @param pedido
      * @return un valor entero largo con el identificador del pedido que se ha creado.
@@ -59,7 +98,10 @@ public class PedidoPlatoRepository {
         Semaphore resource = new Semaphore(0);
         //final CountDownLatch latch = new CountDownLatch(1); // Para esperar a que se complete la inserción
         //final long[] result = {0};
-    
+
+        if (!pedidoValido(pedido)) {
+            return -1;
+        }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             long value = mPedidoDao.insert(pedido);
             result.set(value);
@@ -84,6 +126,9 @@ public class PedidoPlatoRepository {
     public int update(Pedido pedido) {
         AtomicInteger result = new AtomicInteger();
         Semaphore resource = new Semaphore(0);
+        if (!pedidoValido(pedido)) {
+            return -1;
+        }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             result.set(mPedidoDao.update(pedido));
             resource.release();
@@ -103,6 +148,9 @@ public class PedidoPlatoRepository {
     public int delete(Pedido pedido) {
         AtomicInteger result = new AtomicInteger();
         Semaphore resource = new Semaphore(0);
+        if (!pedidoValido(pedido)) {
+            return -1;
+        }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
            result.set(mPedidoDao.delete(pedido));
            resource.release();
@@ -154,7 +202,7 @@ public class PedidoPlatoRepository {
 
 
 
-    //-----------------------------------PLATOS-----------------------------------------------------------
+    //-----------------------------------PLATOS-----------------------------------------------------
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
@@ -172,6 +220,9 @@ public class PedidoPlatoRepository {
         AtomicLong result = new AtomicLong();
         Semaphore resource = new Semaphore(0);
 
+        if (!platoValido(plato)) {
+            return -1;
+        }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             long value = mPlatoDao.insert(plato);
             result.set(value);
@@ -188,6 +239,22 @@ public class PedidoPlatoRepository {
         return result.get(); // Devolver el id del plato insertado
     }
 
+    /**
+     * Valida si los atributos del plato son validos para insertar en la base de datos.
+     * @param plato
+     * @return true si solo si, cumple las restricciones para ser un plato valido.
+     */
+    private boolean platoValido(Plato plato) {
+        if (plato.getNombre() == null || plato.getNombre().equals("")
+                || plato.getPrecio() == null || plato.getPrecio() < 0.0
+                || plato.getCategoria() == null || plato.getDescripcion() == null
+                || plato.getIdPlato() < 0 || (!plato.getCategoria().equals("PRIMERO")
+                && !plato.getCategoria().equals("SEGUNDO") && !plato.getCategoria().equals("POSTRE")))  {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     /** Modifica una nota
      * @param plato
@@ -197,6 +264,9 @@ public class PedidoPlatoRepository {
         AtomicInteger result = new AtomicInteger();
         Semaphore resource = new Semaphore(0);
 
+        if (!platoValido(plato)) {
+            return -1;
+        }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             result.set(mPlatoDao.update(plato));
             resource.release();
@@ -219,7 +289,9 @@ public class PedidoPlatoRepository {
     public int delete(Plato plato) {
         AtomicInteger result = new AtomicInteger();
         Semaphore resource = new Semaphore(0);
-
+        if (!platoValido(plato)) {
+            return -1;
+        }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             result.set(mPlatoDao.delete(plato));
             resource.release();

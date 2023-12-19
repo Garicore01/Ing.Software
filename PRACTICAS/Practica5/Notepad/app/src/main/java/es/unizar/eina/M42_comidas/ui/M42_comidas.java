@@ -16,6 +16,7 @@ import es.unizar.eina.M42_comidas.R;
 import es.unizar.eina.M42_comidas.database.EsPedido;
 import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.Plato;
+import es.unizar.eina.M42_comidas.database.UnitTests;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -92,6 +93,33 @@ public class M42_comidas extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(M42_comidas.this, M42_listarPedidos.class);
                 startActivity(intent);
+            }
+        });
+
+        Button button_testCajaNegra = findViewById(R.id.botonTestCajaNegra);
+        button_testCajaNegra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               UnitTests test = new UnitTests(getApplication());
+               test.pruebasCajaNegra();
+            }
+        });
+
+        Button button_testSobrecarga = findViewById(R.id.botonTestSobrecarga);
+        button_testSobrecarga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UnitTests test = new UnitTests(getApplication());
+                test.pruebaSobrecarga();
+            }
+        });
+
+        Button button_testVolumen = findViewById(R.id.botonTestVolumen);
+        button_testVolumen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UnitTests test = new UnitTests(getApplication());
+                test.pruebasVolumen();
             }
         });
  

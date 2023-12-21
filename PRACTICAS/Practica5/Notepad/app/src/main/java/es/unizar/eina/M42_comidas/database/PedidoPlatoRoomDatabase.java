@@ -8,6 +8,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.Date;
@@ -60,10 +62,22 @@ public abstract class PedidoPlatoRoomDatabase extends RoomDatabase {
                 EsPedidoDao daoEsPedido = INSTANCE.EsPedidoDao();
                 daoEsPedido.deleteAll();
 
+                
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                Date fecha = null;
+                try {
+                    // Parsear la fecha a partir de una cadena
+                     fecha = dateFormat.parse("21/12/2023 22:00");
 
-                Pedido pedido = new Pedido("Gariko","678903987",new Date(),"SOLICITADO");
+                    // Imprimir la fecha
+                    System.out.println(fecha);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Pedido pedido = new Pedido("Gariko","678903987",fecha,"SOLICITADO");
                 daoPedido.insert(pedido);
-                pedido = new Pedido("Gariko2","678903982",new Date(),"SOLICITADO");
+                pedido = new Pedido("Gariko2","678903982",fecha,"SOLICITADO");
                 daoPedido.insert(pedido);
 
                 Plato plato = new Plato("Arroz con pollo", "Mierda",9.99,"Comida de mierda");

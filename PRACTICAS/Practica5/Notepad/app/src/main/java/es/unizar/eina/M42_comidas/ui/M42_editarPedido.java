@@ -127,7 +127,7 @@ public class M42_editarPedido extends AppCompatActivity {
             } else {
                 replyIntent.putExtra(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE, mNombreText.getText().toString());
                 replyIntent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, mTelefonoText.getText().toString());
-                replyIntent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, mFechaText.getText().toString()); //comprobar error
+                replyIntent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, mFechaText.getText().toString());
                 replyIntent.putExtra(M42_editarPedido.PEDIDO_ESTADO, estadoSeleccionado);
                 if (mId!=null) {
                     replyIntent.putExtra(M42_editarPedido.PEDIDO_ID, mId.intValue());
@@ -150,8 +150,9 @@ public class M42_editarPedido extends AppCompatActivity {
             mNombreText.setText(extras.getString(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE));
             mTelefonoText.setText(extras.getString(M42_editarPedido.PEDIDO_TELEFONO));
             mFechaText.setText(extras.getString(M42_editarPedido.PEDIDO_FECHA_RECOGIDA));
-            mId = extras.getInt(M42_editarPedido.PEDIDO_ID);
+            mId = Integer.parseInt(extras.getString(M42_editarPedido.PEDIDO_ID));
             estadoSeleccionado = extras.getString(M42_editarPedido.PEDIDO_ESTADO);
+            Log.d("Pedido edit","El id es "+mId);
         }
         Map<Integer, ElemEsPedido> cantidadPlatosMap = globalState.getCantidadPlatosMap();
             double sum = 0;
@@ -208,7 +209,7 @@ public class M42_editarPedido extends AppCompatActivity {
                     new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            if (hourOfDay >= 19 && hourOfDay < 23) {
+                            if ((hourOfDay > 19 || (hourOfDay >= 19 && minute >= 30)) && hourOfDay < 23) {
                                 // Actualiza el texto del EditText con la hora seleccionada
                                 fechaHora = fechaHora + " " + hourOfDay + ":" + minute;
                                 mFechaText.setText(fechaHora);

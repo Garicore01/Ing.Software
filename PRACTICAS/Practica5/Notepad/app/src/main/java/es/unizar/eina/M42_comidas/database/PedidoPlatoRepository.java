@@ -65,9 +65,14 @@ public class PedidoPlatoRepository {
                 && !pedido.getEstado().equals("PREPARADO") && !pedido.getEstado().equals("RECOGIDO"))
                 || pedido.getTelefonoCliente() == null || pedido.getTelefonoCliente().length() != 9
                 || pedido.getFechaRecogida() == null || !fechaValida(pedido.getFechaRecogida()))  {
+            Log.d("PedidoPlatoRepository", "Pedido no introducido, no es valido");
             return false;
+
+
         } else {
+            Log.d("PedidoPlatoRepository", "Pedido introducido, es valido");
             return true;
+
         }
     }
 
@@ -80,14 +85,21 @@ public class PedidoPlatoRepository {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fecha);
         if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+            Log.d("PedidoPlatoRepository", "Fecha introducida, no es valida, es lunes");
             return false;
+
         }
         int hora = calendar.get(Calendar.HOUR_OF_DAY);
         int minutos = calendar.get(Calendar.MINUTE);
         if ((hora > 19 || (hora == 19 && minutos >= 30)) && hora < 23) {
+            Log.d("PedidoPlatoRepository", "Fecha introducida, es valida");
             return true;
+
         }
+        Log.d("PedidoPlatoRepository", "Fecha introducida, no es valida, no esta entre las 19:30 y las 23:00");
         return false;
+
+
     }
     /** Inserta un pedido
      * @param pedido
@@ -126,11 +138,15 @@ public class PedidoPlatoRepository {
     public int update(Pedido pedido) {
         AtomicInteger result = new AtomicInteger();
         Semaphore resource = new Semaphore(0);
+
         if (!pedidoValido(pedido)) {
+
             return -1;
         }
         PedidoPlatoRoomDatabase.databaseWriteExecutor.execute(() -> {
             result.set(mPedidoDao.update(pedido));
+            Log.d("PedidoPlatoRepository", "Pedido introducido");
+
             resource.release();
         });
         try {

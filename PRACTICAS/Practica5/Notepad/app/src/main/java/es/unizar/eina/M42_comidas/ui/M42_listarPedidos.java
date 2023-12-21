@@ -259,9 +259,10 @@ public class M42_listarPedidos extends AppCompatActivity {
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
-                    Log.d("Prueba","voy a meter el  pedido nuevo ");
+
                     newPedido.setIdPedido(id);
-                    
+                    Log.d("DEBUG","voy a meter el  pedido nuevo con id "+ id);
+                    Log.d("DEBUG","voy a meter el  pedido nuevo con nombre "+ newPedido.getNombreCliente()+" y telefono "+newPedido.getTelefonoCliente()+" y fecha "+newPedido.getFechaRecogida()+" y estado "+newPedido.getEstado()+" y id "+newPedido.getIdPedido());
                     mPedidoViewModel.update(newPedido);
                     globalState = GlobalState.getInstance();
                     Map<Integer, ElemEsPedido> map = globalState.getCantidadPlatosMap();
@@ -287,7 +288,7 @@ public class M42_listarPedidos extends AppCompatActivity {
         intent.putExtra(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE, current.getNombreCliente());
         intent.putExtra(M42_editarPedido.PEDIDO_TELEFONO, current.getTelefonoCliente());
         intent.putExtra(M42_editarPedido.PEDIDO_FECHA_RECOGIDA, formato.format(current.getFechaRecogida()));
-        intent.putExtra(M42_editarPedido.PEDIDO_ID, current.getIdPedido());
+        intent.putExtra(M42_editarPedido.PEDIDO_ID, String.valueOf(current.getIdPedido()));
         globalState = GlobalState.getInstance();
         globalState.vaciarMapa();
         EsPedidoViewModel mEsPedidoViewModel = new ViewModelProvider(this).get(EsPedidoViewModel.class);

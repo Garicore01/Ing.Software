@@ -11,75 +11,78 @@ import java.util.List;
 import es.unizar.eina.M42_comidas.database.Pedido;
 import es.unizar.eina.M42_comidas.database.PedidoPlatoRepository;
 
+/** Clase utilizada como modelo de vista del pedido */
 public class PedidoViewModel extends AndroidViewModel {
 
     private PedidoPlatoRepository mRepository;
 
     private final LiveData<List<Pedido>> mAllPedidos;
-    private LiveData<List<Pedido>> pedidosPorFecha;
-    private LiveData<List<Pedido>> pedidosPorNombre;
-    private LiveData<List<Pedido>> pedidosPorTelefono;
-
-    private LiveData<List<Pedido>> pedidosPreparados;
-    private LiveData<List<Pedido>> pedidosSolicitados;
-    private LiveData<List<Pedido>> pedidosRecogidos;
 
 
     public PedidoViewModel(Application application) {
         super(application);
         mRepository = new PedidoPlatoRepository(application);
         mAllPedidos = mRepository.getAllPedidos();
-        pedidosPorFecha = mRepository.obtenerPedidosOrdenados("FECHA");
-        pedidosPorNombre = mRepository.obtenerPedidosOrdenados("NOMBRE");
-        pedidosPorTelefono = mRepository.obtenerPedidosOrdenados("NUMERO");
-        pedidosPreparados = mRepository.obtenerPedidosFiltrado("PREPARADO");
-        pedidosSolicitados = mRepository.obtenerPedidosFiltrado("SOLICITADO");
-        pedidosRecogidos = mRepository.obtenerPedidosFiltrado("RECOGIDO");
-
     }
 
     LiveData<List<Pedido>> getAllPedidos() { return mAllPedidos; }
 
+    /**
+     * Devuelve una lista de pedidos ordenados por criterio
+     * @param criterio
+     * @return una lista de pedidos ordenados por criterio
+     */
     public LiveData<List<Pedido>> obtenerPedidosOrdenados(String criterio) {
         switch (criterio) {
             case "Fecha":
-                return pedidosPorFecha;
+                return mRepository.obtenerPedidosOrdenados("FECHA");
             case "Nombre de Cliente":
-                return pedidosPorNombre;
+                return mRepository.obtenerPedidosOrdenados("NOMBRE");
             case "Número de Teléfono":
-                return pedidosPorTelefono;
+                return mRepository.obtenerPedidosOrdenados("NUMERO");
             default:
-                return pedidosPorFecha;
+                return mRepository.obtenerPedidosOrdenados("FECHA");
         }
     }
 
+    /**
+     * Devuelve una lista de pedidos filtrados por filtro
+     * @param filtro
+     * @return una lista de pedidos filtrados por filtro
+     */
     public LiveData<List<Pedido>> obtenerPedidosFiltrados(String filtro) {
         switch (filtro) {
             case "PREPARADO":
-                return pedidosPreparados;
+                return mRepository.obtenerPedidosFiltrado("PREPARADO");
             case "SOLICITADO":
-                return pedidosSolicitados;
+                return mRepository.obtenerPedidosFiltrado("SOLICITADO");
             case "RECOGIDO":
-                return pedidosRecogidos;
+                return mRepository.obtenerPedidosFiltrado("RECOGIDO");
             default:
-                return pedidosPorFecha;
+                return mRepository.obtenerPedidosFiltrado("PREPARADO");
         }
     }
 
     public LiveData<List<Pedido>> obtenerPedidosFiltradosyOrdenados(String filtroSeleccionado, String criterioSeleccionado) {
-        switch (criterioSeleccionado) {
-            case "Fecha":
-                criterioSeleccionado = "fechaRecogida";
-            case "Nombre de Cliente":
-                criterioSeleccionado = "nombreCliente";
-            case "Número de Teléfono":
-                criterioSeleccionado = "telefonoCliente";
-        }
         return mRepository.obtenerPedidosFiltradoYOrdenado(filtroSeleccionado, criterioSeleccionado);
     }
 
+    /**
+     * Inserta un pedido en la base de datos
+     * @param pedido
+     * @return Id del pedido insertado
+     */
     public long insert(Pedido pedido) { return mRepository.insert(pedido); }
 
+    /**
+     * Actualiza un pedido en la base de datos
+     * @param pedido
+     */
     public void update(Pedido pedido) { mRepository.update(pedido); }
+
+    /**
+     * Elimina un pedido de la base de datos
+     * @param pedido
+     */
     public void delete(Pedido pedido) { mRepository.delete(pedido); }
 }

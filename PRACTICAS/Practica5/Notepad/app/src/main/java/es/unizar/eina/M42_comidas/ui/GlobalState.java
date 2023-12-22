@@ -8,6 +8,7 @@ import java.util.Map;
 
 import es.unizar.eina.M42_comidas.database.EsPedido;
 
+/** Clase utilizada para seguir el patrón Singleton */
 public class GlobalState {
     private static GlobalState instance;
     private Map<Integer, ElemEsPedido> cantidadPlatosMap;
@@ -72,9 +73,6 @@ public class GlobalState {
             return 0;
         }
     }
-
-
-
 
 }
 

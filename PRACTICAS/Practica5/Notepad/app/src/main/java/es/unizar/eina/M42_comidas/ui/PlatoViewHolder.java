@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import es.unizar.eina.M42_comidas.R;
 
+/** Clase ViewHolder para la lista de platos. */
 class PlatoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
     private final TextView mNombreView;
     private final TextView mCategoriaView;
@@ -27,6 +28,12 @@ class PlatoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateCo
         itemView.setOnCreateContextMenuListener(this);
     }
 
+    /**
+     * Metodo para enlazar los datos de un plato con la vista.
+     * @param text
+     * @param categoria
+     * @param precio
+     */
     public void bind(String text, String categoria, String precio) {
         mNombreView.setText(text);
         mCategoriaView.setText(categoria);
@@ -41,6 +48,12 @@ class PlatoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateCo
 
     // En este método esta la logica para mantener pulsado un plato y que aparezca la opción 
     // de eliminar o editar.
+    /**
+     * Metodo para crear el menu contextual de un plato.
+     * @param menu
+     * @param v
+     * @param menuInfo
+     */
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
 

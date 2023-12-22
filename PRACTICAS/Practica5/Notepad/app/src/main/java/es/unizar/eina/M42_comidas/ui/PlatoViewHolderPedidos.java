@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import es.unizar.eina.M42_comidas.R;
 
+/** Clase que representa un plato en la lista de platos de un pedido. */
 public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
     private final TextView mNombreItemView;
     private final TextView mCantidadItemView;
@@ -49,6 +50,11 @@ public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
         elemEsPedido = new ElemEsPedido();
     }
 
+    /**
+     * Metodo para enlazar los datos de un plato con la vista.
+     * @param text
+     * @param elemEsPedido
+     */
     public void bind(String text,ElemEsPedido elemEsPedido) {
         
         globalState = GlobalState.getInstance();

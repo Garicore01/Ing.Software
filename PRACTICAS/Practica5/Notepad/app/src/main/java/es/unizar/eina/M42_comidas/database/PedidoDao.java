@@ -60,7 +60,7 @@ public interface PedidoDao {
      * Devuelve todos los pedidos de la base de datos ordenados por nombre
      * @return una lista de pedidos ordenados por nombre
      */
-    @Query("SELECT * FROM Pedido ORDER BY nombreCliente DESC")
+    @Query("SELECT * FROM Pedido ORDER BY nombreCliente ASC")
     LiveData<List<Pedido>> getAllPedidosOrderedByNombre();
 
 
@@ -87,11 +87,28 @@ public interface PedidoDao {
     LiveData<List<Pedido>> getAllPedidosFiltered(String filtro);
 
     /**
-     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por criterio
-     * @return una lista de pedidos filtrados por <filtro> y ordenados por <criterio>
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por número de teléfono
+     * @param filtro, criterio
+     * @return una lista de pedidos filtrados por <filtro> y ordenados por numero de telefono
      */
-    @Query("SELECT * FROM Pedido WHERE estado like :filtro ORDER BY :criterio ASC")
-    LiveData<List<Pedido>> getAllPedidosFilteredAndOrdered(String filtro, String criterio);
+    @Query("SELECT * FROM Pedido WHERE estado = :filtro ORDER BY telefonoCliente ASC")
+    LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByNumber(String filtro);
+
+    /**
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por nombre del Cliente
+     * @param filtro, criterio
+     * @return una lista de pedidos filtrados por <filtro> y ordenados por nombre del Cliente
+     */
+    @Query("SELECT * FROM Pedido WHERE estado = :filtro ORDER BY nombreCliente ASC")
+    LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByName(String filtro);
+
+    /**
+     * Devuelve todos los pedidos de la base de datos filtrados por el estado y ordenado por fecha de recogida
+     * @param filtro, criterio
+     * @return una lista de pedidos filtrados por <filtro> y ordenados por fecha de recogida
+     */
+    @Query("SELECT * FROM Pedido WHERE estado = :filtro ORDER BY fechaRecogida ASC")
+    LiveData<List<Pedido>> getAllPedidosFilteredAndOrderedByDate(String filtro);
 
 }
 

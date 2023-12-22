@@ -12,32 +12,56 @@ import androidx.recyclerview.widget.ListAdapter;
 import es.unizar.eina.M42_comidas.database.Plato;
 
 
-
+/** Adaptador para la lista de platos. */
 public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderPedidos> {
     private int position;
     
-
+    /**
+     * Devuelve la posición del plato seleccionado.
+     * @return posición del plato seleccionado.
+     */
     public int getPosition() {
         return position;
     }
-
+    /**
+     * Establece la posición del plato seleccionado.
+     * @param position
+     */
     public void setPosition(int position) {
         this.position = position;
     }
 
+    /** 
+     * Constructor del adaptador.
+     */
     public PlatoListAdapterPedidos(@NonNull DiffUtil.ItemCallback<Plato> diffCallback) {
         super(diffCallback);
     }
 
+    /**
+     * Crea un nuevo ViewHolder.
+     * @param parent
+     * @param viewType
+     * @return un nuevo ViewHolder.
+     */
     @Override
     public PlatoViewHolderPedidos onCreateViewHolder(ViewGroup parent, int viewType) {
         return PlatoViewHolderPedidos.create(parent);
     }
 
+    /**
+     * Devuelve el plato seleccionado.
+     * @return plato seleccionado.
+     */
     public Plato getCurrent() {
         return getItem(getPosition());
     }
 
+    /**
+     * Enlaza los datos de un plato con la vista.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(PlatoViewHolderPedidos holder, int position) {
         Plato current = getItem(position);

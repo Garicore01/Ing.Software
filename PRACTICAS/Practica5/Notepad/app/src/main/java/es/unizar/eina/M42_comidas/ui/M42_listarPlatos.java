@@ -22,7 +22,7 @@ import java.util.List;
 import es.unizar.eina.M42_comidas.R;
 import es.unizar.eina.M42_comidas.database.Plato;
 
-/** Pantalla principal de la aplicacion M42_comidas */
+/** Pantalla para listar los platos que hay en la aplicación */
 public class M42_listarPlatos extends AppCompatActivity {
     private PlatoViewModel mPlatoViewModel;
 

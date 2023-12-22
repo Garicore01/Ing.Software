@@ -59,7 +59,7 @@ public interface PlatoDao {
      * Devuelve todos los platos de la base de datos ordenados por nombre
      * @return una lista de platos ordenados por nombre
      */
-    @Query("SELECT * FROM Plato ORDER BY nombre ASC")
+    @Query("SELECT * FROM Plato ORDER BY nombre COLLATE NOCASE ASC")
     LiveData<List<Plato>> getOrderedPlatosByName();
 
     /**
@@ -67,7 +67,7 @@ public interface PlatoDao {
      * @return una lista de platos ordenados por nombre
      */
     @Query("SELECT * FROM Plato ORDER BY categoria ASC")
-    LiveData<List<Plato>> getOrderedPlatosByCategoy();
+    LiveData<List<Plato>> getOrderedPlatosByCategory();
 
 
     /**
@@ -75,7 +75,7 @@ public interface PlatoDao {
      * @return una lista de platos ordenados por nombre
      */
     @Query("SELECT * FROM Plato ORDER BY nombre,categoria ASC")
-    LiveData<List<Plato>> getOrderedPlatosByCategoyAndName();
+    LiveData<List<Plato>> getOrderedPlatosByCategoryAndName();
 
     /**
      * Devuelve el plato cuyo id es idPlato
@@ -83,10 +83,32 @@ public interface PlatoDao {
      * @return un plato con id = idPlato
      */
     @Query("SELECT * FROM Plato WHERE idPlato = :idPlato")
-    Plato getPlatoById(int idPlato);
 
-    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY :criterio  ASC")
-    LiveData<List<Plato>> getAllPlatosFilteredAndOrdered(String filtro, String criterio);
+    Plato getPlatoById(int idPlato);
+    /**
+     * Devuelve una lista de platos filtrados por filtro y ordenados por nombre
+     * @param filtro
+     * @return una lista de platos filtrados por filtro y ordenados por nombre
+     */
+    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY nombre ASC")
+    LiveData<List<Plato>> getAllPlatosFilteredAndOrderedByName(String filtro);
+
+    /**
+     * Devuelve una lista de platos filtrados por filtro y ordenados por categoria
+     * @param filtro
+     * @return una lista de platos filtrados por filtro y ordenados por categoria
+     */
+    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY categoria ASC")
+    LiveData<List<Plato>> getAllPlatosFilteredAndOrderedByCategory(String filtro);
+
+    /**
+     * Devuelve una lista de platos filtrados por filtro y ordenados por categoria y nombre
+     * @param filtro
+     * @return una lista de platos filtrados por filtro y ordenados por categoria y nombre
+     */
+    @Query("SELECT * FROM Plato WHERE categoria like :filtro ORDER BY categoria ASC")
+    LiveData<List<Plato>> getAllPlatosFilteredAndOrderedByCategoryAndName(String filtro);
+
 
 
 }

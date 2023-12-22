@@ -10,6 +10,7 @@ import java.util.List;
 import es.unizar.eina.M42_comidas.database.EsPedido;
 import es.unizar.eina.M42_comidas.database.PedidoPlatoRepository;
 
+/** Clase utilizada como modelo de vista del pedido */
 public class EsPedidoViewModel extends AndroidViewModel {
 
     private PedidoPlatoRepository mRepository;

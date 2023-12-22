@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -212,7 +211,16 @@ public class PedidoPlatoRepository {
      * @return lista de pedidos filtrados y ordenados.
      */
     public LiveData<List<Pedido>> obtenerPedidosFiltradoYOrdenado(String filtro, String criterio) {
-        return mPedidoDao.getAllPedidosFilteredAndOrdered(filtro, criterio);
+        switch (criterio) {
+            case "Fecha":
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByDate(filtro);
+            case "Nombre de Cliente":
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByName(filtro);
+            case "Número de Teléfono":
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByNumber(filtro);
+            default:
+                return mPedidoDao.getAllPedidosFilteredAndOrderedByDate(filtro);
+        }
     }
 
 
@@ -337,18 +345,27 @@ public class PedidoPlatoRepository {
      * @return Devuelve la lista de Platos ordenados por categoria
      */
     public LiveData<List<Plato>> obtenerPlatosPorCategoria() {
-        return mPlatoDao.getOrderedPlatosByCategoy();
+        return mPlatoDao.getOrderedPlatosByCategory();
     }
 
     /**
      * @return Devuelve la lista de Platos ordenados por categoria y nombre
      */
     public LiveData<List<Plato>> obtenerPlatosPorCategoriayNombre() {
-        return mPlatoDao.getOrderedPlatosByCategoyAndName();
+        return mPlatoDao.getOrderedPlatosByCategoryAndName();
     }
 
     public LiveData<List<Plato>> obtenerPlatosFiltradoYOrdenado(String filtro, String criterio) {
-        return mPlatoDao.getAllPlatosFilteredAndOrdered(filtro,criterio);
+        switch (criterio) {
+            case "Ambos":
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByCategoryAndName(filtro);
+            case "Nombre del plato":
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByName(filtro);
+            case "Categoría del plato":
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByCategory(filtro);
+            default:
+                return mPlatoDao.getAllPlatosFilteredAndOrderedByName(filtro);
+        }
     }
     //-----------------------------------ESPEDIDO-----------------------------------------------------------
 

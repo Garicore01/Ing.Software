@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import es.unizar.eina.M42_comidas.R;
 
-
+/** Actividad para mostrar la lista de platos que podemos añadir a un pedido.  */
 public class M42_listarPlatosAdd extends AppCompatActivity {
     private PlatoViewModel mPlatoViewModel;
 

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import es.unizar.eina.M42_comidas.R;
 
-/** Pantalla principal de la aplicacion M42_comidas */
+/** Pantalla para editar o añadir un plato */
 public class M42_editarPlato extends AppCompatActivity {
     public static final String PLATO_NOMBRE = "title";
     public static final String PLATO_CATEGORIA = "Primero";

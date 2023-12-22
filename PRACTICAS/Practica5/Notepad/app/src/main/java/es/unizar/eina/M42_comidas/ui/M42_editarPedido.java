@@ -25,7 +25,7 @@ import java.util.Map;
 
 import es.unizar.eina.M42_comidas.R;
 
-/** Pantalla principal de la aplicacion M42_comidas */
+/** Pantalla para editar o añadir un pedido */
 public class M42_editarPedido extends AppCompatActivity {
     public static final String PEDIDO_NOMBRE_CLIENTE = "title";
     public static final String PEDIDO_TELEFONO = "666666666";
@@ -167,19 +167,19 @@ public class M42_editarPedido extends AppCompatActivity {
     private void mostrarDatePickerDialog() {
         // Obtiene la fecha actual
         Calendar calendario = Calendar.getInstance();
-        int año = calendario.get(Calendar.YEAR);
+        int anyo = calendario.get(Calendar.YEAR);
         int mes = calendario.get(Calendar.MONTH);
-        int día = calendario.get(Calendar.DAY_OF_MONTH);
+        int dia = calendario.get(Calendar.DAY_OF_MONTH);
     
         // Crea un DatePickerDialog y configura la acción al seleccionar una fecha
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Obtiene el día de la semana
+                        // Obtiene el dia de la semana
                         Calendar selectedDate = new GregorianCalendar(year, month, dayOfMonth);
                         int dayOfWeek = selectedDate.get(Calendar.DAY_OF_WEEK);
-                        // Verifica que el día seleccionado esté en el rango permitido
+                        // Verifica que el dia seleccionado esté en el rango permitido
                         if (dayOfWeek != Calendar.MONDAY) {
                             // Actualiza el texto del EditText con la fecha seleccionada
                             fechaHora = dayOfMonth + "/" + (month + 1) + "/" + year;
@@ -188,10 +188,10 @@ public class M42_editarPedido extends AppCompatActivity {
                             // Llama a la función para mostrar el TimePickerDialog
                             mostrarTimePickerDialog();
                         } else {
-                            // Muestra un mensaje indicando que el día seleccionado no es válido
+                            // Muestra un mensaje indicando que el dia seleccionado no es válido
                             Toast.makeText(getApplicationContext(), R.string.fecha_incorrecta,Toast.LENGTH_LONG).show();                    }
                     }
-                }, año, mes, día);
+                }, anyo, mes, dia);
     
         // Muestra el DatePickerDialog
         datePickerDialog.show();

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 
 import es.unizar.eina.M42_comidas.database.Pedido;
 
-
+/** Adaptado para la lista de pedidos. */
 public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
     private int position;
     private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");

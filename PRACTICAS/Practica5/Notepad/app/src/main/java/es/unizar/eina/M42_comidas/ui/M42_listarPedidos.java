@@ -158,7 +158,7 @@ public class M42_listarPedidos extends AppCompatActivity {
             public void onClick(View view) {
                 filtroSeleccionado = "SOLICITADO";
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
-                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("SOLICITADO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override
                     public void onChanged(List<Pedido> pedidos) {
                         // Actualiza tu adaptador con la nueva lista de pedidos
@@ -176,7 +176,7 @@ public class M42_listarPedidos extends AppCompatActivity {
             public void onClick(View view) {
                 filtroSeleccionado = "PREPARADO";
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
-                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("PREPARADO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override
                     public void onChanged(List<Pedido> pedidos) {
                         // Actualiza tu adaptador con la nueva lista de pedidos
@@ -194,7 +194,7 @@ public class M42_listarPedidos extends AppCompatActivity {
             public void onClick(View view) {
                 filtroSeleccionado = "RECOGIDO";
                 Log.d("FILTRO DE ORDENAR", criterioSeleccionado);
-                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados("RECOGIDO", criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
+                mPedidoViewModel.obtenerPedidosFiltradosyOrdenados(filtroSeleccionado, criterioSeleccionado).observe(M42_listarPedidos.this, new Observer<List<Pedido>>() {
                     @Override
                     public void onChanged(List<Pedido> pedidos) {
                         // Actualiza tu adaptador con la nueva lista de pedidos

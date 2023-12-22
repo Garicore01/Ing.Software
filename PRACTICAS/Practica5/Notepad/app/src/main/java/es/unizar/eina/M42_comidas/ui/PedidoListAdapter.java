@@ -56,6 +56,7 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
 
     static class PedidoDiff extends DiffUtil.ItemCallback<Pedido> {
 
+
         @Override
         public boolean areItemsTheSame(@NonNull Pedido oldItem, @NonNull Pedido newItem) {
             return oldItem.getIdPedido() == newItem.getIdPedido();
@@ -63,7 +64,9 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
 
         @Override
         public boolean areContentsTheSame(@NonNull Pedido oldItem, @NonNull Pedido newItem) {
-            return oldItem.getNombreCliente().equals(newItem.getNombreCliente());
+            return oldItem.getNombreCliente().equals(newItem.getNombreCliente()) &&
+                oldItem.getTelefonoCliente().equals(newItem.getTelefonoCliente()) &&
+                oldItem.getFechaRecogida().equals(newItem.getFechaRecogida());
         }
     }
 }

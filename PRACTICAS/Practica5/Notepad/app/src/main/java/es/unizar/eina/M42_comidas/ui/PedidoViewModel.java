@@ -72,13 +72,13 @@ public class PedidoViewModel extends AndroidViewModel {
      * @param pedido
      * @return Id del pedido insertado
      */
-    public long insert(Pedido pedido) { return mRepository.insert(pedido); }
+    public long insert(Pedido pedido) {  return mRepository.insert(pedido);}
 
     /**
      * Actualiza un pedido en la base de datos
      * @param pedido
      */
-    public void update(Pedido pedido) { mRepository.update(pedido); }
+    public void update(Pedido pedido) {mRepository.update(pedido); }
 
     /**
      * Elimina un pedido de la base de datos

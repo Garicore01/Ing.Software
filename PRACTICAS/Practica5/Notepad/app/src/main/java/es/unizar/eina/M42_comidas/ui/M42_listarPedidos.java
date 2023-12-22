@@ -85,9 +85,11 @@ public class M42_listarPedidos extends AppCompatActivity {
         mEsPedidoViewModel = new ViewModelProvider(this).get(EsPedidoViewModel.class);
 
         mPedidoViewModel.getAllPedidos().observe(this,Pedidos -> {
-            mPedidoAdapter.submitList(Pedidos);
 
+            mPedidoAdapter.submitList(Pedidos);
         });
+
+        
 
         mSendAbstraction = new SendAbstractionImpl(this, metodoSend);
 

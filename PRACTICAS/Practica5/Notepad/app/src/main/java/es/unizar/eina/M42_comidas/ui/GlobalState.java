@@ -28,19 +28,36 @@ public class GlobalState {
         return instance;
     }
 
+    /**
+     * Devuelve un diccionario con la cantidad de platos
+     * @return un diccionario con la cantidad de platos
+     */
     public Map<Integer, ElemEsPedido> getCantidadPlatosMap() {
         return cantidadPlatosMap;
     }
 
-
+    /**
+     * Método para agregar un elemento al diccionario
+     * @param clave
+     * @param valor
+     */
     public void agregarAlMapa(Integer clave, ElemEsPedido valor) {
         cantidadPlatosMap.put(clave, valor);
 
     }
+
+    /**
+     * Método para vaciar el diccionario.
+     */
     public void vaciarMapa() {
         cantidadPlatosMap.clear();
     }
 
+    /**
+     * Dado una clave, obtenemos el id cuya clave es clave
+     * @param clave
+     * @return el id con clave, clave
+     */
     public int obtenerDelMapaId(Integer clave) {
         if(cantidadPlatosMap.get(clave) != null){
             return cantidadPlatosMap.get(clave).platoId;
@@ -49,6 +66,12 @@ public class GlobalState {
             return 0;
         }
     }
+
+    /**
+     * Dado una clave, obtenemos la cantidad cuya clave es clave
+     * @param clave
+     * @return el valor cantidad cuya clave es clave.
+     */
     public int obtenerDelMapaCantidad(Integer clave) {
         if(cantidadPlatosMap.get(clave) != null){
             return cantidadPlatosMap.get(clave).cantidad;
@@ -57,6 +80,12 @@ public class GlobalState {
             return 0;
         }
     }
+
+    /**
+     * Dado una clave, obtenemos el precio cuya clave es clave
+     * @param clave
+     * @return el valor precio cuya clave es clave.
+     */
     public double obtenerDelMapaPrecio(Integer clave) {
         if(cantidadPlatosMap.get(clave) != null){
             return cantidadPlatosMap.get(clave).precio;
@@ -66,6 +95,11 @@ public class GlobalState {
         }
     }
 
+    /**
+     * Comproueba si la clave existe en el diccionario.
+     * @param clave
+     * @return 1 si solo si, clave, existe en el diccionario.
+     */
     public int existeEnMapa(Integer clave) {
         if(cantidadPlatosMap.get(clave) != null){
             return 1;

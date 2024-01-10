@@ -218,8 +218,6 @@ public class M42_listarPedidos extends AppCompatActivity {
      */
     public boolean onContextItemSelected(MenuItem item) {
         Pedido current = mPedidoAdapter.getCurrent();
-        Log.d("DEBUG", "Selected position: " + mPedidoAdapter.getPosition());
-        Log.d("DEBUG", "Selected Pedido ID: " + current.getIdPedido());
         switch (item.getItemId()) {
             case DELETE_ID:
                 Toast.makeText(
@@ -262,8 +260,6 @@ public class M42_listarPedidos extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
         } else {
             Bundle extras = data.getExtras();
-            Log.d("Prueba","he vuelto de actualizar");
-           
             switch (requestCode) {
                 case ACTIVITY_EDIT:
                     Pedido newPedido;
@@ -278,23 +274,17 @@ public class M42_listarPedidos extends AppCompatActivity {
                     }
 
                     newPedido.setIdPedido(id);
-                    Log.d("DEBUG","voy a meter el  pedido nuevo con id "+ id);
-                    Log.d("DEBUG","voy a meter el  pedido nuevo con nombre "+ newPedido.getNombreCliente()+" y telefono "+newPedido.getTelefonoCliente()+" y fecha "+newPedido.getFechaRecogida()+" y estado "+newPedido.getEstado()+" y id "+newPedido.getIdPedido());
                     mPedidoViewModel.update(newPedido);
                     globalState = GlobalState.getInstance();
                     Map<Integer, ElemEsPedido> map = globalState.getCantidadPlatosMap();
-                    Log.d("Prueba","voy a meter los platos del pedido nuevo ");
                     for (Map.Entry<Integer, ElemEsPedido> entry : map.entrySet()) {
                         Integer key = entry.getKey();
                         ElemEsPedido value = entry.getValue();
-                        Log.d("Prueba","voy a meter el plato "+key+" del pedido "+id+" con cantidad "+value.cantidad+" y precio "+value.precio);
                         EsPedido esPedido = new EsPedido(id,key, value.cantidad, value.precio);
                         mEsPedidoViewModel.update(esPedido);
                     }
-                    Log.d("Prueba","ya esta metido  pedido nuevo ");
                     break;
             }
-            Log.d("Prueba","he salido de actualizar");
         }
     }
 

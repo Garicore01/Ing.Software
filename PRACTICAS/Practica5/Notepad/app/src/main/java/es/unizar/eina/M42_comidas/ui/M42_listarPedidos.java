@@ -68,6 +68,10 @@ public class M42_listarPedidos extends AppCompatActivity {
     public static final String metodoSend = "sms";
 
 
+    /**
+     * Metodo que se ejecuta al crear la actividad que configurará los diferentes elementos
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,6 +212,10 @@ public class M42_listarPedidos extends AppCompatActivity {
         });
     }
 
+    /**
+     * Metodo que se ejecuta al seleccionar un elemento del menu contextual
+     * @param item
+     */
     public boolean onContextItemSelected(MenuItem item) {
         Pedido current = mPedidoAdapter.getCurrent();
         Log.d("DEBUG", "Selected position: " + mPedidoAdapter.getPosition());
@@ -237,6 +245,13 @@ public class M42_listarPedidos extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
     
+    /**
+     * Metodo que se ejecuta al volver a la actividad que configurará los diferentes elementos y ejecutará los diferentes metodos
+     * 
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -284,7 +299,10 @@ public class M42_listarPedidos extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Metodo que se ejecuta al pulsar el boton de añadir pedido
+     * @param Pedido
+     */
     private void editarPedido(Pedido current) {
         Intent intent = new Intent(this, M42_editarPedido.class);
         intent.putExtra(M42_editarPedido.PEDIDO_NOMBRE_CLIENTE, current.getNombreCliente());

@@ -80,6 +80,7 @@ public class PlatoListAdapterPedidos extends ListAdapter<Plato, PlatoViewHolderP
 
     }
 
+    
     static class PlatoDiff extends DiffUtil.ItemCallback<Plato> {
 
         @Override

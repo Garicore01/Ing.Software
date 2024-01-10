@@ -18,28 +18,51 @@ public class PedidoListAdapter extends ListAdapter<Pedido, PedidoViewHolder> {
     private int position;
     private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-
+    /**
+     * Devuelve la posición del pedido seleccionado.
+     * @return posición del pedido seleccionado.
+     */
     public int getPosition() {
         return position;
     }
 
+    /**
+     * Establece la posición del pedido seleccionado.
+     * @param position
+     */
     public void setPosition(int position) {
         this.position = position;
     }
+
 
     public PedidoListAdapter(@NonNull DiffUtil.ItemCallback<Pedido> diffCallback) {
         super(diffCallback);
     }
 
+    /**
+     * Crea un nuevo ViewHolder.
+     * @param parent
+     * @param viewType
+     * @return un nuevo ViewHolder.
+     */
     @Override
     public PedidoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return PedidoViewHolder.create(parent);
     }
 
+    /**
+     * Devuelve el pedido seleccionado.
+     * @return pedido seleccionado.
+     */
     public Pedido getCurrent() {
         return getItem(getPosition());
     }
 
+    /**
+     * Enlaza los datos de un pedido con la vista.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(PedidoViewHolder holder, int position) {
         Pedido current = getItem(position);

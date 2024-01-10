@@ -59,7 +59,10 @@ public class M42_editarPedido extends AppCompatActivity {
     Button mBotonAnyadirPlatos;
     Button mSaveButton;
 
-
+    /**
+     * Metodo que se ejecuta al crear la actividad que configurará los diferentes elementos
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +145,9 @@ public class M42_editarPedido extends AppCompatActivity {
         
     }
 
-
+    /**
+     * Metodo que se ejecuta al volver a la actividad que configurará los diferentes elementos
+     */
     private void populateFields () {
         mId = null;
         Bundle extras = getIntent().getExtras();
@@ -164,6 +169,11 @@ public class M42_editarPedido extends AppCompatActivity {
         int spinnerPosition = adapter.getPosition(estadoSeleccionado);
         spinnerEstado.setSelection(spinnerPosition);
     }
+
+    /**
+     * Metodo que se encarga de mostrar el seleccionador de fecha
+     *
+     */
     private void mostrarDatePickerDialog() {
         // Obtiene la fecha actual
         Calendar calendario = Calendar.getInstance();
@@ -197,7 +207,10 @@ public class M42_editarPedido extends AppCompatActivity {
         datePickerDialog.show();
     }
     
-    
+        /**
+         * Metodo que se encarga de mostrar el seleccionador de hora
+         * 
+         */
         private void mostrarTimePickerDialog() {
             // Obtiene la hora actual
             Calendar calendario = Calendar.getInstance();
@@ -224,7 +237,13 @@ public class M42_editarPedido extends AppCompatActivity {
             // Muestra el TimePickerDialog
             timePickerDialog.show();
         }
-
+    
+    /**
+     * Metodo que se ejecuta al volver a la actividad que configurará los diferentes elementos
+     * @param requestCode
+     * @param resultCode
+     * @param data
+    */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

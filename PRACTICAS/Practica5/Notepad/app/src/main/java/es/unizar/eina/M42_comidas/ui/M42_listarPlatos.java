@@ -42,7 +42,10 @@ public class M42_listarPlatos extends AppCompatActivity {
 
 
 
-
+    /**
+     * Metodo que se ejecuta al crear la actividad que configurará los diferentes elementos
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -175,7 +178,12 @@ public class M42_listarPlatos extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Metodo que se ejecuta al volver a la actividad que configurará los diferentes elementos
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -211,7 +219,10 @@ public class M42_listarPlatos extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Metodo que se ejecuta al pulsar un elemento del menu contextual
+     * @param view
+     */
     public boolean onContextItemSelected(MenuItem item) {
         Plato current = mPlatoAdapter.getCurrent();
         switch (item.getItemId()) {
@@ -229,6 +240,10 @@ public class M42_listarPlatos extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
+    /**
+     * Metodo que se ejecuta al pulsar un elemento de la lista
+     * @param view
+     */
     private void editarPlato(Plato current) {
         Intent intent = new Intent(this, M42_editarPlato.class);
         intent.putExtra(M42_editarPlato.PLATO_NOMBRE, current.getNombre());

@@ -63,7 +63,12 @@ public class PlatoViewHolderPedidos extends RecyclerView.ViewHolder {
         mCantidadItemView.setText(String.valueOf(elemEsPedido.cantidad));
 
     }
-
+    
+    /**
+     * Crea un nuevo ViewHolder.
+     * @param parent
+     * @return un nuevo ViewHolder.
+     */
     static PlatoViewHolderPedidos create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.seleccionar_plato_plantilla, parent, false);

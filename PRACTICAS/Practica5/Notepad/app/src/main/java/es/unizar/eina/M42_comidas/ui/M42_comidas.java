@@ -48,7 +48,10 @@ public class M42_comidas extends AppCompatActivity {
 
 
 
-
+    /**
+     * Metodo que se ejecuta al crear la actividad que configurará los diferentes elementos
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +128,13 @@ public class M42_comidas extends AppCompatActivity {
  
     }
 
+    /**
+     * Metodo que se ejecuta al volver a la actividad que configurará los diferentes elementos y ejecutará los diferentes metodos
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     * 
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

@@ -40,6 +40,10 @@ public class M42_editarPlato extends AppCompatActivity {
 
     Button mSaveButton;
 
+    /**
+     * Metodo que se ejecuta al crear la actividad que configurará los diferentes elementos
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +101,10 @@ public class M42_editarPlato extends AppCompatActivity {
         });
         populateFields ();
     }
+
+    /**
+     * Metodo que se ejecuta al crear la actividad para rellenar los campos de la actividad
+     */
     private void populateFields () {
         mId = null;
         Bundle extras = getIntent().getExtras();

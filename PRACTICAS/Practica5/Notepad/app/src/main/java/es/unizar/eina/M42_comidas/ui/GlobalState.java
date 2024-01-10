@@ -17,6 +17,10 @@ public class GlobalState {
         cantidadPlatosMap = new HashMap<>();
     }
 
+    /**
+     * Devuelve la instancia de la clase
+     * @return instancia de la clase
+     */
     public static GlobalState getInstance() {
         if (instance == null) {
             synchronized (GlobalState.class) {
